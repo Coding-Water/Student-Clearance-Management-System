@@ -34,12 +34,14 @@ namespace Student_Clearance_Management_System.Forms
                                      WHERE IsDeleted = 0
                                      ORDER BY CourseCode";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    dgvCourses.DataSource = dt;
-                }
+                        dgvCourses.DataSource = dt;
+                    }
+                }   
             }
             catch (Exception ex)
             {

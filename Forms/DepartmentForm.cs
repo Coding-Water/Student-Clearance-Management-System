@@ -33,11 +33,13 @@ namespace Student_Clearance_Management_System.Forms
                                      FROM Departments
                                      WHERE IsDeleted = 0";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    dgvDepartments.DataSource = dt;
+                        dgvDepartments.DataSource = dt;
+                    }
                 }
             }
             catch (Exception ex)

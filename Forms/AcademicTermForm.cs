@@ -52,11 +52,13 @@ namespace Student_Clearance_Management_System.Forms
                                      WHERE IsDeleted = 0
                                      ORDER BY TermID DESC";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    dgvAcademicTerms.DataSource = dt;
+                        dgvAcademicTerms.DataSource = dt;
+                    }
                 }
             }
             catch (Exception ex)

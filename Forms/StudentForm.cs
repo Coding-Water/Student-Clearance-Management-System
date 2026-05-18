@@ -59,13 +59,15 @@ namespace Student_Clearance_Management_System.Forms
                                      FROM Courses
                                      WHERE IsDeleted = 0";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    cboCourse.DataSource = dt;
-                    cboCourse.DisplayMember = "CourseDisplay";
-                    cboCourse.ValueMember = "CourseID";
+                        cboCourse.DataSource = dt;
+                        cboCourse.DisplayMember = "CourseDisplay";
+                        cboCourse.ValueMember = "CourseID";
+                    }
                 }
             }
             catch (Exception ex)
@@ -103,15 +105,17 @@ namespace Student_Clearance_Management_System.Forms
                                      WHERE s.IsDeleted = 0
                                      AND c.IsDeleted = 0";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgvStudents.DataSource = dt;
-
-                    if (dgvStudents.Columns["CourseID"] != null)
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
-                        dgvStudents.Columns["CourseID"].Visible = false;
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        dgvStudents.DataSource = dt;
+
+                        if (dgvStudents.Columns["CourseID"] != null)
+                        {
+                            dgvStudents.Columns["CourseID"].Visible = false;
+                        }
                     }
                 }
             }

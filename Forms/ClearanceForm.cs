@@ -482,7 +482,10 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceRecords.AllowUserToDeleteRows = false;
             dgvClearanceRecords.MultiSelect = false;
 
-            dgvClearanceRecords.Columns["ClearanceID"].Visible = false;
+            if (dgvClearanceRecords.Columns["ClearanceID"] != null)
+            {
+                dgvClearanceRecords.Columns["ClearanceID"].Visible = false;
+            }
         }
 
         private void SearchClearanceRecords()

@@ -153,13 +153,15 @@ namespace Student_Clearance_Management_System.Forms
                                      AND d.IsDeleted = 0
                                      ORDER BY d.DepartmentName";
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    da.SelectCommand.Parameters.AddWithValue("@courseID", courseID);
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        da.SelectCommand.Parameters.AddWithValue("@courseID", courseID);
 
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    dgvRequirements.DataSource = dt;
+                        dgvRequirements.DataSource = dt;
+                    }
                 }
 
                 FormatRequirementsGrid();
