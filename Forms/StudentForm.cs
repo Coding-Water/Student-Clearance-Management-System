@@ -86,7 +86,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -147,7 +147,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -203,7 +203,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -265,7 +265,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -277,8 +277,7 @@ namespace Student_Clearance_Management_System.Forms
                             @"UPDATE Students
                               SET IsDeleted = 1
                               WHERE StudentID = @id",
-                            conn,
-                            transaction);
+                            conn,transaction);
 
                         cmd1.Parameters.AddWithValue("@id", txtID.Text);
                         cmd1.ExecuteNonQuery();
@@ -325,7 +324,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -350,7 +349,7 @@ namespace Student_Clearance_Management_System.Forms
                                         c.CourseCode LIKE @search OR
                                         c.CourseName LIKE @search OR
                                         s.YearLevel LIKE @search OR
-                                        s.Section LIKE @search OR
+                                        s.Section LIKE @search ORc
                                         s.ContactNumber LIKE @search
                                      )";
 

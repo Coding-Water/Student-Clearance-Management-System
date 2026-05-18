@@ -25,7 +25,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -69,7 +69,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -166,7 +166,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
@@ -227,7 +227,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                using (SqlConnection conn = db.GetConnection())
+                SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();
 
