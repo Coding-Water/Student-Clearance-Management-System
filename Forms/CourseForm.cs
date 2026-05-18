@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using Student_Clearance_Management_System.Database;
 using Student_Clearance_Management_System.Interfaces;
+using Student_Clearance_Management_System.Models;
 
 namespace Student_Clearance_Management_System.Forms
 {
@@ -278,6 +279,16 @@ namespace Student_Clearance_Management_System.Forms
 
                         cmd4.Parameters.AddWithValue("@id", txtCourseID.Text);
                         cmd4.ExecuteNonQuery();
+
+                        SqlCommand logCmd = new SqlCommand(
+                            @"INSERT INTO RecycleBinLogs (RecordType, RecordID, RecordDetails, ActionType, ActionDate, PerformedBy)
+                              VALUES ('Course', @recordId, @details, 'Delete', GETDATE(), @username)",
+                            conn,
+                            transaction);
+                        logCmd.Parameters.AddWithValue("@recordId", txtCourseID.Text);
+                        logCmd.Parameters.AddWithValue("@details", txtCourseCode.Text.Trim() + " - " + txtCourseName.Text.Trim() + " (ID: " + txtCourseID.Text + ")");
+                        logCmd.Parameters.AddWithValue("@username", AppSession.LoggedInUsername);
+                        logCmd.ExecuteNonQuery();
 
                         transaction.Commit();
 

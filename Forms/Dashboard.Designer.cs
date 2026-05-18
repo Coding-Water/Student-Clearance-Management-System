@@ -1,4 +1,4 @@
-﻿namespace Student_Clearance_Management_System.Forms
+namespace Student_Clearance_Management_System.Forms
 {
     partial class Dashboard
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnRecycleBin = new Button();
             lblTitle = new Label();
             lblDashboard = new Label();
             lblTotalStudentsTitle = new Label();
@@ -49,9 +50,19 @@
             cboAcademicTerm = new ComboBox();
             btnAcademicTerms = new Button();
             btnLogout = new Button();
-            btnRefresh = new Button();
             btnCourseRequirements = new Button();
+            btnReports = new Button();
             SuspendLayout();
+            // 
+            // btnRecycleBin
+            // 
+            btnRecycleBin.Location = new Point(463, 322);
+            btnRecycleBin.Name = "btnRecycleBin";
+            btnRecycleBin.Size = new Size(140, 56);
+            btnRecycleBin.TabIndex = 24;
+            btnRecycleBin.Text = "Recycle Bin";
+            btnRecycleBin.UseVisualStyleBackColor = true;
+            btnRecycleBin.Click += btnRecycleBin_Click;
             // 
             // lblTitle
             // 
@@ -263,16 +274,6 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // btnRefresh
-            // 
-            btnRefresh.Location = new Point(317, 469);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(140, 56);
-            btnRefresh.TabIndex = 20;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
             // btnCourseRequirements
             // 
             btnCourseRequirements.Location = new Point(26, 469);
@@ -283,15 +284,26 @@
             btnCourseRequirements.UseVisualStyleBackColor = true;
             btnCourseRequirements.Click += btnCourseRequirements_Click;
             // 
+            // btnReports
+            // 
+            btnReports.Location = new Point(317, 469);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(140, 56);
+            btnReports.TabIndex = 23;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = true;
+            btnReports.Click += btnReports_Click;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(627, 555);
+            ClientSize = new Size(627, 556);
             Controls.Add(btnAcademicTerms);
+            Controls.Add(btnRecycleBin);
             Controls.Add(btnLogout);
-            Controls.Add(btnRefresh);
             Controls.Add(btnCourseRequirements);
+            Controls.Add(btnReports);
             Controls.Add(cboAcademicTerm);
             Controls.Add(lblLoggedInUser);
             Controls.Add(lblAcademicTerm);
@@ -342,8 +354,9 @@
         private Label lblLoggedInUser;
         private ComboBox cboAcademicTerm;
         private Button btnAcademicTerms;
+        private Button btnRecycleBin;
         private Button btnLogout;
-        private Button btnRefresh;
         private Button btnCourseRequirements;
+        private Button btnReports;
     }
 }

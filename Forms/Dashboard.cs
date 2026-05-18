@@ -23,6 +23,11 @@ namespace Student_Clearance_Management_System.Forms
                                    AppSession.LoggedInUsername +
                                    " (" + AppSession.LoggedInRole + ")";
 
+            if (AppSession.LoggedInRole != "Admin")
+            {
+                btnRecycleBin.Visible = false;
+            }
+
             LoadAcademicTerms();
             LoadDashboard();
         }
@@ -237,16 +242,19 @@ namespace Student_Clearance_Management_System.Forms
             LoadDashboard();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnReports_Click(object sender, EventArgs e)
         {
-            LoadAcademicTerms();
+            ReportForm form = new ReportForm();
+            form.ShowDialog();
             LoadDashboard();
+        }
 
-            MessageBox.Show(
-                "Dashboard refreshed successfully.",
-                "Refresh",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+
+        private void btnRecycleBin_Click(object sender, EventArgs e)
+        {
+            RecycleBinForm form = new RecycleBinForm();
+            form.ShowDialog();
+            LoadDashboard();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

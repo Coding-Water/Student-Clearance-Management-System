@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [StudentClearanceDB]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Database [StudentClearanceDB]    Script Date: 5/19/2026 1:38:42 AM ******/
 CREATE DATABASE [StudentClearanceDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -86,7 +86,7 @@ ALTER DATABASE [StudentClearanceDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE
 GO
 USE [StudentClearanceDB]
 GO
-/****** Object:  Table [dbo].[AcademicTerms]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[AcademicTerms]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -103,7 +103,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClearanceRecords]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[ClearanceRecords]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,7 +122,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CourseDepartmentRequirements]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[CourseDepartmentRequirements]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -139,7 +139,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[Courses]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -155,7 +155,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Departments]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[Departments]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +170,26 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Students]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[RecycleBinLogs]    Script Date: 5/19/2026 1:38:43 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RecycleBinLogs](
+	[LogID] [int] IDENTITY(1,1) NOT NULL,
+	[RecordType] [varchar](50) NOT NULL,
+	[RecordID] [varchar](50) NOT NULL,
+	[RecordDetails] [varchar](255) NOT NULL,
+	[ActionType] [varchar](20) NOT NULL,
+	[ActionDate] [datetime] NOT NULL,
+	[PerformedBy] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[LogID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Students]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,7 +209,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 5/19/2026 1:38:43 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -209,7 +228,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UX_AcademicTerms_SchoolYear_Semester]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_AcademicTerms_SchoolYear_Semester]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_AcademicTerms_SchoolYear_Semester] ON [dbo].[AcademicTerms]
 (
 	[SchoolYear] ASC,
@@ -218,7 +237,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [UX_AcademicTerms_SchoolYear_Semester] ON [dbo]
 WHERE ([IsDeleted]=(0))
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [UX_ClearanceRecords_Student_Department_Term]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_ClearanceRecords_Student_Department_Term]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_ClearanceRecords_Student_Department_Term] ON [dbo].[ClearanceRecords]
 (
 	[StudentID] ASC,
@@ -228,7 +247,7 @@ CREATE UNIQUE NONCLUSTERED INDEX [UX_ClearanceRecords_Student_Department_Term] O
 WHERE ([IsDeleted]=(0))
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [UX_CourseDepartmentRequirements_Course_Department]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_CourseDepartmentRequirements_Course_Department]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_CourseDepartmentRequirements_Course_Department] ON [dbo].[CourseDepartmentRequirements]
 (
 	[CourseID] ASC,
@@ -239,7 +258,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UX_Courses_CourseCode]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_Courses_CourseCode]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_Courses_CourseCode] ON [dbo].[Courses]
 (
 	[CourseCode] ASC
@@ -249,7 +268,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UX_Departments_DepartmentName]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_Departments_DepartmentName]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_Departments_DepartmentName] ON [dbo].[Departments]
 (
 	[DepartmentName] ASC
@@ -259,7 +278,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UX_Users_Username]    Script Date: 5/18/2026 2:44:51 AM ******/
+/****** Object:  Index [UX_Users_Username]    Script Date: 5/19/2026 1:38:43 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UX_Users_Username] ON [dbo].[Users]
 (
 	[Username] ASC
@@ -280,6 +299,8 @@ GO
 ALTER TABLE [dbo].[Courses] ADD  DEFAULT ((0)) FOR [IsDeleted]
 GO
 ALTER TABLE [dbo].[Departments] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[RecycleBinLogs] ADD  DEFAULT (getdate()) FOR [ActionDate]
 GO
 ALTER TABLE [dbo].[Students] ADD  DEFAULT ((0)) FOR [IsDeleted]
 GO
@@ -319,4 +340,3 @@ USE [master]
 GO
 ALTER DATABASE [StudentClearanceDB] SET  READ_WRITE 
 GO
- 
