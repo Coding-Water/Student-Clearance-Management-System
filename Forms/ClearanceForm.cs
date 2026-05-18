@@ -6,8 +6,11 @@ using Student_Clearance_Management_System.Database;
 
 namespace Student_Clearance_Management_System.Forms
 {
+    // INHERITANCE: ClearanceForm inherits from 'Form' to get standard Windows Form behaviors and UI controls.
     public partial class ClearanceForm : Form
     {
+        // ENCAPSULATION: Internal state variables are marked 'private' so they cannot be accessed or
+        // modified directly from outside this class.
         private bool isLoadingTerms = false;
         private System.Windows.Forms.Timer searchTimer;
 

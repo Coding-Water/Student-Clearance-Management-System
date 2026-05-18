@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseRequirementForm));
             cboCourse = new ComboBox();
             btnRefresh = new Button();
             btnSaveRequirements = new Button();
             dgvRequirements = new DataGridView();
             lblCourse = new Label();
             lblTitle = new Label();
-            btnBack = new Button();
             lblInstruction = new Label();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRequirements).BeginInit();
             SuspendLayout();
             // 
@@ -107,17 +108,6 @@
             lblTitle.TabIndex = 24;
             lblTitle.Text = "Course Department Requirements";
             // 
-            // btnBack
-            // 
-            btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Location = new Point(12, 12);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(114, 41);
-            btnBack.TabIndex = 45;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
             // lblInstruction
             // 
             lblInstruction.AutoSize = true;
@@ -128,13 +118,27 @@
             lblInstruction.TabIndex = 46;
             lblInstruction.Text = "Check departments required for this course:";
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = SystemColors.Control;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 15F);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(12, 5);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(117, 55);
+            btnBack.TabIndex = 47;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // CourseRequirementForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(804, 553);
-            Controls.Add(lblInstruction);
             Controls.Add(btnBack);
+            Controls.Add(lblInstruction);
             Controls.Add(cboCourse);
             Controls.Add(btnRefresh);
             Controls.Add(btnSaveRequirements);
@@ -157,7 +161,7 @@
         private DataGridView dgvRequirements;
         private Label lblCourse;
         private Label lblTitle;
-        private Button btnBack;
         private Label lblInstruction;
+        private Button btnBack;
     }
 }

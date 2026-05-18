@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourseForm));
             lblTitle = new Label();
             lblCourseID = new Label();
             lblCourseCode = new Label();
@@ -170,13 +171,16 @@
             // 
             // btnBack
             // 
+            btnBack.BackColor = SystemColors.Control;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Location = new Point(22, 9);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(8, 3);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(114, 41);
-            btnBack.TabIndex = 13;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Size = new Size(117, 55);
+            btnBack.TabIndex = 46;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
             // CourseForm

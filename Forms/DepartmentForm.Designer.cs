@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DepartmentForm));
             dgvDepartments = new DataGridView();
             btnDelete = new Button();
             btnUpdate = new Button();
@@ -150,13 +151,16 @@
             // 
             // btnBack
             // 
+            btnBack.BackColor = SystemColors.Control;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Location = new Point(23, 14);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(12, 7);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(114, 41);
-            btnBack.TabIndex = 25;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Size = new Size(117, 55);
+            btnBack.TabIndex = 46;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
             // DepartmentForm

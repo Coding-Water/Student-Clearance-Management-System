@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClearanceForm));
             btnClear = new Button();
-            btnBack = new Button();
             btnDeleteSelected = new Button();
             btnAdd = new Button();
             dgvClearanceDepartments = new DataGridView();
@@ -44,6 +44,7 @@
             btnLoadChecklist = new Button();
             dgvClearanceRecords = new DataGridView();
             cboAcademicTerm = new ComboBox();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvClearanceDepartments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClearanceRecords).BeginInit();
             SuspendLayout();
@@ -58,17 +59,6 @@
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
-            // 
-            // btnBack
-            // 
-            btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Location = new Point(12, 12);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(130, 40);
-            btnBack.TabIndex = 42;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
             // 
             // btnDeleteSelected
             // 
@@ -221,11 +211,26 @@
             cboAcademicTerm.TabIndex = 56;
             cboAcademicTerm.SelectedIndexChanged += cboAcademicTerm_SelectedIndexChanged;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = SystemColors.Control;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 15F);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(2, 5);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(117, 55);
+            btnBack.TabIndex = 57;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // ClearanceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1139, 695);
+            Controls.Add(btnBack);
             Controls.Add(cboAcademicTerm);
             Controls.Add(dgvClearanceRecords);
             Controls.Add(btnLoadChecklist);
@@ -236,7 +241,6 @@
             Controls.Add(txtSearch);
             Controls.Add(lblSearch);
             Controls.Add(btnClear);
-            Controls.Add(btnBack);
             Controls.Add(btnDeleteSelected);
             Controls.Add(btnAdd);
             Controls.Add(dgvClearanceDepartments);
@@ -255,7 +259,6 @@
         #endregion
 
         private Button btnClear;
-        private Button btnBack;
         private Button btnDeleteSelected;
         private Button btnAdd;
         private DataGridView dgvClearanceDepartments;
@@ -270,5 +273,6 @@
         private Button btnLoadChecklist;
         private DataGridView dgvClearanceRecords;
         private ComboBox cboAcademicTerm;
+        private Button btnBack;
     }
 }

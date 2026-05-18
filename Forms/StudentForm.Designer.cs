@@ -1,4 +1,4 @@
-﻿namespace Student_Clearance_Management_System.Forms
+namespace Student_Clearance_Management_System.Forms
 {
     partial class StudentForm
     {
@@ -11,6 +11,7 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        // METHOD OVERRIDING: This overrides the standard base class 'Dispose' method from the Form parent class.
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -28,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentForm));
             lblTitle = new Label();
             lblID = new Label();
             lblFirst = new Label();
@@ -68,7 +70,7 @@
             // 
             lblID.AutoSize = true;
             lblID.Font = new Font("Segoe UI", 15F);
-            lblID.Location = new Point(10, 63);
+            lblID.Location = new Point(12, 78);
             lblID.Name = "lblID";
             lblID.Size = new Size(108, 28);
             lblID.TabIndex = 1;
@@ -78,7 +80,7 @@
             // 
             lblFirst.AutoSize = true;
             lblFirst.Font = new Font("Segoe UI", 15F);
-            lblFirst.Location = new Point(10, 106);
+            lblFirst.Location = new Point(12, 121);
             lblFirst.Name = "lblFirst";
             lblFirst.Size = new Size(110, 28);
             lblFirst.TabIndex = 2;
@@ -88,7 +90,7 @@
             // 
             lblLast.AutoSize = true;
             lblLast.Font = new Font("Segoe UI", 15F);
-            lblLast.Location = new Point(10, 151);
+            lblLast.Location = new Point(12, 166);
             lblLast.Name = "lblLast";
             lblLast.Size = new Size(107, 28);
             lblLast.TabIndex = 3;
@@ -98,7 +100,7 @@
             // 
             lblCourse.AutoSize = true;
             lblCourse.Font = new Font("Segoe UI", 15F);
-            lblCourse.Location = new Point(13, 195);
+            lblCourse.Location = new Point(15, 210);
             lblCourse.Name = "lblCourse";
             lblCourse.Size = new Size(76, 28);
             lblCourse.TabIndex = 4;
@@ -108,7 +110,7 @@
             // 
             lblYear.AutoSize = true;
             lblYear.Font = new Font("Segoe UI", 15F);
-            lblYear.Location = new Point(386, 60);
+            lblYear.Location = new Point(388, 75);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(101, 28);
             lblYear.TabIndex = 5;
@@ -118,7 +120,7 @@
             // 
             lblSection.AutoSize = true;
             lblSection.Font = new Font("Segoe UI", 15F);
-            lblSection.Location = new Point(386, 103);
+            lblSection.Location = new Point(388, 118);
             lblSection.Name = "lblSection";
             lblSection.Size = new Size(81, 28);
             lblSection.TabIndex = 6;
@@ -128,7 +130,7 @@
             // 
             lblContact.AutoSize = true;
             lblContact.Font = new Font("Segoe UI", 15F);
-            lblContact.Location = new Point(386, 148);
+            lblContact.Location = new Point(388, 163);
             lblContact.Name = "lblContact";
             lblContact.Size = new Size(161, 28);
             lblContact.TabIndex = 7;
@@ -147,7 +149,7 @@
             // txtID
             // 
             txtID.Font = new Font("Segoe UI", 15F);
-            txtID.Location = new Point(126, 60);
+            txtID.Location = new Point(128, 75);
             txtID.Name = "txtID";
             txtID.Size = new Size(227, 34);
             txtID.TabIndex = 9;
@@ -155,7 +157,7 @@
             // txtFirst
             // 
             txtFirst.Font = new Font("Segoe UI", 15F);
-            txtFirst.Location = new Point(126, 103);
+            txtFirst.Location = new Point(128, 118);
             txtFirst.Name = "txtFirst";
             txtFirst.Size = new Size(227, 34);
             txtFirst.TabIndex = 10;
@@ -163,7 +165,7 @@
             // txtLast
             // 
             txtLast.Font = new Font("Segoe UI", 15F);
-            txtLast.Location = new Point(129, 148);
+            txtLast.Location = new Point(131, 163);
             txtLast.Name = "txtLast";
             txtLast.Size = new Size(224, 34);
             txtLast.TabIndex = 11;
@@ -171,7 +173,7 @@
             // txtSection
             // 
             txtSection.Font = new Font("Segoe UI", 15F);
-            txtSection.Location = new Point(553, 103);
+            txtSection.Location = new Point(555, 118);
             txtSection.Name = "txtSection";
             txtSection.Size = new Size(224, 34);
             txtSection.TabIndex = 14;
@@ -179,7 +181,7 @@
             // txtContact
             // 
             txtContact.Font = new Font("Segoe UI", 15F);
-            txtContact.Location = new Point(553, 148);
+            txtContact.Location = new Point(555, 163);
             txtContact.Name = "txtContact";
             txtContact.Size = new Size(224, 34);
             txtContact.TabIndex = 15;
@@ -211,7 +213,7 @@
             // btnAdd
             // 
             btnAdd.Font = new Font("Segoe UI", 15F);
-            btnAdd.Location = new Point(114, 263);
+            btnAdd.Location = new Point(116, 278);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(130, 40);
             btnAdd.TabIndex = 18;
@@ -222,7 +224,7 @@
             // btnDelete
             // 
             btnDelete.Font = new Font("Segoe UI", 15F);
-            btnDelete.Location = new Point(250, 263);
+            btnDelete.Location = new Point(252, 278);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(130, 40);
             btnDelete.TabIndex = 19;
@@ -233,7 +235,7 @@
             // btnUpdate
             // 
             btnUpdate.Font = new Font("Segoe UI", 15F);
-            btnUpdate.Location = new Point(386, 263);
+            btnUpdate.Location = new Point(388, 278);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(130, 40);
             btnUpdate.TabIndex = 20;
@@ -244,7 +246,7 @@
             // btnClear
             // 
             btnClear.Font = new Font("Segoe UI", 15F);
-            btnClear.Location = new Point(522, 263);
+            btnClear.Location = new Point(524, 278);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(130, 40);
             btnClear.TabIndex = 21;
@@ -257,7 +259,7 @@
             cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCourse.Font = new Font("Segoe UI", 15F);
             cboCourse.FormattingEnabled = true;
-            cboCourse.Location = new Point(129, 195);
+            cboCourse.Location = new Point(131, 210);
             cboCourse.Name = "cboCourse";
             cboCourse.Size = new Size(648, 36);
             cboCourse.TabIndex = 22;
@@ -267,20 +269,23 @@
             cboYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             cboYearLevel.Font = new Font("Segoe UI", 15F);
             cboYearLevel.FormattingEnabled = true;
-            cboYearLevel.Location = new Point(553, 52);
+            cboYearLevel.Location = new Point(555, 67);
             cboYearLevel.Name = "cboYearLevel";
             cboYearLevel.Size = new Size(224, 36);
             cboYearLevel.TabIndex = 23;
             // 
             // btnBack
             // 
+            btnBack.BackColor = SystemColors.Control;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Location = new Point(15, 12);
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(-11, 9);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(114, 41);
-            btnBack.TabIndex = 26;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Size = new Size(117, 55);
+            btnBack.TabIndex = 46;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
             // StudentForm

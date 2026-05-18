@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
@@ -7,6 +7,8 @@ using Student_Clearance_Management_System.Interfaces;
 
 namespace Student_Clearance_Management_System.Forms
 {
+    // INHERITANCE: StudentForm inherits properties and behaviors from the base class 'Form'.
+    // INTERFACE: StudentForm implements the 'ICrud' interface, forcing it to provide definitions for Add(), Update(), and Delete().
     public partial class StudentForm : Form, ICrud
     {
         public StudentForm()
@@ -14,6 +16,7 @@ namespace Student_Clearance_Management_System.Forms
             InitializeComponent();
         }
 
+        // METHOD INVOCATION: Invoking (calling) other methods to run their encapsulated logic.
         private void StudentForm_Load(object sender, EventArgs e)
         {
             LoadYearLevels();
@@ -21,6 +24,8 @@ namespace Student_Clearance_Management_System.Forms
             LoadStudents();
         }
 
+        // ENCAPSULATION: Helper methods are defined as 'private' to hide implementation details
+        // and protect the class's internal logic from external manipulation.
         private void LoadYearLevels()
         {
             cboYearLevel.Items.Clear();
@@ -120,6 +125,7 @@ namespace Student_Clearance_Management_System.Forms
             }
         }
 
+        // METHOD IMPLEMENTATION: Providing the concrete logic for the 'Add' method defined in the ICrud interface.
         public void Add()
         {
             if (txtID.Text == "" ||

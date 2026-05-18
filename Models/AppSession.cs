@@ -1,6 +1,8 @@
 
 namespace Student_Clearance_Management_System.Models
 {
+    // ENCAPSULATION: Properties (getters and setters) encapsulate the class's data,
+    // controlling how state is accessed and modified.
     public static class AppSession
     {
         public static int LoggedInUserID { get; set; }
