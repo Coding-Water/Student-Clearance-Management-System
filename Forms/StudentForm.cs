@@ -55,7 +55,7 @@ namespace Student_Clearance_Management_System.Forms
 
                     string query = @"SELECT 
                                         CourseID,
-                                        CourseCode + ' - ' + CourseName AS CourseDisplay
+                                        CourseCode + ' - ' + CourseName AS CourseDisplay  
                                      FROM Courses
                                      WHERE IsDeleted = 0";
 
