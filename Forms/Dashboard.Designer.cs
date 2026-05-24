@@ -62,6 +62,7 @@ namespace Student_Clearance_Management_System.Forms
             btnRecycleBin.TabIndex = 24;
             btnRecycleBin.Text = "Recycle Bin";
             btnRecycleBin.UseVisualStyleBackColor = true;
+            btnRecycleBin.Visible = true;
             btnRecycleBin.Click += btnRecycleBin_Click;
             // 
             // lblTitle

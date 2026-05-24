@@ -13,14 +13,15 @@ namespace Student_Clearance_Management_System.Forms
         public RecycleBinForm()
         {
             // Only Admin can access this form
-            if (AppSession.LoggedInRole != "Admin")
+            string role = AppSession.LoggedInRole?.Trim().ToLower() ?? "";
+            if (role != "admin")
             {
                 MessageBox.Show(
                     "Access Denied: Only administrators can access the Recycle Bin.",
                     "Unauthorized Access",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                
+
                 // Form will close immediately on load
                 this.Load += (s, e) => this.Close();
                 return;

@@ -33,7 +33,7 @@ namespace Student_Clearance_Management_System.Forms
                     string query = @"SELECT CourseID, CourseCode, CourseName
                                      FROM Courses
                                      WHERE IsDeleted = 0
-                                     ORDER BY CourseCode";
+                                     ORDER BY CourseCode DESC";
 
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {

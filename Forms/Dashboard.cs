@@ -23,9 +23,13 @@ namespace Student_Clearance_Management_System.Forms
                                    AppSession.LoggedInUsername +
                                    " (" + AppSession.LoggedInRole + ")";
 
-            if (AppSession.LoggedInRole != "Admin")
+            // Show Recycle Bin button only for Admin role (case-insensitive and trimmed)
+            string role = AppSession.LoggedInRole?.Trim().ToLower() ?? "";
+
+            // Ensure the button exists and set visibility
+            if (btnRecycleBin != null)
             {
-                btnRecycleBin.Visible = false;
+                btnRecycleBin.Visible = (role == "admin");
             }
 
             LoadAcademicTerms();
@@ -38,7 +42,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 isLoadingTerms = true;
 
-                DBConnection db = new DBConnection();
+                    DBConnection db = new DBConnection();
 
                 SqlConnection conn = db.GetConnection();
                 {
