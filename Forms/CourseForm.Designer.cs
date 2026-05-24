@@ -28,6 +28,8 @@ namespace Student_Clearance_Management_System.Forms
             btnUpdate = new Button();
             btnAdd = new Button();
             dgvCourses = new DataGridView();
+            lblCourseID = new Label();
+            txtCourseID = new TextBox();
             pnlHeader.SuspendLayout();
             pnlInputCard.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -236,6 +238,22 @@ namespace Student_Clearance_Management_System.Forms
             dgvCourses.TabIndex = 7;
             dgvCourses.CellClick += dgvCourses_CellClick;
             // 
+            // lblCourseID (hidden - stores selected CourseID)
+            // 
+            lblCourseID.Location = new Point(0, 0);
+            lblCourseID.Name = "lblCourseID";
+            lblCourseID.Size = new Size(0, 0);
+            lblCourseID.TabIndex = 100;
+            lblCourseID.Visible = false;
+            // 
+            // txtCourseID (hidden - stores selected CourseID value)
+            // 
+            txtCourseID.Location = new Point(0, 0);
+            txtCourseID.Name = "txtCourseID";
+            txtCourseID.Size = new Size(0, 0);
+            txtCourseID.TabIndex = 101;
+            txtCourseID.Visible = false;
+            // 
             // CourseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -245,6 +263,8 @@ namespace Student_Clearance_Management_System.Forms
             Controls.Add(pnlButtons);
             Controls.Add(pnlInputCard);
             Controls.Add(pnlHeader);
+            Controls.Add(lblCourseID);
+            Controls.Add(txtCourseID);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;

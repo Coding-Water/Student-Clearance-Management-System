@@ -31,6 +31,8 @@ namespace Student_Clearance_Management_System.Forms
             btnUpdate = new Button();
             btnAdd = new Button();
             dgvAcademicTerms = new DataGridView();
+            lblTermID = new Label();
+            txtTermID = new TextBox();
             pnlHeader.SuspendLayout();
             pnlInputCard.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -282,6 +284,23 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // AcademicTermForm
             // 
+            // lblTermID (hidden - stores selected TermID)
+            lblTermID.Location = new Point(0, 0);
+            lblTermID.Name = "lblTermID";
+            lblTermID.Size = new Size(0, 0);
+            lblTermID.TabIndex = 100;
+            lblTermID.Visible = false;
+            // 
+            // txtTermID (hidden - stores selected TermID value)
+            // 
+            txtTermID.Location = new Point(0, 0);
+            txtTermID.Name = "txtTermID";
+            txtTermID.Size = new Size(0, 0);
+            txtTermID.TabIndex = 101;
+            txtTermID.Visible = false;
+            // 
+            // AcademicTermForm
+            // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(928, 450);
@@ -289,6 +308,8 @@ namespace Student_Clearance_Management_System.Forms
             Controls.Add(pnlButtons);
             Controls.Add(pnlInputCard);
             Controls.Add(pnlHeader);
+            Controls.Add(lblTermID);
+            Controls.Add(txtTermID);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;

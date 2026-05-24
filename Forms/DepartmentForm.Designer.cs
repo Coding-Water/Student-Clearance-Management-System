@@ -26,6 +26,8 @@ namespace Student_Clearance_Management_System.Forms
             btnUpdate = new Button();
             btnAdd = new Button();
             dgvDepartments = new DataGridView();
+            lblDepartmentID = new Label();
+            txtDepartmentID = new TextBox();
             pnlHeader.SuspendLayout();
             pnlInputCard.SuspendLayout();
             pnlButtons.SuspendLayout();
@@ -210,6 +212,22 @@ namespace Student_Clearance_Management_System.Forms
             dgvDepartments.TabIndex = 6;
             dgvDepartments.CellClick += dgvDepartments_CellClick;
             // 
+            // lblDepartmentID (hidden - stores selected DepartmentID)
+            // 
+            lblDepartmentID.Location = new Point(0, 0);
+            lblDepartmentID.Name = "lblDepartmentID";
+            lblDepartmentID.Size = new Size(0, 0);
+            lblDepartmentID.TabIndex = 100;
+            lblDepartmentID.Visible = false;
+            // 
+            // txtDepartmentID (hidden - stores selected DepartmentID value)
+            // 
+            txtDepartmentID.Location = new Point(0, 0);
+            txtDepartmentID.Name = "txtDepartmentID";
+            txtDepartmentID.Size = new Size(0, 0);
+            txtDepartmentID.TabIndex = 101;
+            txtDepartmentID.Visible = false;
+            // 
             // DepartmentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,6 +237,8 @@ namespace Student_Clearance_Management_System.Forms
             Controls.Add(pnlButtons);
             Controls.Add(pnlInputCard);
             Controls.Add(pnlHeader);
+            Controls.Add(lblDepartmentID);
+            Controls.Add(txtDepartmentID);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
