@@ -6,10 +6,7 @@ namespace Student_Clearance_Management_System.Forms
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
@@ -17,196 +14,223 @@ namespace Student_Clearance_Management_System.Forms
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecycleBinForm));
-            lblTitle = new Label();
-            tabControl1 = new TabControl();
-            tabDeletedRecords = new TabPage();
-            lblRecordType = new Label();
-            cboRecordType = new ComboBox();
-            dgvDeletedRecords = new DataGridView();
-            btnRestore = new Button();
-            tabActivityLogs = new TabPage();
-            dgvHistory = new DataGridView();
-            btnRefreshLogs = new Button();
-            btnBack = new Button();
+            pnlHeader           = new Panel();
+            lblTitle            = new Label();
+            btnBack             = new Button();
+            tabControl1         = new TabControl();
+            tabDeletedRecords   = new TabPage();
+            pnlTabFilter        = new Panel();
+            lblRecordType       = new Label();
+            cboRecordType       = new ComboBox();
+            btnRestore          = new Button();
+            btnDeletePermanently = new Button();
+            dgvDeletedRecords   = new DataGridView();
+            tabActivityLogs     = new TabPage();
+            pnlTabLogBar        = new Panel();
+            btnRefreshLogs      = new Button();
+            dgvHistory          = new DataGridView();
+
+            pnlHeader.SuspendLayout();
             tabControl1.SuspendLayout();
             tabDeletedRecords.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).BeginInit();
+            pnlTabFilter.SuspendLayout();
             tabActivityLogs.SuspendLayout();
+            pnlTabLogBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).BeginInit();
             SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.Location = new Point(280, 15);
+
+            // ── Header ────────────────────────────────────────────────
+            pnlHeader.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 60;
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(btnBack);
+
+            lblTitle.AutoSize = false;
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = System.Drawing.Color.White;
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(273, 30);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Recycle Bin Management";
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabDeletedRecords);
-            tabControl1.Controls.Add(tabActivityLogs);
-            tabControl1.Font = new Font("Segoe UI", 12F);
-            tabControl1.Location = new Point(20, 65);
+            lblTitle.Text = "🗑️  Admin Panel — Recycle Bin & Activity Logs";
+            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            btnBack.BackColor = System.Drawing.Color.FromArgb(67, 56, 202);
+            btnBack.Dock = DockStyle.Left;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnBack.ForeColor = System.Drawing.Color.White;
+            btnBack.Name = "btnBack";
+            btnBack.Size = new System.Drawing.Size(80, 60);
+            btnBack.Text = "← Close";
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Click += btnBack_Click;
+
+            // ── TabControl ────────────────────────────────────────────
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Font = new System.Drawing.Font("Segoe UI", 10F);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(810, 490);
-            tabControl1.TabIndex = 2;
-            // 
-            // tabDeletedRecords
-            // 
-            tabDeletedRecords.Controls.Add(lblRecordType);
-            tabDeletedRecords.Controls.Add(cboRecordType);
-            tabDeletedRecords.Controls.Add(dgvDeletedRecords);
-            tabDeletedRecords.Controls.Add(btnRestore);
-            tabDeletedRecords.Location = new Point(4, 30);
+            tabControl1.Controls.Add(tabDeletedRecords);
+            tabControl1.Controls.Add(tabActivityLogs);
+
+            // ── Tab 1: Deleted Records ────────────────────────────────
+            tabDeletedRecords.BackColor = System.Drawing.Color.FromArgb(249, 250, 251);
+            tabDeletedRecords.Dock = DockStyle.Fill;
             tabDeletedRecords.Name = "tabDeletedRecords";
-            tabDeletedRecords.Padding = new Padding(10);
-            tabDeletedRecords.Size = new Size(802, 456);
-            tabDeletedRecords.TabIndex = 0;
-            tabDeletedRecords.Text = "Deleted Records";
+            tabDeletedRecords.Text = "  🗑️  Deleted Records  ";
             tabDeletedRecords.UseVisualStyleBackColor = true;
-            // 
-            // lblRecordType
-            // 
+            tabDeletedRecords.Controls.Add(dgvDeletedRecords);
+            tabDeletedRecords.Controls.Add(pnlTabFilter);
+
+            pnlTabFilter.BackColor = System.Drawing.Color.White;
+            pnlTabFilter.Dock = DockStyle.Top;
+            pnlTabFilter.Height = 56;
+            pnlTabFilter.Name = "pnlTabFilter";
+            pnlTabFilter.Padding = new Padding(16, 10, 16, 10);
+            pnlTabFilter.Controls.Add(btnDeletePermanently);
+            pnlTabFilter.Controls.Add(btnRestore);
+            pnlTabFilter.Controls.Add(cboRecordType);
+            pnlTabFilter.Controls.Add(lblRecordType);
+
             lblRecordType.AutoSize = true;
-            lblRecordType.Font = new Font("Segoe UI", 14F);
-            lblRecordType.Location = new Point(15, 20);
+            lblRecordType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblRecordType.ForeColor = System.Drawing.Color.FromArgb(55, 65, 81);
+            lblRecordType.Location = new System.Drawing.Point(16, 17);
             lblRecordType.Name = "lblRecordType";
-            lblRecordType.Size = new Size(173, 25);
-            lblRecordType.TabIndex = 0;
-            lblRecordType.Text = "Select Record Type:";
-            // 
-            // cboRecordType
-            // 
+            lblRecordType.Text = "Record Type:";
+
             cboRecordType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboRecordType.Font = new Font("Segoe UI", 14F);
-            cboRecordType.FormattingEnabled = true;
-            cboRecordType.Location = new Point(200, 17);
+            cboRecordType.Font = new System.Drawing.Font("Segoe UI", 10F);
+            cboRecordType.Location = new System.Drawing.Point(110, 13);
             cboRecordType.Name = "cboRecordType";
-            cboRecordType.Size = new Size(250, 33);
+            cboRecordType.Size = new System.Drawing.Size(200, 28);
             cboRecordType.TabIndex = 1;
             cboRecordType.SelectedIndexChanged += cboRecordType_SelectedIndexChanged;
-            // 
-            // dgvDeletedRecords
-            // 
+
+            btnRestore.FlatAppearance.BorderSize = 0;
+            btnRestore.FlatStyle = FlatStyle.Flat;
+            btnRestore.BackColor = System.Drawing.Color.FromArgb(22, 163, 74);
+            btnRestore.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnRestore.ForeColor = System.Drawing.Color.White;
+            btnRestore.Location = new System.Drawing.Point(560, 13);
+            btnRestore.Name = "btnRestore";
+            btnRestore.Size = new System.Drawing.Size(150, 30);
+            btnRestore.TabIndex = 2;
+            btnRestore.Text = "♻️  Restore Selected";
+            btnRestore.Cursor = Cursors.Hand;
+            btnRestore.Click += btnRestore_Click;
+
+            btnDeletePermanently.FlatAppearance.BorderSize = 0;
+            btnDeletePermanently.FlatStyle = FlatStyle.Flat;
+            btnDeletePermanently.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
+            btnDeletePermanently.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnDeletePermanently.ForeColor = System.Drawing.Color.White;
+            btnDeletePermanently.Location = new System.Drawing.Point(720, 13);
+            btnDeletePermanently.Name = "btnDeletePermanently";
+            btnDeletePermanently.Size = new System.Drawing.Size(170, 30);
+            btnDeletePermanently.TabIndex = 3;
+            btnDeletePermanently.Text = "🗑️  Delete Permanently";
+            btnDeletePermanently.Cursor = Cursors.Hand;
+            btnDeletePermanently.Click += btnDeletePermanently_Click;
+
             dgvDeletedRecords.AllowUserToAddRows = false;
             dgvDeletedRecords.AllowUserToDeleteRows = false;
             dgvDeletedRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDeletedRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDeletedRecords.Location = new Point(15, 70);
+            dgvDeletedRecords.Dock = DockStyle.Fill;
             dgvDeletedRecords.MultiSelect = false;
             dgvDeletedRecords.Name = "dgvDeletedRecords";
             dgvDeletedRecords.ReadOnly = true;
             dgvDeletedRecords.RowHeadersVisible = false;
             dgvDeletedRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDeletedRecords.Size = new Size(770, 310);
-            dgvDeletedRecords.TabIndex = 2;
-            // 
-            // btnRestore
-            // 
-            btnRestore.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRestore.Location = new Point(605, 395);
-            btnRestore.Name = "btnRestore";
-            btnRestore.Size = new Size(180, 45);
-            btnRestore.TabIndex = 3;
-            btnRestore.Text = "Restore Selected";
-            btnRestore.UseVisualStyleBackColor = true;
-            btnRestore.Click += btnRestore_Click;
-            // 
-            // tabActivityLogs
-            // 
-            tabActivityLogs.Controls.Add(dgvHistory);
-            tabActivityLogs.Controls.Add(btnRefreshLogs);
-            tabActivityLogs.Location = new Point(4, 30);
+            dgvDeletedRecords.TabIndex = 4;
+
+            // ── Tab 2: Activity Logs ──────────────────────────────────
+            tabActivityLogs.BackColor = System.Drawing.Color.FromArgb(249, 250, 251);
+            tabActivityLogs.Dock = DockStyle.Fill;
             tabActivityLogs.Name = "tabActivityLogs";
-            tabActivityLogs.Padding = new Padding(10);
-            tabActivityLogs.Size = new Size(802, 456);
-            tabActivityLogs.TabIndex = 1;
-            tabActivityLogs.Text = "Activity Logs";
+            tabActivityLogs.Text = "  📋  Activity Logs  ";
             tabActivityLogs.UseVisualStyleBackColor = true;
-            // 
-            // dgvHistory
-            // 
+            tabActivityLogs.Controls.Add(dgvHistory);
+            tabActivityLogs.Controls.Add(pnlTabLogBar);
+
+            pnlTabLogBar.BackColor = System.Drawing.Color.White;
+            pnlTabLogBar.Dock = DockStyle.Top;
+            pnlTabLogBar.Height = 56;
+            pnlTabLogBar.Name = "pnlTabLogBar";
+            pnlTabLogBar.Padding = new Padding(16, 10, 16, 10);
+            pnlTabLogBar.Controls.Add(btnRefreshLogs);
+
+            btnRefreshLogs.FlatAppearance.BorderSize = 0;
+            btnRefreshLogs.FlatStyle = FlatStyle.Flat;
+            btnRefreshLogs.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            btnRefreshLogs.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnRefreshLogs.ForeColor = System.Drawing.Color.White;
+            btnRefreshLogs.Location = new System.Drawing.Point(16, 13);
+            btnRefreshLogs.Name = "btnRefreshLogs";
+            btnRefreshLogs.Size = new System.Drawing.Size(150, 30);
+            btnRefreshLogs.TabIndex = 1;
+            btnRefreshLogs.Text = "🔄  Refresh Logs";
+            btnRefreshLogs.Cursor = Cursors.Hand;
+            btnRefreshLogs.Click += btnRefreshLogs_Click;
+
             dgvHistory.AllowUserToAddRows = false;
             dgvHistory.AllowUserToDeleteRows = false;
             dgvHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHistory.Location = new Point(15, 20);
+            dgvHistory.Dock = DockStyle.Fill;
             dgvHistory.MultiSelect = false;
             dgvHistory.Name = "dgvHistory";
             dgvHistory.ReadOnly = true;
             dgvHistory.RowHeadersVisible = false;
             dgvHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvHistory.Size = new Size(770, 360);
-            dgvHistory.TabIndex = 0;
-            // 
-            // btnRefreshLogs
-            // 
-            btnRefreshLogs.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            btnRefreshLogs.Location = new Point(605, 395);
-            btnRefreshLogs.Name = "btnRefreshLogs";
-            btnRefreshLogs.Size = new Size(180, 45);
-            btnRefreshLogs.TabIndex = 1;
-            btnRefreshLogs.Text = "Refresh History";
-            btnRefreshLogs.UseVisualStyleBackColor = true;
-            btnRefreshLogs.Click += btnRefreshLogs_Click;
-            // 
-            // btnBack
-            // 
-            btnBack.BackColor = SystemColors.Control;
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
-            btnBack.Location = new Point(12, 3);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(117, 55);
-            btnBack.TabIndex = 47;
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // RecycleBinForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            dgvHistory.TabIndex = 2;
+
+            // ── Form ──────────────────────────────────────────────────
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 580);
-            Controls.Add(btnBack);
+            ClientSize = new System.Drawing.Size(980, 640);
             Controls.Add(tabControl1);
-            Controls.Add(lblTitle);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            Controls.Add(pnlHeader);
+            FormBorderStyle = FormBorderStyle.Sizable;
+            MaximizeBox = true;
+            MinimumSize = new System.Drawing.Size(880, 560);
             Name = "RecycleBinForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Recycle Bin";
+            Text = "Admin Panel — Recycle Bin & Logs";
             Load += RecycleBinForm_Load;
-            tabControl1.ResumeLayout(false);
-            tabDeletedRecords.ResumeLayout(false);
-            tabDeletedRecords.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).EndInit();
+
+            pnlTabLogBar.ResumeLayout(false);
             tabActivityLogs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
+            pnlTabFilter.ResumeLayout(false);
+            pnlTabFilter.PerformLayout();
+            tabDeletedRecords.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).EndInit();
+            tabControl1.ResumeLayout(false);
+            pnlHeader.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabDeletedRecords;
-        private System.Windows.Forms.Label lblRecordType;
-        private System.Windows.Forms.ComboBox cboRecordType;
-        private System.Windows.Forms.DataGridView dgvDeletedRecords;
-        private System.Windows.Forms.Button btnRestore;
-        private System.Windows.Forms.TabPage tabActivityLogs;
-        private System.Windows.Forms.DataGridView dgvHistory;
-        private System.Windows.Forms.Button btnRefreshLogs;
+        private Panel pnlHeader;
+        private Label lblTitle;
+        private Button btnBack;
+        private TabControl tabControl1;
+        private TabPage tabDeletedRecords;
+        private Panel pnlTabFilter;
+        private Label lblRecordType;
+        private ComboBox cboRecordType;
+        private Button btnRestore;
+        private Button btnDeletePermanently;
+        private DataGridView dgvDeletedRecords;
+        private TabPage tabActivityLogs;
+        private Panel pnlTabLogBar;
+        private Button btnRefreshLogs;
+        private DataGridView dgvHistory;
     }
 }

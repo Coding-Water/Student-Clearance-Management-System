@@ -1,207 +1,215 @@
-﻿namespace Student_Clearance_Management_System.Forms
+namespace Student_Clearance_Management_System.Forms
 {
     partial class DepartmentForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DepartmentForm));
-            dgvDepartments = new DataGridView();
-            btnDelete = new Button();
-            btnUpdate = new Button();
-            btnClear = new Button();
-            btnAdd = new Button();
-            txtDepartmentName = new TextBox();
-            txtDepartmentID = new TextBox();
+            pnlHeader         = new Panel();
+            lblTitle          = new Label();
+            btnBack           = new Button();
+            pnlInputCard      = new Panel();
+            lblDepartmentID   = new Label();
+            txtDepartmentID   = new TextBox();
             lblDepartmentName = new Label();
-            lblDepartmentID = new Label();
-            lblTitle = new Label();
-            btnBack = new Button();
+            txtDepartmentName = new TextBox();
+            pnlButtons        = new Panel();
+            btnAdd            = new Button();
+            btnUpdate         = new Button();
+            btnDelete         = new Button();
+            btnClear          = new Button();
+            dgvDepartments    = new DataGridView();
+
+            pnlHeader.SuspendLayout();
+            pnlInputCard.SuspendLayout();
+            pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDepartments).BeginInit();
             SuspendLayout();
-            // 
-            // dgvDepartments
-            // 
+
+            // ── Header ────────────────────────────────────────────────
+            pnlHeader.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 60;
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(btnBack);
+
+            lblTitle.AutoSize = false;
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Name = "lblTitle";
+            lblTitle.Text = "🏢  Department Management";
+            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+            btnBack.BackColor = System.Drawing.Color.FromArgb(67, 56, 202);
+            btnBack.Dock = DockStyle.Left;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnBack.ForeColor = System.Drawing.Color.White;
+            btnBack.Name = "btnBack";
+            btnBack.Size = new System.Drawing.Size(80, 60);
+            btnBack.Text = "← Back";
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Click += btnBack_Click;
+
+            // ── Input Card ────────────────────────────────────────────
+            pnlInputCard.BackColor = System.Drawing.Color.White;
+            pnlInputCard.Dock = DockStyle.Top;
+            pnlInputCard.Height = 100;
+            pnlInputCard.Name = "pnlInputCard";
+            pnlInputCard.Padding = new Padding(20, 12, 20, 8);
+            pnlInputCard.Controls.Add(lblDepartmentID);
+            pnlInputCard.Controls.Add(txtDepartmentID);
+            pnlInputCard.Controls.Add(lblDepartmentName);
+            pnlInputCard.Controls.Add(txtDepartmentName);
+
+            // Hidden Department ID
+            lblDepartmentID.Visible  = false;
+            txtDepartmentID.Visible  = false;
+            txtDepartmentID.ReadOnly = true;
+            txtDepartmentID.Name     = "txtDepartmentID";
+
+            // Department Name field (full width)
+            lblDepartmentName.AutoSize = true;
+            lblDepartmentName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblDepartmentName.ForeColor = System.Drawing.Color.FromArgb(55, 65, 81);
+            lblDepartmentName.Location = new System.Drawing.Point(20, 12);
+            lblDepartmentName.Name = "lblDepartmentName";
+            lblDepartmentName.Text = "Department Name:";
+
+            txtDepartmentName.BorderStyle = BorderStyle.FixedSingle;
+            txtDepartmentName.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            txtDepartmentName.Location = new System.Drawing.Point(20, 30);
+            txtDepartmentName.Name = "txtDepartmentName";
+            txtDepartmentName.Size = new System.Drawing.Size(680, 30);
+            txtDepartmentName.TabIndex = 1;
+            txtDepartmentName.PlaceholderText = "e.g. Office of the Registrar";
+
+            // ── Action Buttons ────────────────────────────────────────
+            pnlButtons.BackColor = System.Drawing.Color.FromArgb(249, 250, 251);
+            pnlButtons.Dock = DockStyle.Top;
+            pnlButtons.Height = 58;
+            pnlButtons.Name = "pnlButtons";
+            pnlButtons.Padding = new Padding(20, 10, 20, 10);
+            pnlButtons.Controls.Add(btnClear);
+            pnlButtons.Controls.Add(btnDelete);
+            pnlButtons.Controls.Add(btnUpdate);
+            pnlButtons.Controls.Add(btnAdd);
+
+            // btnAdd
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnAdd.ForeColor = System.Drawing.Color.White;
+            btnAdd.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            btnAdd.Location = new System.Drawing.Point(20, 10);
+            btnAdd.Size = new System.Drawing.Size(115, 36);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "➕  Add";
+            btnAdd.Cursor = Cursors.Hand;
+
+            // btnUpdate
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnUpdate.ForeColor = System.Drawing.Color.White;
+            btnUpdate.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            btnUpdate.Location = new System.Drawing.Point(142, 10);
+            btnUpdate.Size = new System.Drawing.Size(115, 36);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.Text = "✏️  Update";
+            btnUpdate.Cursor = Cursors.Hand;
+
+            // btnDelete
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnDelete.ForeColor = System.Drawing.Color.White;
+            btnDelete.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
+            btnDelete.Location = new System.Drawing.Point(264, 10);
+            btnDelete.Size = new System.Drawing.Size(115, 36);
+            btnDelete.TabIndex = 4;
+            btnDelete.Text = "🗑️  Delete";
+            btnDelete.Cursor = Cursors.Hand;
+
+            // btnClear
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnClear.ForeColor = System.Drawing.Color.White;
+            btnClear.BackColor = System.Drawing.Color.FromArgb(107, 114, 128);
+            btnClear.Location = new System.Drawing.Point(386, 10);
+            btnClear.Size = new System.Drawing.Size(115, 36);
+            btnClear.TabIndex = 5;
+            btnClear.Text = "↺  Clear";
+            btnClear.Cursor = Cursors.Hand;
+            btnAdd.Click    += btnAdd_Click;
+            btnUpdate.Click += btnUpdate_Click;
+            btnDelete.Click += btnDelete_Click;
+            btnClear.Click  += btnClear_Click;
+
+            // ── Grid ──────────────────────────────────────────────────
             dgvDepartments.AllowUserToAddRows = false;
             dgvDepartments.AllowUserToDeleteRows = false;
             dgvDepartments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDepartments.Location = new Point(23, 183);
+            dgvDepartments.Dock = DockStyle.Fill;
             dgvDepartments.MultiSelect = false;
             dgvDepartments.Name = "dgvDepartments";
             dgvDepartments.ReadOnly = true;
             dgvDepartments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDepartments.Size = new Size(669, 216);
-            dgvDepartments.TabIndex = 24;
+            dgvDepartments.TabIndex = 6;
             dgvDepartments.CellClick += dgvDepartments_CellClick;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Font = new Font("Segoe UI", 15F);
-            btnDelete.Location = new Point(562, 71);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(130, 40);
-            btnDelete.TabIndex = 23;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Font = new Font("Segoe UI", 15F);
-            btnUpdate.Location = new Point(413, 123);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(130, 40);
-            btnUpdate.TabIndex = 22;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // btnClear
-            // 
-            btnClear.Font = new Font("Segoe UI", 15F);
-            btnClear.Location = new Point(562, 123);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(130, 40);
-            btnClear.TabIndex = 21;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Font = new Font("Segoe UI", 15F);
-            btnAdd.Location = new Point(413, 71);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(130, 40);
-            btnAdd.TabIndex = 20;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
-            // 
-            // txtDepartmentName
-            // 
-            txtDepartmentName.Font = new Font("Segoe UI", 15F);
-            txtDepartmentName.Location = new Point(207, 122);
-            txtDepartmentName.Name = "txtDepartmentName";
-            txtDepartmentName.Size = new Size(180, 34);
-            txtDepartmentName.TabIndex = 18;
-            // 
-            // txtDepartmentID
-            // 
-            txtDepartmentID.Font = new Font("Segoe UI", 15F);
-            txtDepartmentID.Location = new Point(207, 80);
-            txtDepartmentID.Name = "txtDepartmentID";
-            txtDepartmentID.ReadOnly = true;
-            txtDepartmentID.Size = new Size(180, 34);
-            txtDepartmentID.TabIndex = 17;
-            // 
-            // lblDepartmentName
-            // 
-            lblDepartmentName.AutoSize = true;
-            lblDepartmentName.Font = new Font("Segoe UI", 15F);
-            lblDepartmentName.Location = new Point(23, 125);
-            lblDepartmentName.Name = "lblDepartmentName";
-            lblDepartmentName.Size = new Size(178, 28);
-            lblDepartmentName.TabIndex = 15;
-            lblDepartmentName.Text = "Department Name:";
-            // 
-            // lblDepartmentID
-            // 
-            lblDepartmentID.AutoSize = true;
-            lblDepartmentID.Font = new Font("Segoe UI", 15F);
-            lblDepartmentID.Location = new Point(23, 83);
-            lblDepartmentID.Name = "lblDepartmentID";
-            lblDepartmentID.Size = new Size(145, 28);
-            lblDepartmentID.TabIndex = 14;
-            lblDepartmentID.Text = "Department ID:";
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(207, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(258, 28);
-            lblTitle.TabIndex = 13;
-            lblTitle.Text = "Department Management";
-            // 
-            // btnBack
-            // 
-            btnBack.BackColor = SystemColors.Control;
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
-            btnBack.Location = new Point(12, 7);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(117, 55);
-            btnBack.TabIndex = 46;
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // DepartmentForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+
+            // ── Form ──────────────────────────────────────────────────
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(708, 416);
-            Controls.Add(btnBack);
+            ClientSize = new System.Drawing.Size(760, 520);
             Controls.Add(dgvDepartments);
-            Controls.Add(btnDelete);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnClear);
-            Controls.Add(btnAdd);
-            Controls.Add(txtDepartmentName);
-            Controls.Add(txtDepartmentID);
-            Controls.Add(lblDepartmentName);
-            Controls.Add(lblDepartmentID);
-            Controls.Add(lblTitle);
+            Controls.Add(pnlButtons);
+            Controls.Add(pnlInputCard);
+            Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "DepartmentForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "DepartmentForm";
+            Text = "Department Management — Clearance System";
             Load += DepartmentForm_Load;
+
+            pnlButtons.ResumeLayout(false);
+            pnlInputCard.ResumeLayout(false);
+            pnlInputCard.PerformLayout();
+            pnlHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDepartments).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dgvDepartments;
-        private Button btnDelete;
+        private Panel pnlHeader;
+        private Panel pnlInputCard;
+        private Panel pnlButtons;
+        private Label lblTitle;
+        private Label lblDepartmentID;
+        private Label lblDepartmentName;
+        private TextBox txtDepartmentID;
+        private TextBox txtDepartmentName;
+        private Button btnAdd;
         private Button btnUpdate;
         private Button btnClear;
-        private Button btnAdd;
-        private TextBox txtDepartmentName;
-        private TextBox txtDepartmentID;
-        private Label lblDepartmentName;
-        private Label lblDepartmentID;
-        private Label lblTitle;
+        private Button btnDelete;
+        private DataGridView dgvDepartments;
         private Button btnBack;
     }
 }

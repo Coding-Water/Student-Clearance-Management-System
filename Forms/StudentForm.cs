@@ -15,6 +15,7 @@ namespace Student_Clearance_Management_System.Forms
         public StudentForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         // METHOD INVOCATION: Invoking (calling) other methods to run their encapsulated logic.

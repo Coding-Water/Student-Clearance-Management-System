@@ -28,6 +28,7 @@ namespace Student_Clearance_Management_System.Forms
             }
 
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void RecycleBinForm_Load(object sender, EventArgs e)
@@ -365,6 +366,186 @@ namespace Student_Clearance_Management_System.Forms
                     {
                         transaction.Rollback();
                         MessageBox.Show("Restoration failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database connection error: " + ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnDeletePermanently_Click(object sender, EventArgs e)
+        {
+            if (dgvDeletedRecords.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Please select a record to delete permanently.",
+                    "Selection Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedType = cboRecordType.SelectedItem.ToString();
+            DataGridViewRow row = dgvDeletedRecords.SelectedRows[0];
+            string recordId = "";
+            string displayDetails = "";
+
+            switch (selectedType)
+            {
+                case "Students":
+                    recordId = row.Cells["StudentID"].Value.ToString();
+                    displayDetails = row.Cells["FirstName"].Value.ToString() + " " + row.Cells["LastName"].Value.ToString();
+                    break;
+                case "Courses":
+                    recordId = row.Cells["CourseID"].Value.ToString();
+                    displayDetails = row.Cells["CourseCode"].Value.ToString() + " - " + row.Cells["CourseName"].Value.ToString();
+                    break;
+                case "Departments":
+                    recordId = row.Cells["DepartmentID"].Value.ToString();
+                    displayDetails = row.Cells["DepartmentName"].Value.ToString();
+                    break;
+                case "Academic Terms":
+                    recordId = row.Cells["TermID"].Value.ToString();
+                    displayDetails = row.Cells["SchoolYear"].Value.ToString() + " - " + row.Cells["Semester"].Value.ToString();
+                    break;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                $"WARNING: Are you sure you want to PERMANENTLY delete the {selectedType.ToLower().TrimEnd('s')} '{displayDetails}'?\n\nThis action is IRREVERSIBLE and will cascade delete all related clearances, requirements, and user profiles.",
+                "Confirm Permanent Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.No) return;
+
+            DBConnection db = new DBConnection();
+            using (SqlConnection conn = db.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        if (selectedType == "Students")
+                        {
+                            // 1. Cascade delete clearance records
+                            SqlCommand deleteClearances = new SqlCommand(
+                                "DELETE FROM ClearanceRecords WHERE StudentID = @id", conn, transaction);
+                            deleteClearances.Parameters.AddWithValue("@id", recordId);
+                            deleteClearances.ExecuteNonQuery();
+
+                            // 2. Cascade delete student user profile
+                            SqlCommand deleteUser = new SqlCommand(
+                                "DELETE FROM Users WHERE Username = @id", conn, transaction);
+                            deleteUser.Parameters.AddWithValue("@id", recordId);
+                            deleteUser.ExecuteNonQuery();
+
+                            // 3. Delete student record
+                            SqlCommand deleteStudent = new SqlCommand(
+                                "DELETE FROM Students WHERE StudentID = @id", conn, transaction);
+                            deleteStudent.Parameters.AddWithValue("@id", recordId);
+                            deleteStudent.ExecuteNonQuery();
+                        }
+                        else if (selectedType == "Courses")
+                        {
+                            // 1. Cascade delete clearance records of students of this course
+                            SqlCommand deleteClearances = new SqlCommand(
+                                @"DELETE FROM ClearanceRecords 
+                                  WHERE StudentID IN (SELECT StudentID FROM Students WHERE CourseID = @id)", conn, transaction);
+                            deleteClearances.Parameters.AddWithValue("@id", recordId);
+                            deleteClearances.ExecuteNonQuery();
+
+                            // 2. Delete user records for students of this course
+                            SqlCommand deleteUsers = new SqlCommand(
+                                @"DELETE FROM Users 
+                                  WHERE Username IN (SELECT CAST(StudentID AS VARCHAR) FROM Students WHERE CourseID = @id)", conn, transaction);
+                            deleteUsers.Parameters.AddWithValue("@id", recordId);
+                            deleteUsers.ExecuteNonQuery();
+
+                            // 3. Cascade delete students
+                            SqlCommand deleteStudents = new SqlCommand(
+                                "DELETE FROM Students WHERE CourseID = @id", conn, transaction);
+                            deleteStudents.Parameters.AddWithValue("@id", recordId);
+                            deleteStudents.ExecuteNonQuery();
+
+                            // 4. Cascade delete requirements
+                            SqlCommand deleteReqs = new SqlCommand(
+                                "DELETE FROM CourseDepartmentRequirements WHERE CourseID = @id", conn, transaction);
+                            deleteReqs.Parameters.AddWithValue("@id", recordId);
+                            deleteReqs.ExecuteNonQuery();
+
+                            // 5. Delete course
+                            SqlCommand deleteCourse = new SqlCommand(
+                                "DELETE FROM Courses WHERE CourseID = @id", conn, transaction);
+                            deleteCourse.Parameters.AddWithValue("@id", recordId);
+                            deleteCourse.ExecuteNonQuery();
+                        }
+                        else if (selectedType == "Departments")
+                        {
+                            // 1. Cascade delete clearances
+                            SqlCommand deleteClearances = new SqlCommand(
+                                "DELETE FROM ClearanceRecords WHERE DepartmentID = @id", conn, transaction);
+                            deleteClearances.Parameters.AddWithValue("@id", recordId);
+                            deleteClearances.ExecuteNonQuery();
+
+                            // 2. Cascade delete requirements
+                            SqlCommand deleteReqs = new SqlCommand(
+                                "DELETE FROM CourseDepartmentRequirements WHERE DepartmentID = @id", conn, transaction);
+                            deleteReqs.Parameters.AddWithValue("@id", recordId);
+                            deleteReqs.ExecuteNonQuery();
+
+                            // 3. Delete department
+                            SqlCommand deleteDept = new SqlCommand(
+                                "DELETE FROM Departments WHERE DepartmentID = @id", conn, transaction);
+                            deleteDept.Parameters.AddWithValue("@id", recordId);
+                            deleteDept.ExecuteNonQuery();
+                        }
+                        else if (selectedType == "Academic Terms")
+                        {
+                            // 1. Cascade delete clearances
+                            SqlCommand deleteClearances = new SqlCommand(
+                                "DELETE FROM ClearanceRecords WHERE TermID = @id", conn, transaction);
+                            deleteClearances.Parameters.AddWithValue("@id", recordId);
+                            deleteClearances.ExecuteNonQuery();
+
+                            // 2. Delete term
+                            SqlCommand deleteTerm = new SqlCommand(
+                                "DELETE FROM AcademicTerms WHERE TermID = @id", conn, transaction);
+                            deleteTerm.Parameters.AddWithValue("@id", recordId);
+                            deleteTerm.ExecuteNonQuery();
+                        }
+
+                        // Log Purge to Audit Trail
+                        SqlCommand logCmd = new SqlCommand(
+                            @"INSERT INTO RecycleBinLogs (RecordType, RecordID, RecordDetails, ActionType, ActionDate, PerformedBy)
+                              VALUES (@recordType, @recordId, @details, 'Purge', GETDATE(), @username)",
+                            conn,
+                            transaction);
+                        logCmd.Parameters.AddWithValue("@recordType", selectedType.TrimEnd('s'));
+                        logCmd.Parameters.AddWithValue("@recordId", recordId);
+                        logCmd.Parameters.AddWithValue("@details", displayDetails + $" (ID: {recordId})");
+                        logCmd.Parameters.AddWithValue("@username", AppSession.LoggedInUsername);
+                        logCmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+
+                        MessageBox.Show(
+                            $"{selectedType.TrimEnd('s')} '{displayDetails}' purged permanently.",
+                            "Success",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        LoadDeletedRecords();
+                        LoadActivityLogs();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Purge failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)

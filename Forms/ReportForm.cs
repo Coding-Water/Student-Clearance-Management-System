@@ -23,6 +23,7 @@ namespace Student_Clearance_Management_System.Forms
         public ReportForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
 
             searchTimer = new System.Windows.Forms.Timer();
             searchTimer.Interval = 400; // 400ms debounce

@@ -17,6 +17,7 @@ namespace Student_Clearance_Management_System.Forms
         public ClearanceForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
             searchTimer = new System.Windows.Forms.Timer();
             searchTimer.Interval = 400; // 400 milliseconds debounce
             searchTimer.Tick += SearchTimer_Tick;

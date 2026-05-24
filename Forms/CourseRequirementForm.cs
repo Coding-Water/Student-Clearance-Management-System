@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
@@ -13,6 +13,7 @@ namespace Student_Clearance_Management_System.Forms
         public CourseRequirementForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void CourseRequirementForm_Load(object sender, EventArgs e)

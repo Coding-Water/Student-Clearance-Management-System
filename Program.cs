@@ -8,7 +8,7 @@ namespace Student_Clearance_Management_System
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            Application.Run(new StudentLoginForm());
         }
     }
 }

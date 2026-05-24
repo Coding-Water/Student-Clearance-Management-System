@@ -13,11 +13,18 @@ namespace Student_Clearance_Management_System.Forms
         public DepartmentForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void DepartmentForm_Load(object sender, EventArgs e)
         {
             LoadDepartments();
+            lblDepartmentID.Visible = false;
+            txtDepartmentID.Visible = false;
+            if (dgvDepartments.Columns["DepartmentID"] != null)
+            {
+                dgvDepartments.Columns["DepartmentID"].Visible = false;
+            }
         }
 
         private void LoadDepartments()

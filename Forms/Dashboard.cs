@@ -15,6 +15,7 @@ namespace Student_Clearance_Management_System.Forms
         public Dashboard()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -29,6 +30,7 @@ namespace Student_Clearance_Management_System.Forms
             // Ensure the button exists and set visibility
             if (btnRecycleBin != null)
             {
+                btnRecycleBin.Text = "Admin Panel";
                 btnRecycleBin.Visible = (role == "admin");
             }
 
@@ -256,9 +258,13 @@ namespace Student_Clearance_Management_System.Forms
 
         private void btnRecycleBin_Click(object sender, EventArgs e)
         {
-            RecycleBinForm form = new RecycleBinForm();
-            form.ShowDialog();
-            LoadDashboard();
+            ReEnterPasswordForm verifyForm = new ReEnterPasswordForm();
+            if (verifyForm.ShowDialog() == DialogResult.OK)
+            {
+                AdminForm form = new AdminForm();
+                form.ShowDialog();
+                LoadDashboard();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

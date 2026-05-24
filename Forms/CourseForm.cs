@@ -13,11 +13,18 @@ namespace Student_Clearance_Management_System.Forms
         public CourseForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void CourseForm_Load(object sender, EventArgs e)
         {
             LoadCourses();
+            lblCourseID.Visible = false;
+            txtCourseID.Visible = false;
+            if (dgvCourses.Columns["CourseID"] != null)
+            {
+                dgvCourses.Columns["CourseID"].Visible = false;
+            }
         }
 
         private void LoadCourses()

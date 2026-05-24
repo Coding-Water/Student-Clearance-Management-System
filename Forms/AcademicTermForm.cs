@@ -13,12 +13,19 @@ namespace Student_Clearance_Management_System.Forms
         public AcademicTermForm()
         {
             InitializeComponent();
+            UIHelper.ApplyModernStyle(this);
         }
 
         private void AcademicTermForm_Load(object sender, EventArgs e)
         {
             LoadSemesters();
             LoadAcademicTerms();
+            lblTermID.Visible = false;
+            txtTermID.Visible = false;
+            if (dgvAcademicTerms.Columns["TermID"] != null)
+            {
+                dgvAcademicTerms.Columns["TermID"].Visible = false;
+            }
         }
 
         private void LoadSemesters()

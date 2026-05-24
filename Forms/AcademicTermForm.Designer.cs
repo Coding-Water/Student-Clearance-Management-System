@@ -1,105 +1,287 @@
-﻿namespace Student_Clearance_Management_System.Forms
+namespace Student_Clearance_Management_System.Forms
 {
     partial class AcademicTermForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AcademicTermForm));
-            cboSemester = new ComboBox();
-            btnClear = new Button();
-            btnUpdate = new Button();
-            btnDelete = new Button();
-            btnAdd = new Button();
-            dgvAcademicTerms = new DataGridView();
-            txtSchoolYear = new TextBox();
-            txtTermID = new TextBox();
-            lblActive = new Label();
-            lblSemester = new Label();
-            lblSchoolYear = new Label();
-            lblTermID = new Label();
+            pnlHeader = new Panel();
             lblTitle = new Label();
             btnBack = new Button();
-            btnSetActive = new Button();
+            pnlInputCard = new Panel();
+            lblTermID = new Label();
+            txtTermID = new TextBox();
+            lblSchoolYear = new Label();
+            txtSchoolYear = new TextBox();
+            lblSemester = new Label();
+            cboSemester = new ComboBox();
+            lblActive = new Label();
             chkIsActive = new CheckBox();
+            pnlButtons = new Panel();
+            btnClear = new Button();
+            btnSetActive = new Button();
+            btnDelete = new Button();
+            btnUpdate = new Button();
+            btnAdd = new Button();
+            dgvAcademicTerms = new DataGridView();
+            pnlHeader.SuspendLayout();
+            pnlInputCard.SuspendLayout();
+            pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAcademicTerms).BeginInit();
             SuspendLayout();
+            // 
+            // pnlHeader
+            // 
+            pnlHeader.BackColor = Color.FromArgb(79, 70, 229);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(btnBack);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(928, 45);
+            pnlHeader.TabIndex = 12;
+            // 
+            // lblTitle
+            // 
+            lblTitle.Dock = DockStyle.Fill;
+            lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(70, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(858, 45);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "📅  Academic Term Management";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(67, 56, 202);
+            btnBack.Cursor = Cursors.Hand;
+            btnBack.Dock = DockStyle.Left;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(0, 0);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(70, 45);
+            btnBack.TabIndex = 1;
+            btnBack.Text = "← Back";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
+            // pnlInputCard
+            // 
+            pnlInputCard.BackColor = Color.White;
+            pnlInputCard.Controls.Add(lblTermID);
+            pnlInputCard.Controls.Add(txtTermID);
+            pnlInputCard.Controls.Add(lblSchoolYear);
+            pnlInputCard.Controls.Add(txtSchoolYear);
+            pnlInputCard.Controls.Add(lblSemester);
+            pnlInputCard.Controls.Add(cboSemester);
+            pnlInputCard.Controls.Add(lblActive);
+            pnlInputCard.Controls.Add(chkIsActive);
+            pnlInputCard.Dock = DockStyle.Top;
+            pnlInputCard.Location = new Point(0, 45);
+            pnlInputCard.Margin = new Padding(3, 2, 3, 2);
+            pnlInputCard.Name = "pnlInputCard";
+            pnlInputCard.Padding = new Padding(18, 9, 18, 6);
+            pnlInputCard.Size = new Size(928, 98);
+            pnlInputCard.TabIndex = 11;
+            // 
+            // lblTermID
+            // 
+            lblTermID.Location = new Point(0, 0);
+            lblTermID.Name = "lblTermID";
+            lblTermID.Size = new Size(88, 17);
+            lblTermID.TabIndex = 0;
+            lblTermID.Visible = false;
+            // 
+            // txtTermID
+            // 
+            txtTermID.Location = new Point(0, 0);
+            txtTermID.Margin = new Padding(3, 2, 3, 2);
+            txtTermID.Name = "txtTermID";
+            txtTermID.ReadOnly = true;
+            txtTermID.Size = new Size(88, 23);
+            txtTermID.TabIndex = 1;
+            txtTermID.Visible = false;
+            // 
+            // lblSchoolYear
+            // 
+            lblSchoolYear.AutoSize = true;
+            lblSchoolYear.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblSchoolYear.ForeColor = Color.FromArgb(55, 65, 81);
+            lblSchoolYear.Location = new Point(18, 9);
+            lblSchoolYear.Name = "lblSchoolYear";
+            lblSchoolYear.Size = new Size(74, 15);
+            lblSchoolYear.TabIndex = 2;
+            lblSchoolYear.Text = "School Year:";
+            // 
+            // txtSchoolYear
+            // 
+            txtSchoolYear.BorderStyle = BorderStyle.FixedSingle;
+            txtSchoolYear.Font = new Font("Segoe UI", 10.5F);
+            txtSchoolYear.Location = new Point(18, 22);
+            txtSchoolYear.Margin = new Padding(3, 2, 3, 2);
+            txtSchoolYear.Name = "txtSchoolYear";
+            txtSchoolYear.PlaceholderText = "e.g. 2024-2025";
+            txtSchoolYear.Size = new Size(193, 26);
+            txtSchoolYear.TabIndex = 1;
+            // 
+            // lblSemester
+            // 
+            lblSemester.AutoSize = true;
+            lblSemester.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblSemester.ForeColor = Color.FromArgb(55, 65, 81);
+            lblSemester.Location = new Point(228, 9);
+            lblSemester.Name = "lblSemester";
+            lblSemester.Size = new Size(64, 15);
+            lblSemester.TabIndex = 3;
+            lblSemester.Text = "Semester:";
             // 
             // cboSemester
             // 
             cboSemester.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboSemester.Font = new Font("Segoe UI", 15F);
-            cboSemester.FormattingEnabled = true;
-            cboSemester.Location = new Point(128, 174);
+            cboSemester.Font = new Font("Segoe UI", 10.5F);
+            cboSemester.Location = new Point(228, 22);
+            cboSemester.Margin = new Padding(3, 2, 3, 2);
             cboSemester.Name = "cboSemester";
-            cboSemester.Size = new Size(224, 36);
-            cboSemester.TabIndex = 44;
+            cboSemester.Size = new Size(228, 27);
+            cboSemester.TabIndex = 2;
+            // 
+            // lblActive
+            // 
+            lblActive.AutoSize = true;
+            lblActive.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblActive.ForeColor = Color.FromArgb(55, 65, 81);
+            lblActive.Location = new Point(18, 58);
+            lblActive.Name = "lblActive";
+            lblActive.Size = new Size(124, 15);
+            lblActive.TabIndex = 4;
+            lblActive.Text = "Mark as Active Term:";
+            // 
+            // chkIsActive
+            // 
+            chkIsActive.AutoSize = true;
+            chkIsActive.Font = new Font("Segoe UI", 10F);
+            chkIsActive.Location = new Point(158, 57);
+            chkIsActive.Margin = new Padding(3, 2, 3, 2);
+            chkIsActive.Name = "chkIsActive";
+            chkIsActive.Size = new Size(65, 23);
+            chkIsActive.TabIndex = 3;
+            chkIsActive.Text = "Active";
+            // 
+            // pnlButtons
+            // 
+            pnlButtons.BackColor = Color.FromArgb(249, 250, 251);
+            pnlButtons.Controls.Add(btnClear);
+            pnlButtons.Controls.Add(btnSetActive);
+            pnlButtons.Controls.Add(btnDelete);
+            pnlButtons.Controls.Add(btnUpdate);
+            pnlButtons.Controls.Add(btnAdd);
+            pnlButtons.Dock = DockStyle.Top;
+            pnlButtons.Location = new Point(0, 143);
+            pnlButtons.Margin = new Padding(3, 2, 3, 2);
+            pnlButtons.Name = "pnlButtons";
+            pnlButtons.Padding = new Padding(18, 8, 18, 8);
+            pnlButtons.Size = new Size(928, 44);
+            pnlButtons.TabIndex = 10;
             // 
             // btnClear
             // 
-            btnClear.Font = new Font("Segoe UI", 15F);
-            btnClear.Location = new Point(633, 294);
+            btnClear.BackColor = Color.FromArgb(107, 114, 128);
+            btnClear.Cursor = Cursors.Hand;
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(455, 8);
+            btnClear.Margin = new Padding(3, 2, 3, 2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(130, 40);
-            btnClear.TabIndex = 43;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Size = new Size(101, 27);
+            btnClear.TabIndex = 8;
+            btnClear.Text = "↺  Clear";
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
-            // btnUpdate
+            // btnSetActive
             // 
-            btnUpdate.Font = new Font("Segoe UI", 15F);
-            btnUpdate.Location = new Point(335, 294);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(130, 40);
-            btnUpdate.TabIndex = 42;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
+            btnSetActive.BackColor = Color.FromArgb(22, 163, 74);
+            btnSetActive.Cursor = Cursors.Hand;
+            btnSetActive.FlatAppearance.BorderSize = 0;
+            btnSetActive.FlatStyle = FlatStyle.Flat;
+            btnSetActive.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnSetActive.ForeColor = Color.White;
+            btnSetActive.Location = new Point(346, 8);
+            btnSetActive.Margin = new Padding(3, 2, 3, 2);
+            btnSetActive.Name = "btnSetActive";
+            btnSetActive.Size = new Size(101, 27);
+            btnSetActive.TabIndex = 7;
+            btnSetActive.Text = "✅  Set Active";
+            btnSetActive.UseVisualStyleBackColor = false;
+            btnSetActive.Click += btnSetActive_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Segoe UI", 15F);
-            btnDelete.Location = new Point(180, 294);
+            btnDelete.BackColor = Color.FromArgb(220, 38, 38);
+            btnDelete.Cursor = Cursors.Hand;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(236, 8);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(130, 40);
-            btnDelete.TabIndex = 41;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Size = new Size(101, 27);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "🗑️  Delete";
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.BackColor = Color.FromArgb(79, 70, 229);
+            btnUpdate.Cursor = Cursors.Hand;
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.Location = new Point(127, 8);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(101, 27);
+            btnUpdate.TabIndex = 5;
+            btnUpdate.Text = "✏️  Update";
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnAdd
             // 
-            btnAdd.Font = new Font("Segoe UI", 15F);
-            btnAdd.Location = new Point(18, 294);
+            btnAdd.BackColor = Color.FromArgb(79, 70, 229);
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(18, 8);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(130, 40);
-            btnAdd.TabIndex = 40;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Size = new Size(101, 27);
+            btnAdd.TabIndex = 4;
+            btnAdd.Text = "➕  Add";
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // dgvAcademicTerms
@@ -108,164 +290,61 @@
             dgvAcademicTerms.AllowUserToDeleteRows = false;
             dgvAcademicTerms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAcademicTerms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAcademicTerms.Location = new Point(18, 363);
+            dgvAcademicTerms.Dock = DockStyle.Fill;
+            dgvAcademicTerms.Location = new Point(0, 187);
+            dgvAcademicTerms.Margin = new Padding(3, 2, 3, 2);
             dgvAcademicTerms.MultiSelect = false;
             dgvAcademicTerms.Name = "dgvAcademicTerms";
             dgvAcademicTerms.ReadOnly = true;
             dgvAcademicTerms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAcademicTerms.Size = new Size(762, 338);
-            dgvAcademicTerms.TabIndex = 38;
+            dgvAcademicTerms.Size = new Size(928, 263);
+            dgvAcademicTerms.TabIndex = 9;
             dgvAcademicTerms.CellClick += dgvAcademicTerms_CellClick;
-            // 
-            // txtSchoolYear
-            // 
-            txtSchoolYear.Font = new Font("Segoe UI", 15F);
-            txtSchoolYear.Location = new Point(128, 126);
-            txtSchoolYear.Name = "txtSchoolYear";
-            txtSchoolYear.Size = new Size(227, 34);
-            txtSchoolYear.TabIndex = 34;
-            // 
-            // txtTermID
-            // 
-            txtTermID.Font = new Font("Segoe UI", 15F);
-            txtTermID.Location = new Point(128, 83);
-            txtTermID.Name = "txtTermID";
-            txtTermID.ReadOnly = true;
-            txtTermID.Size = new Size(227, 34);
-            txtTermID.TabIndex = 33;
-            // 
-            // lblActive
-            // 
-            lblActive.AutoSize = true;
-            lblActive.Font = new Font("Segoe UI", 15F);
-            lblActive.Location = new Point(15, 218);
-            lblActive.Name = "lblActive";
-            lblActive.Size = new Size(70, 28);
-            lblActive.TabIndex = 28;
-            lblActive.Text = "Active:";
-            // 
-            // lblSemester
-            // 
-            lblSemester.AutoSize = true;
-            lblSemester.Font = new Font("Segoe UI", 15F);
-            lblSemester.Location = new Point(12, 174);
-            lblSemester.Name = "lblSemester";
-            lblSemester.Size = new Size(96, 28);
-            lblSemester.TabIndex = 27;
-            lblSemester.Text = "Semester:";
-            // 
-            // lblSchoolYear
-            // 
-            lblSchoolYear.AutoSize = true;
-            lblSchoolYear.Font = new Font("Segoe UI", 15F);
-            lblSchoolYear.Location = new Point(12, 129);
-            lblSchoolYear.Name = "lblSchoolYear";
-            lblSchoolYear.Size = new Size(117, 28);
-            lblSchoolYear.TabIndex = 26;
-            lblSchoolYear.Text = "School Year:";
-            // 
-            // lblTermID
-            // 
-            lblTermID.AutoSize = true;
-            lblTermID.Font = new Font("Segoe UI", 15F);
-            lblTermID.Location = new Point(12, 86);
-            lblTermID.Name = "lblTermID";
-            lblTermID.Size = new Size(82, 28);
-            lblTermID.TabIndex = 25;
-            lblTermID.Text = "Term ID:";
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(180, 18);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(288, 28);
-            lblTitle.TabIndex = 24;
-            lblTitle.Text = "Academic Term Management";
-            // 
-            // btnBack
-            // 
-            btnBack.BackColor = SystemColors.Control;
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Segoe UI", 15F);
-            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
-            btnBack.Location = new Point(1, 5);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(117, 55);
-            btnBack.TabIndex = 45;
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // btnSetActive
-            // 
-            btnSetActive.Font = new Font("Segoe UI", 15F);
-            btnSetActive.Location = new Point(485, 294);
-            btnSetActive.Name = "btnSetActive";
-            btnSetActive.Size = new Size(130, 40);
-            btnSetActive.TabIndex = 46;
-            btnSetActive.Text = "Set Active";
-            btnSetActive.UseVisualStyleBackColor = true;
-            btnSetActive.Click += btnSetActive_Click;
-            // 
-            // chkIsActive
-            // 
-            chkIsActive.AutoSize = true;
-            chkIsActive.Font = new Font("Segoe UI", 16F);
-            chkIsActive.Location = new Point(128, 218);
-            chkIsActive.Name = "chkIsActive";
-            chkIsActive.Size = new Size(91, 34);
-            chkIsActive.TabIndex = 47;
-            chkIsActive.Text = "Active";
-            chkIsActive.UseVisualStyleBackColor = true;
             // 
             // AcademicTermForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(814, 738);
-            Controls.Add(chkIsActive);
-            Controls.Add(btnSetActive);
-            Controls.Add(btnBack);
-            Controls.Add(cboSemester);
-            Controls.Add(btnClear);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnDelete);
-            Controls.Add(btnAdd);
+            ClientSize = new Size(928, 450);
             Controls.Add(dgvAcademicTerms);
-            Controls.Add(txtSchoolYear);
-            Controls.Add(txtTermID);
-            Controls.Add(lblActive);
-            Controls.Add(lblSemester);
-            Controls.Add(lblSchoolYear);
-            Controls.Add(lblTermID);
-            Controls.Add(lblTitle);
+            Controls.Add(pnlButtons);
+            Controls.Add(pnlInputCard);
+            Controls.Add(pnlHeader);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "AcademicTermForm";
-            Text = "AcademicForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Academic Term Management — Clearance System";
             Load += AcademicTermForm_Load;
+            pnlHeader.ResumeLayout(false);
+            pnlInputCard.ResumeLayout(false);
+            pnlInputCard.PerformLayout();
+            pnlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvAcademicTerms).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        private Panel pnlHeader;
+        private Panel pnlInputCard;
+        private Panel pnlButtons;
+        private Label lblTitle;
+        private Label lblTermID;
+        private Label lblSchoolYear;
+        private Label lblSemester;
+        private Label lblActive;
+        private TextBox txtTermID;
+        private TextBox txtSchoolYear;
         private ComboBox cboSemester;
-        private Button btnClear;
+        private CheckBox chkIsActive;
+        private Button btnAdd;
         private Button btnUpdate;
         private Button btnDelete;
-        private Button btnAdd;
-        private DataGridView dgvAcademicTerms;
-        private TextBox txtSchoolYear;
-        private TextBox txtTermID;
-        private Label lblActive;
-        private Label lblSemester;
-        private Label lblSchoolYear;
-        private Label lblTermID;
-        private Label lblTitle;
-        private Button btnBack;
         private Button btnSetActive;
-        private CheckBox chkIsActive;
+        private Button btnClear;
+        private DataGridView dgvAcademicTerms;
+        private Button btnBack;
     }
 }
