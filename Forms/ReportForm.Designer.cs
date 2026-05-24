@@ -61,7 +61,6 @@ namespace Student_Clearance_Management_System.Forms
             dgvReports = new DataGridView();
             btnExport = new Button();
             btnReset = new Button();
-            button1 = new Button();
             pnlHeader.SuspendLayout();
             grpFilters.SuspendLayout();
             pnlStats.SuspendLayout();
@@ -75,12 +74,12 @@ namespace Student_Clearance_Management_System.Forms
             // pnlHeader
             // 
             pnlHeader.BackColor = Color.FromArgb(79, 70, 229);
-            pnlHeader.Controls.Add(button1);
             pnlHeader.Controls.Add(lblHeader);
             pnlHeader.Controls.Add(btnBack);
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1024, 60);
+            pnlHeader.Size = new Size(896, 45);
             pnlHeader.TabIndex = 6;
             // 
             // lblHeader
@@ -88,9 +87,9 @@ namespace Student_Clearance_Management_System.Forms
             lblHeader.Dock = DockStyle.Fill;
             lblHeader.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblHeader.ForeColor = Color.White;
-            lblHeader.Location = new Point(80, 0);
+            lblHeader.Location = new Point(70, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(944, 60);
+            lblHeader.Size = new Size(826, 45);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "📊  Clearance Reports & Analytics";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
@@ -105,8 +104,9 @@ namespace Student_Clearance_Management_System.Forms
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 0);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(80, 60);
+            btnBack.Size = new Size(70, 45);
             btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -125,9 +125,11 @@ namespace Student_Clearance_Management_System.Forms
             grpFilters.Controls.Add(lblAcademicTerm);
             grpFilters.Controls.Add(cboAcademicTerm);
             grpFilters.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grpFilters.Location = new Point(12, 70);
+            grpFilters.Location = new Point(10, 52);
+            grpFilters.Margin = new Padding(3, 2, 3, 2);
             grpFilters.Name = "grpFilters";
-            grpFilters.Size = new Size(1000, 100);
+            grpFilters.Padding = new Padding(3, 2, 3, 2);
+            grpFilters.Size = new Size(875, 75);
             grpFilters.TabIndex = 1;
             grpFilters.TabStop = false;
             grpFilters.Text = "Report Filter Criteria";
@@ -135,27 +137,28 @@ namespace Student_Clearance_Management_System.Forms
             // lblSearch
             // 
             lblSearch.AutoSize = true;
-            lblSearch.Location = new Point(745, 25);
+            lblSearch.Location = new Point(652, 19);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(163, 23);
+            lblSearch.Size = new Size(124, 17);
             lblSearch.TabIndex = 9;
             lblSearch.Text = "Search Student/Rec:";
             // 
             // txtSearch
             // 
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(745, 48);
+            txtSearch.Location = new Point(652, 36);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(240, 32);
+            txtSearch.Size = new Size(210, 27);
             txtSearch.TabIndex = 8;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // lblReportMode
             // 
             lblReportMode.AutoSize = true;
-            lblReportMode.Location = new Point(550, 25);
+            lblReportMode.Location = new Point(481, 19);
             lblReportMode.Name = "lblReportMode";
-            lblReportMode.Size = new Size(105, 23);
+            lblReportMode.Size = new Size(82, 17);
             lblReportMode.TabIndex = 7;
             lblReportMode.Text = "Report Type:";
             // 
@@ -164,18 +167,19 @@ namespace Student_Clearance_Management_System.Forms
             cboReportMode.DropDownStyle = ComboBoxStyle.DropDownList;
             cboReportMode.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboReportMode.FormattingEnabled = true;
-            cboReportMode.Location = new Point(550, 48);
+            cboReportMode.Location = new Point(481, 36);
+            cboReportMode.Margin = new Padding(3, 2, 3, 2);
             cboReportMode.Name = "cboReportMode";
-            cboReportMode.Size = new Size(180, 33);
+            cboReportMode.Size = new Size(158, 28);
             cboReportMode.TabIndex = 6;
             cboReportMode.SelectedIndexChanged += FilterControl_Changed;
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(385, 25);
+            lblStatus.Location = new Point(337, 19);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(140, 23);
+            lblStatus.Size = new Size(107, 17);
             lblStatus.TabIndex = 5;
             lblStatus.Text = "Clearance Status:";
             // 
@@ -184,18 +188,19 @@ namespace Student_Clearance_Management_System.Forms
             cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStatus.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboStatus.FormattingEnabled = true;
-            cboStatus.Location = new Point(385, 48);
+            cboStatus.Location = new Point(337, 36);
+            cboStatus.Margin = new Padding(3, 2, 3, 2);
             cboStatus.Name = "cboStatus";
-            cboStatus.Size = new Size(150, 33);
+            cboStatus.Size = new Size(132, 28);
             cboStatus.TabIndex = 4;
             cboStatus.SelectedIndexChanged += FilterControl_Changed;
             // 
             // lblCourse
             // 
             lblCourse.AutoSize = true;
-            lblCourse.Location = new Point(200, 25);
+            lblCourse.Location = new Point(175, 19);
             lblCourse.Name = "lblCourse";
-            lblCourse.Size = new Size(67, 23);
+            lblCourse.Size = new Size(52, 17);
             lblCourse.TabIndex = 3;
             lblCourse.Text = "Course:";
             // 
@@ -204,18 +209,19 @@ namespace Student_Clearance_Management_System.Forms
             cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCourse.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboCourse.FormattingEnabled = true;
-            cboCourse.Location = new Point(200, 48);
+            cboCourse.Location = new Point(175, 36);
+            cboCourse.Margin = new Padding(3, 2, 3, 2);
             cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(170, 33);
+            cboCourse.Size = new Size(149, 28);
             cboCourse.TabIndex = 2;
             cboCourse.SelectedIndexChanged += FilterControl_Changed;
             // 
             // lblAcademicTerm
             // 
             lblAcademicTerm.AutoSize = true;
-            lblAcademicTerm.Location = new Point(15, 25);
+            lblAcademicTerm.Location = new Point(13, 19);
             lblAcademicTerm.Name = "lblAcademicTerm";
-            lblAcademicTerm.Size = new Size(130, 23);
+            lblAcademicTerm.Size = new Size(100, 17);
             lblAcademicTerm.TabIndex = 1;
             lblAcademicTerm.Text = "Academic Term:";
             // 
@@ -224,9 +230,10 @@ namespace Student_Clearance_Management_System.Forms
             cboAcademicTerm.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAcademicTerm.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboAcademicTerm.FormattingEnabled = true;
-            cboAcademicTerm.Location = new Point(15, 48);
+            cboAcademicTerm.Location = new Point(13, 36);
+            cboAcademicTerm.Margin = new Padding(3, 2, 3, 2);
             cboAcademicTerm.Name = "cboAcademicTerm";
-            cboAcademicTerm.Size = new Size(170, 33);
+            cboAcademicTerm.Size = new Size(149, 28);
             cboAcademicTerm.TabIndex = 0;
             cboAcademicTerm.SelectedIndexChanged += FilterControl_Changed;
             // 
@@ -236,9 +243,10 @@ namespace Student_Clearance_Management_System.Forms
             pnlStats.Controls.Add(pnlStatPending);
             pnlStats.Controls.Add(pnlStatCleared);
             pnlStats.Controls.Add(pnlStatTotal);
-            pnlStats.Location = new Point(12, 180);
+            pnlStats.Location = new Point(10, 135);
+            pnlStats.Margin = new Padding(3, 2, 3, 2);
             pnlStats.Name = "pnlStats";
-            pnlStats.Size = new Size(1000, 80);
+            pnlStats.Size = new Size(875, 60);
             pnlStats.TabIndex = 2;
             // 
             // pnlStatRate
@@ -246,18 +254,19 @@ namespace Student_Clearance_Management_System.Forms
             pnlStatRate.BorderStyle = BorderStyle.FixedSingle;
             pnlStatRate.Controls.Add(lblRateVal);
             pnlStatRate.Controls.Add(lblRateTitle);
-            pnlStatRate.Location = new Point(762, 0);
+            pnlStatRate.Location = new Point(667, 0);
+            pnlStatRate.Margin = new Padding(3, 2, 3, 2);
             pnlStatRate.Name = "pnlStatRate";
-            pnlStatRate.Size = new Size(238, 80);
+            pnlStatRate.Size = new Size(208, 60);
             pnlStatRate.TabIndex = 3;
             // 
             // lblRateVal
             // 
             lblRateVal.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRateVal.ForeColor = Color.DarkBlue;
-            lblRateVal.Location = new Point(3, 30);
+            lblRateVal.Location = new Point(3, 22);
             lblRateVal.Name = "lblRateVal";
-            lblRateVal.Size = new Size(230, 38);
+            lblRateVal.Size = new Size(201, 28);
             lblRateVal.TabIndex = 1;
             lblRateVal.Text = "0.0%";
             lblRateVal.TextAlign = ContentAlignment.MiddleCenter;
@@ -266,9 +275,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             lblRateTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRateTitle.ForeColor = Color.DarkBlue;
-            lblRateTitle.Location = new Point(3, 8);
+            lblRateTitle.Location = new Point(3, 6);
             lblRateTitle.Name = "lblRateTitle";
-            lblRateTitle.Size = new Size(230, 18);
+            lblRateTitle.Size = new Size(201, 14);
             lblRateTitle.TabIndex = 0;
             lblRateTitle.Text = "CLEARANCE RATE";
             lblRateTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -278,18 +287,19 @@ namespace Student_Clearance_Management_System.Forms
             pnlStatPending.BorderStyle = BorderStyle.FixedSingle;
             pnlStatPending.Controls.Add(lblPendingVal);
             pnlStatPending.Controls.Add(lblPendingTitle);
-            pnlStatPending.Location = new Point(508, 0);
+            pnlStatPending.Location = new Point(444, 0);
+            pnlStatPending.Margin = new Padding(3, 2, 3, 2);
             pnlStatPending.Name = "pnlStatPending";
-            pnlStatPending.Size = new Size(238, 80);
+            pnlStatPending.Size = new Size(208, 60);
             pnlStatPending.TabIndex = 2;
             // 
             // lblPendingVal
             // 
             lblPendingVal.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPendingVal.ForeColor = Color.DarkOrange;
-            lblPendingVal.Location = new Point(3, 30);
+            lblPendingVal.Location = new Point(3, 22);
             lblPendingVal.Name = "lblPendingVal";
-            lblPendingVal.Size = new Size(230, 38);
+            lblPendingVal.Size = new Size(201, 28);
             lblPendingVal.TabIndex = 1;
             lblPendingVal.Text = "0";
             lblPendingVal.TextAlign = ContentAlignment.MiddleCenter;
@@ -298,9 +308,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             lblPendingTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPendingTitle.ForeColor = Color.DarkOrange;
-            lblPendingTitle.Location = new Point(3, 8);
+            lblPendingTitle.Location = new Point(3, 6);
             lblPendingTitle.Name = "lblPendingTitle";
-            lblPendingTitle.Size = new Size(230, 18);
+            lblPendingTitle.Size = new Size(201, 14);
             lblPendingTitle.TabIndex = 0;
             lblPendingTitle.Text = "PENDING STUDENTS";
             lblPendingTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -310,18 +320,19 @@ namespace Student_Clearance_Management_System.Forms
             pnlStatCleared.BorderStyle = BorderStyle.FixedSingle;
             pnlStatCleared.Controls.Add(lblClearedVal);
             pnlStatCleared.Controls.Add(lblClearedTitle);
-            pnlStatCleared.Location = new Point(254, 0);
+            pnlStatCleared.Location = new Point(222, 0);
+            pnlStatCleared.Margin = new Padding(3, 2, 3, 2);
             pnlStatCleared.Name = "pnlStatCleared";
-            pnlStatCleared.Size = new Size(238, 80);
+            pnlStatCleared.Size = new Size(208, 60);
             pnlStatCleared.TabIndex = 1;
             // 
             // lblClearedVal
             // 
             lblClearedVal.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblClearedVal.ForeColor = Color.DarkGreen;
-            lblClearedVal.Location = new Point(3, 30);
+            lblClearedVal.Location = new Point(3, 22);
             lblClearedVal.Name = "lblClearedVal";
-            lblClearedVal.Size = new Size(230, 38);
+            lblClearedVal.Size = new Size(201, 28);
             lblClearedVal.TabIndex = 1;
             lblClearedVal.Text = "0";
             lblClearedVal.TextAlign = ContentAlignment.MiddleCenter;
@@ -330,9 +341,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             lblClearedTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblClearedTitle.ForeColor = Color.DarkGreen;
-            lblClearedTitle.Location = new Point(3, 8);
+            lblClearedTitle.Location = new Point(3, 6);
             lblClearedTitle.Name = "lblClearedTitle";
-            lblClearedTitle.Size = new Size(230, 18);
+            lblClearedTitle.Size = new Size(201, 14);
             lblClearedTitle.TabIndex = 0;
             lblClearedTitle.Text = "FULLY CLEARED";
             lblClearedTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -343,17 +354,18 @@ namespace Student_Clearance_Management_System.Forms
             pnlStatTotal.Controls.Add(lblTotalVal);
             pnlStatTotal.Controls.Add(lblTotalTitle);
             pnlStatTotal.Location = new Point(0, 0);
+            pnlStatTotal.Margin = new Padding(3, 2, 3, 2);
             pnlStatTotal.Name = "pnlStatTotal";
-            pnlStatTotal.Size = new Size(238, 80);
+            pnlStatTotal.Size = new Size(208, 60);
             pnlStatTotal.TabIndex = 0;
             // 
             // lblTotalVal
             // 
             lblTotalVal.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotalVal.ForeColor = Color.Black;
-            lblTotalVal.Location = new Point(3, 30);
+            lblTotalVal.Location = new Point(3, 22);
             lblTotalVal.Name = "lblTotalVal";
-            lblTotalVal.Size = new Size(230, 38);
+            lblTotalVal.Size = new Size(201, 28);
             lblTotalVal.TabIndex = 1;
             lblTotalVal.Text = "0";
             lblTotalVal.TextAlign = ContentAlignment.MiddleCenter;
@@ -362,9 +374,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             lblTotalTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotalTitle.ForeColor = Color.Gray;
-            lblTotalTitle.Location = new Point(3, 8);
+            lblTotalTitle.Location = new Point(3, 6);
             lblTotalTitle.Name = "lblTotalTitle";
-            lblTotalTitle.Size = new Size(230, 18);
+            lblTotalTitle.Size = new Size(201, 14);
             lblTotalTitle.TabIndex = 0;
             lblTotalTitle.Text = "TOTAL STUDENTS";
             lblTotalTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -377,13 +389,14 @@ namespace Student_Clearance_Management_System.Forms
             dgvReports.BackgroundColor = SystemColors.Window;
             dgvReports.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvReports.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dgvReports.Location = new Point(12, 270);
+            dgvReports.Location = new Point(10, 202);
+            dgvReports.Margin = new Padding(3, 2, 3, 2);
             dgvReports.MultiSelect = false;
             dgvReports.Name = "dgvReports";
             dgvReports.ReadOnly = true;
             dgvReports.RowHeadersWidth = 35;
             dgvReports.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvReports.Size = new Size(1000, 350);
+            dgvReports.Size = new Size(875, 262);
             dgvReports.TabIndex = 3;
             dgvReports.CellFormatting += dgvReports_CellFormatting;
             // 
@@ -395,9 +408,10 @@ namespace Student_Clearance_Management_System.Forms
             btnExport.FlatStyle = FlatStyle.Flat;
             btnExport.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnExport.ForeColor = Color.White;
-            btnExport.Location = new Point(12, 630);
+            btnExport.Location = new Point(10, 472);
+            btnExport.Margin = new Padding(3, 2, 3, 2);
             btnExport.Name = "btnExport";
-            btnExport.Size = new Size(160, 38);
+            btnExport.Size = new Size(140, 28);
             btnExport.TabIndex = 4;
             btnExport.Text = "📤  Export to CSV";
             btnExport.UseVisualStyleBackColor = false;
@@ -411,35 +425,28 @@ namespace Student_Clearance_Management_System.Forms
             btnReset.FlatStyle = FlatStyle.Flat;
             btnReset.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnReset.ForeColor = Color.White;
-            btnReset.Location = new Point(182, 630);
+            btnReset.Location = new Point(159, 472);
+            btnReset.Margin = new Padding(3, 2, 3, 2);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(140, 38);
+            btnReset.Size = new Size(122, 28);
             btnReset.TabIndex = 5;
             btnReset.Text = "↺  Reset Filters";
             btnReset.UseVisualStyleBackColor = false;
             btnReset.Click += btnReset_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(3, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Visible = false;
-            button1.Click += btnBack_Click;
-            // 
             // ReportForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1024, 678);
+            ClientSize = new Size(896, 508);
             Controls.Add(btnReset);
             Controls.Add(btnExport);
             Controls.Add(dgvReports);
             Controls.Add(pnlStats);
             Controls.Add(grpFilters);
             Controls.Add(pnlHeader);
-            MinimumSize = new Size(900, 600);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(790, 460);
             Name = "ReportForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reports & Analytics — Clearance System";

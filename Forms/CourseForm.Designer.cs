@@ -18,8 +18,6 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle = new Label();
             btnBack = new Button();
             pnlInputCard = new Panel();
-            lblCourseID = new Label();
-            txtCourseID = new TextBox();
             lblCourseCode = new Label();
             txtCourseCode = new TextBox();
             lblCourseName = new Label();
@@ -43,8 +41,9 @@ namespace Student_Clearance_Management_System.Forms
             pnlHeader.Controls.Add(btnBack);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1021, 60);
+            pnlHeader.Size = new Size(893, 45);
             pnlHeader.TabIndex = 10;
             // 
             // lblTitle
@@ -52,9 +51,9 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(80, 0);
+            lblTitle.Location = new Point(70, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(941, 60);
+            lblTitle.Size = new Size(823, 45);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "📚  Course Management";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -69,8 +68,9 @@ namespace Student_Clearance_Management_System.Forms
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 0);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(80, 60);
+            btnBack.Size = new Size(70, 45);
             btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -79,44 +79,26 @@ namespace Student_Clearance_Management_System.Forms
             // pnlInputCard
             // 
             pnlInputCard.BackColor = Color.White;
-            pnlInputCard.Controls.Add(lblCourseID);
-            pnlInputCard.Controls.Add(txtCourseID);
             pnlInputCard.Controls.Add(lblCourseCode);
             pnlInputCard.Controls.Add(txtCourseCode);
             pnlInputCard.Controls.Add(lblCourseName);
             pnlInputCard.Controls.Add(txtCourseName);
             pnlInputCard.Dock = DockStyle.Top;
-            pnlInputCard.Location = new Point(0, 60);
+            pnlInputCard.Location = new Point(0, 45);
+            pnlInputCard.Margin = new Padding(3, 2, 3, 2);
             pnlInputCard.Name = "pnlInputCard";
-            pnlInputCard.Padding = new Padding(21, 12, 21, 8);
-            pnlInputCard.Size = new Size(1021, 140);
+            pnlInputCard.Padding = new Padding(18, 9, 18, 6);
+            pnlInputCard.Size = new Size(893, 105);
             pnlInputCard.TabIndex = 9;
-            // 
-            // lblCourseID
-            // 
-            lblCourseID.Location = new Point(0, 0);
-            lblCourseID.Name = "lblCourseID";
-            lblCourseID.Size = new Size(101, 23);
-            lblCourseID.TabIndex = 0;
-            lblCourseID.Visible = false;
-            // 
-            // txtCourseID
-            // 
-            txtCourseID.Location = new Point(0, 0);
-            txtCourseID.Name = "txtCourseID";
-            txtCourseID.ReadOnly = true;
-            txtCourseID.Size = new Size(100, 27);
-            txtCourseID.TabIndex = 1;
-            txtCourseID.Visible = false;
             // 
             // lblCourseCode
             // 
             lblCourseCode.AutoSize = true;
             lblCourseCode.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblCourseCode.ForeColor = Color.FromArgb(55, 65, 81);
-            lblCourseCode.Location = new Point(21, 12);
+            lblCourseCode.Location = new Point(18, 9);
             lblCourseCode.Name = "lblCourseCode";
-            lblCourseCode.Size = new Size(100, 20);
+            lblCourseCode.Size = new Size(79, 15);
             lblCourseCode.TabIndex = 2;
             lblCourseCode.Text = "Course Code:";
             // 
@@ -124,10 +106,11 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtCourseCode.BorderStyle = BorderStyle.FixedSingle;
             txtCourseCode.Font = new Font("Segoe UI", 10.5F);
-            txtCourseCode.Location = new Point(21, 35);
+            txtCourseCode.Location = new Point(18, 26);
+            txtCourseCode.Margin = new Padding(3, 2, 3, 2);
             txtCourseCode.Name = "txtCourseCode";
             txtCourseCode.PlaceholderText = "e.g. BSIT";
-            txtCourseCode.Size = new Size(200, 31);
+            txtCourseCode.Size = new Size(175, 26);
             txtCourseCode.TabIndex = 1;
             // 
             // lblCourseName
@@ -135,9 +118,9 @@ namespace Student_Clearance_Management_System.Forms
             lblCourseName.AutoSize = true;
             lblCourseName.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblCourseName.ForeColor = Color.FromArgb(55, 65, 81);
-            lblCourseName.Location = new Point(240, 12);
+            lblCourseName.Location = new Point(210, 9);
             lblCourseName.Name = "lblCourseName";
-            lblCourseName.Size = new Size(107, 20);
+            lblCourseName.Size = new Size(84, 15);
             lblCourseName.TabIndex = 3;
             lblCourseName.Text = "Course Name:";
             // 
@@ -145,10 +128,11 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtCourseName.BorderStyle = BorderStyle.FixedSingle;
             txtCourseName.Font = new Font("Segoe UI", 10.5F);
-            txtCourseName.Location = new Point(240, 35);
+            txtCourseName.Location = new Point(210, 26);
+            txtCourseName.Margin = new Padding(3, 2, 3, 2);
             txtCourseName.Name = "txtCourseName";
             txtCourseName.PlaceholderText = "e.g. Bachelor of Science in Information Technology";
-            txtCourseName.Size = new Size(480, 31);
+            txtCourseName.Size = new Size(420, 26);
             txtCourseName.TabIndex = 2;
             // 
             // pnlButtons
@@ -159,10 +143,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlButtons.Controls.Add(btnUpdate);
             pnlButtons.Controls.Add(btnAdd);
             pnlButtons.Dock = DockStyle.Top;
-            pnlButtons.Location = new Point(0, 200);
+            pnlButtons.Location = new Point(0, 150);
+            pnlButtons.Margin = new Padding(3, 2, 3, 2);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Padding = new Padding(21, 11, 21, 11);
-            pnlButtons.Size = new Size(1021, 59);
+            pnlButtons.Padding = new Padding(18, 8, 18, 8);
+            pnlButtons.Size = new Size(893, 44);
             pnlButtons.TabIndex = 8;
             // 
             // btnClear
@@ -173,9 +158,10 @@ namespace Student_Clearance_Management_System.Forms
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(386, 11);
+            btnClear.Location = new Point(338, 8);
+            btnClear.Margin = new Padding(3, 2, 3, 2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(115, 36);
+            btnClear.Size = new Size(101, 27);
             btnClear.TabIndex = 6;
             btnClear.Text = "↺  Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -189,9 +175,10 @@ namespace Student_Clearance_Management_System.Forms
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(264, 11);
+            btnDelete.Location = new Point(231, 8);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(115, 36);
+            btnDelete.Size = new Size(101, 27);
             btnDelete.TabIndex = 5;
             btnDelete.Text = "🗑️  Delete";
             btnDelete.UseVisualStyleBackColor = false;
@@ -205,9 +192,10 @@ namespace Student_Clearance_Management_System.Forms
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(142, 11);
+            btnUpdate.Location = new Point(124, 8);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(115, 36);
+            btnUpdate.Size = new Size(101, 27);
             btnUpdate.TabIndex = 4;
             btnUpdate.Text = "✏️  Update";
             btnUpdate.UseVisualStyleBackColor = false;
@@ -221,9 +209,10 @@ namespace Student_Clearance_Management_System.Forms
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(21, 11);
+            btnAdd.Location = new Point(18, 8);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(115, 36);
+            btnAdd.Size = new Size(101, 27);
             btnAdd.TabIndex = 3;
             btnAdd.Text = "➕  Add";
             btnAdd.UseVisualStyleBackColor = false;
@@ -236,26 +225,28 @@ namespace Student_Clearance_Management_System.Forms
             dgvCourses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCourses.Dock = DockStyle.Fill;
-            dgvCourses.Location = new Point(0, 259);
+            dgvCourses.Location = new Point(0, 194);
+            dgvCourses.Margin = new Padding(3, 2, 3, 2);
             dgvCourses.MultiSelect = false;
             dgvCourses.Name = "dgvCourses";
             dgvCourses.ReadOnly = true;
             dgvCourses.RowHeadersWidth = 51;
             dgvCourses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCourses.Size = new Size(1021, 301);
+            dgvCourses.Size = new Size(893, 226);
             dgvCourses.TabIndex = 7;
             dgvCourses.CellClick += dgvCourses_CellClick;
             // 
             // CourseForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1021, 560);
+            ClientSize = new Size(893, 420);
             Controls.Add(dgvCourses);
             Controls.Add(pnlButtons);
             Controls.Add(pnlInputCard);
             Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "CourseForm";
             StartPosition = FormStartPosition.CenterScreen;

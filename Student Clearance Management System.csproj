@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -14,6 +14,48 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- AdminForm -->
+    <Compile Update="Forms\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+
+    <!-- StudentRegistrationForm -->
+    <Compile Update="Forms\StudentRegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\StudentRegistrationForm.Designer.cs">
+      <DependentUpon>StudentRegistrationForm.cs</DependentUpon>
+    </Compile>
+
+    <!-- StudentLoginForm -->
+    <Compile Update="Forms\StudentLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\StudentLoginForm.Designer.cs">
+      <DependentUpon>StudentLoginForm.cs</DependentUpon>
+    </Compile>
+
+    <!-- StudentDashboard -->
+    <Compile Update="Forms\StudentDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\StudentDashboard.Designer.cs">
+      <DependentUpon>StudentDashboard.cs</DependentUpon>
+    </Compile>
+
+    <!-- ReEnterPasswordForm -->
+    <Compile Update="Forms\ReEnterPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ReEnterPasswordForm.Designer.cs">
+      <DependentUpon>ReEnterPasswordForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

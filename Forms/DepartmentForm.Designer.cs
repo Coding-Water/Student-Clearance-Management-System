@@ -18,8 +18,6 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle = new Label();
             btnBack = new Button();
             pnlInputCard = new Panel();
-            lblDepartmentID = new Label();
-            txtDepartmentID = new TextBox();
             lblDepartmentName = new Label();
             txtDepartmentName = new TextBox();
             pnlButtons = new Panel();
@@ -41,8 +39,9 @@ namespace Student_Clearance_Management_System.Forms
             pnlHeader.Controls.Add(btnBack);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(760, 60);
+            pnlHeader.Size = new Size(665, 45);
             pnlHeader.TabIndex = 9;
             // 
             // lblTitle
@@ -50,9 +49,9 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(80, 0);
+            lblTitle.Location = new Point(70, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(680, 60);
+            lblTitle.Size = new Size(595, 45);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "🏢  Department Management";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -67,8 +66,9 @@ namespace Student_Clearance_Management_System.Forms
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 0);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(80, 60);
+            btnBack.Size = new Size(70, 45);
             btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -77,43 +77,24 @@ namespace Student_Clearance_Management_System.Forms
             // pnlInputCard
             // 
             pnlInputCard.BackColor = Color.White;
-            pnlInputCard.Controls.Add(lblDepartmentID);
-            pnlInputCard.Controls.Add(txtDepartmentID);
             pnlInputCard.Controls.Add(lblDepartmentName);
             pnlInputCard.Controls.Add(txtDepartmentName);
             pnlInputCard.Dock = DockStyle.Top;
-            pnlInputCard.Location = new Point(0, 60);
+            pnlInputCard.Location = new Point(0, 45);
+            pnlInputCard.Margin = new Padding(3, 2, 3, 2);
             pnlInputCard.Name = "pnlInputCard";
-            pnlInputCard.Padding = new Padding(20, 12, 20, 8);
-            pnlInputCard.Size = new Size(760, 100);
+            pnlInputCard.Padding = new Padding(18, 9, 18, 6);
+            pnlInputCard.Size = new Size(665, 75);
             pnlInputCard.TabIndex = 8;
-            // 
-            // lblDepartmentID
-            // 
-            lblDepartmentID.Location = new Point(0, 0);
-            lblDepartmentID.Name = "lblDepartmentID";
-            lblDepartmentID.Size = new Size(100, 23);
-            lblDepartmentID.TabIndex = 0;
-            lblDepartmentID.Visible = false;
-            lblDepartmentID.Click += lblDepartmentID_Click;
-            // 
-            // txtDepartmentID
-            // 
-            txtDepartmentID.Location = new Point(0, 0);
-            txtDepartmentID.Name = "txtDepartmentID";
-            txtDepartmentID.ReadOnly = true;
-            txtDepartmentID.Size = new Size(100, 27);
-            txtDepartmentID.TabIndex = 1;
-            txtDepartmentID.Visible = false;
             // 
             // lblDepartmentName
             // 
             lblDepartmentName.AutoSize = true;
             lblDepartmentName.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblDepartmentName.ForeColor = Color.FromArgb(55, 65, 81);
-            lblDepartmentName.Location = new Point(20, 12);
+            lblDepartmentName.Location = new Point(18, 9);
             lblDepartmentName.Name = "lblDepartmentName";
-            lblDepartmentName.Size = new Size(144, 20);
+            lblDepartmentName.Size = new Size(115, 15);
             lblDepartmentName.TabIndex = 2;
             lblDepartmentName.Text = "Department Name:";
             // 
@@ -121,10 +102,11 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtDepartmentName.BorderStyle = BorderStyle.FixedSingle;
             txtDepartmentName.Font = new Font("Segoe UI", 10.5F);
-            txtDepartmentName.Location = new Point(20, 35);
+            txtDepartmentName.Location = new Point(18, 26);
+            txtDepartmentName.Margin = new Padding(3, 2, 3, 2);
             txtDepartmentName.Name = "txtDepartmentName";
             txtDepartmentName.PlaceholderText = "e.g. Office of the Registrar";
-            txtDepartmentName.Size = new Size(680, 31);
+            txtDepartmentName.Size = new Size(595, 26);
             txtDepartmentName.TabIndex = 1;
             // 
             // pnlButtons
@@ -135,10 +117,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlButtons.Controls.Add(btnUpdate);
             pnlButtons.Controls.Add(btnAdd);
             pnlButtons.Dock = DockStyle.Top;
-            pnlButtons.Location = new Point(0, 160);
+            pnlButtons.Location = new Point(0, 120);
+            pnlButtons.Margin = new Padding(3, 2, 3, 2);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Padding = new Padding(20, 10, 20, 10);
-            pnlButtons.Size = new Size(760, 58);
+            pnlButtons.Padding = new Padding(18, 8, 18, 8);
+            pnlButtons.Size = new Size(665, 44);
             pnlButtons.TabIndex = 7;
             // 
             // btnClear
@@ -149,9 +132,10 @@ namespace Student_Clearance_Management_System.Forms
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(386, 10);
+            btnClear.Location = new Point(338, 8);
+            btnClear.Margin = new Padding(3, 2, 3, 2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(115, 36);
+            btnClear.Size = new Size(101, 27);
             btnClear.TabIndex = 5;
             btnClear.Text = "↺  Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -165,9 +149,10 @@ namespace Student_Clearance_Management_System.Forms
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(264, 10);
+            btnDelete.Location = new Point(231, 8);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(115, 36);
+            btnDelete.Size = new Size(101, 27);
             btnDelete.TabIndex = 4;
             btnDelete.Text = "🗑️  Delete";
             btnDelete.UseVisualStyleBackColor = false;
@@ -181,9 +166,10 @@ namespace Student_Clearance_Management_System.Forms
             btnUpdate.FlatStyle = FlatStyle.Flat;
             btnUpdate.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(142, 10);
+            btnUpdate.Location = new Point(124, 8);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(115, 36);
+            btnUpdate.Size = new Size(101, 27);
             btnUpdate.TabIndex = 3;
             btnUpdate.Text = "✏️  Update";
             btnUpdate.UseVisualStyleBackColor = false;
@@ -197,9 +183,10 @@ namespace Student_Clearance_Management_System.Forms
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(20, 10);
+            btnAdd.Location = new Point(18, 8);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(115, 36);
+            btnAdd.Size = new Size(101, 27);
             btnAdd.TabIndex = 2;
             btnAdd.Text = "➕  Add";
             btnAdd.UseVisualStyleBackColor = false;
@@ -212,26 +199,28 @@ namespace Student_Clearance_Management_System.Forms
             dgvDepartments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDepartments.Dock = DockStyle.Fill;
-            dgvDepartments.Location = new Point(0, 218);
+            dgvDepartments.Location = new Point(0, 164);
+            dgvDepartments.Margin = new Padding(3, 2, 3, 2);
             dgvDepartments.MultiSelect = false;
             dgvDepartments.Name = "dgvDepartments";
             dgvDepartments.ReadOnly = true;
             dgvDepartments.RowHeadersWidth = 51;
             dgvDepartments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDepartments.Size = new Size(760, 302);
+            dgvDepartments.Size = new Size(665, 226);
             dgvDepartments.TabIndex = 6;
             dgvDepartments.CellClick += dgvDepartments_CellClick;
             // 
             // DepartmentForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(760, 520);
+            ClientSize = new Size(665, 390);
             Controls.Add(dgvDepartments);
             Controls.Add(pnlButtons);
             Controls.Add(pnlInputCard);
             Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "DepartmentForm";
             StartPosition = FormStartPosition.CenterScreen;

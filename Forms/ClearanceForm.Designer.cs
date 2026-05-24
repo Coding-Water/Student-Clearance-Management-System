@@ -52,8 +52,9 @@ namespace Student_Clearance_Management_System.Forms
             pnlHeader.Controls.Add(btnBack);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1376, 60);
+            pnlHeader.Size = new Size(1204, 45);
             pnlHeader.TabIndex = 5;
             // 
             // lblTitle
@@ -61,9 +62,9 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(80, 0);
+            lblTitle.Location = new Point(70, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1296, 60);
+            lblTitle.Size = new Size(1134, 45);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "📋  Clearance Processing";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -78,8 +79,9 @@ namespace Student_Clearance_Management_System.Forms
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 0);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(80, 60);
+            btnBack.Size = new Size(70, 45);
             btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -95,10 +97,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlFilterCard.Controls.Add(lblSelectedTerm);
             pnlFilterCard.Controls.Add(cboAcademicTerm);
             pnlFilterCard.Dock = DockStyle.Top;
-            pnlFilterCard.Location = new Point(0, 60);
+            pnlFilterCard.Location = new Point(0, 45);
+            pnlFilterCard.Margin = new Padding(3, 2, 3, 2);
             pnlFilterCard.Name = "pnlFilterCard";
-            pnlFilterCard.Padding = new Padding(21, 11, 21, 8);
-            pnlFilterCard.Size = new Size(1376, 109);
+            pnlFilterCard.Padding = new Padding(18, 8, 18, 6);
+            pnlFilterCard.Size = new Size(1204, 82);
             pnlFilterCard.TabIndex = 4;
             // 
             // lblSearch
@@ -106,9 +109,9 @@ namespace Student_Clearance_Management_System.Forms
             lblSearch.AutoSize = true;
             lblSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSearch.ForeColor = Color.FromArgb(55, 65, 81);
-            lblSearch.Location = new Point(21, 56);
+            lblSearch.Location = new Point(18, 42);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(118, 20);
+            lblSearch.Size = new Size(96, 15);
             lblSearch.TabIndex = 0;
             lblSearch.Text = "Search Student:";
             // 
@@ -116,10 +119,11 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 10F);
-            txtSearch.Location = new Point(139, 53);
+            txtSearch.Location = new Point(122, 40);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Filter by name or ID...";
-            txtSearch.Size = new Size(340, 30);
+            txtSearch.Size = new Size(298, 25);
             txtSearch.TabIndex = 3;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -128,9 +132,9 @@ namespace Student_Clearance_Management_System.Forms
             lblStudent.AutoSize = true;
             lblStudent.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblStudent.ForeColor = Color.FromArgb(55, 65, 81);
-            lblStudent.Location = new Point(400, 11);
+            lblStudent.Location = new Point(350, 8);
             lblStudent.Name = "lblStudent";
-            lblStudent.Size = new Size(68, 20);
+            lblStudent.Size = new Size(55, 15);
             lblStudent.TabIndex = 4;
             lblStudent.Text = "Student:";
             // 
@@ -138,9 +142,10 @@ namespace Student_Clearance_Management_System.Forms
             // 
             cboStudent.DropDownStyle = ComboBoxStyle.DropDownList;
             cboStudent.Font = new Font("Segoe UI", 10F);
-            cboStudent.Location = new Point(474, 6);
+            cboStudent.Location = new Point(402, 6);
+            cboStudent.Margin = new Padding(3, 2, 3, 2);
             cboStudent.Name = "cboStudent";
-            cboStudent.Size = new Size(361, 31);
+            cboStudent.Size = new Size(316, 25);
             cboStudent.TabIndex = 2;
             // 
             // lblSelectedTerm
@@ -148,9 +153,9 @@ namespace Student_Clearance_Management_System.Forms
             lblSelectedTerm.AutoSize = true;
             lblSelectedTerm.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSelectedTerm.ForeColor = Color.FromArgb(55, 65, 81);
-            lblSelectedTerm.Location = new Point(21, 11);
+            lblSelectedTerm.Location = new Point(18, 8);
             lblSelectedTerm.Name = "lblSelectedTerm";
-            lblSelectedTerm.Size = new Size(121, 20);
+            lblSelectedTerm.Size = new Size(96, 15);
             lblSelectedTerm.TabIndex = 5;
             lblSelectedTerm.Text = "Academic Term:";
             // 
@@ -158,9 +163,10 @@ namespace Student_Clearance_Management_System.Forms
             // 
             cboAcademicTerm.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAcademicTerm.Font = new Font("Segoe UI", 10F);
-            cboAcademicTerm.Location = new Point(148, 6);
+            cboAcademicTerm.Location = new Point(122, 6);
+            cboAcademicTerm.Margin = new Padding(3, 2, 3, 2);
             cboAcademicTerm.Name = "cboAcademicTerm";
-            cboAcademicTerm.Size = new Size(239, 31);
+            cboAcademicTerm.Size = new Size(210, 25);
             cboAcademicTerm.TabIndex = 1;
             cboAcademicTerm.SelectedIndexChanged += cboAcademicTerm_SelectedIndexChanged;
             // 
@@ -172,10 +178,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlActionBar.Controls.Add(btnAdd);
             pnlActionBar.Controls.Add(btnLoadChecklist);
             pnlActionBar.Dock = DockStyle.Top;
-            pnlActionBar.Location = new Point(0, 169);
+            pnlActionBar.Location = new Point(0, 127);
+            pnlActionBar.Margin = new Padding(3, 2, 3, 2);
             pnlActionBar.Name = "pnlActionBar";
-            pnlActionBar.Padding = new Padding(21, 11, 21, 11);
-            pnlActionBar.Size = new Size(1376, 59);
+            pnlActionBar.Padding = new Padding(18, 8, 18, 8);
+            pnlActionBar.Size = new Size(1204, 44);
             pnlActionBar.TabIndex = 3;
             // 
             // btnClear
@@ -186,9 +193,10 @@ namespace Student_Clearance_Management_System.Forms
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(501, 11);
+            btnClear.Location = new Point(438, 8);
+            btnClear.Margin = new Padding(3, 2, 3, 2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(150, 36);
+            btnClear.Size = new Size(131, 27);
             btnClear.TabIndex = 7;
             btnClear.Text = "↺  Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -202,9 +210,10 @@ namespace Student_Clearance_Management_System.Forms
             btnDeleteSelected.FlatStyle = FlatStyle.Flat;
             btnDeleteSelected.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnDeleteSelected.ForeColor = Color.White;
-            btnDeleteSelected.Location = new Point(341, 11);
+            btnDeleteSelected.Location = new Point(298, 8);
+            btnDeleteSelected.Margin = new Padding(3, 2, 3, 2);
             btnDeleteSelected.Name = "btnDeleteSelected";
-            btnDeleteSelected.Size = new Size(150, 36);
+            btnDeleteSelected.Size = new Size(131, 27);
             btnDeleteSelected.TabIndex = 6;
             btnDeleteSelected.Text = "🗑️  Delete Selected";
             btnDeleteSelected.UseVisualStyleBackColor = false;
@@ -218,9 +227,10 @@ namespace Student_Clearance_Management_System.Forms
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(181, 11);
+            btnAdd.Location = new Point(158, 8);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(150, 36);
+            btnAdd.Size = new Size(131, 27);
             btnAdd.TabIndex = 5;
             btnAdd.Text = "💾  Save All";
             btnAdd.UseVisualStyleBackColor = false;
@@ -234,9 +244,10 @@ namespace Student_Clearance_Management_System.Forms
             btnLoadChecklist.FlatStyle = FlatStyle.Flat;
             btnLoadChecklist.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnLoadChecklist.ForeColor = Color.White;
-            btnLoadChecklist.Location = new Point(21, 11);
+            btnLoadChecklist.Location = new Point(18, 8);
+            btnLoadChecklist.Margin = new Padding(3, 2, 3, 2);
             btnLoadChecklist.Name = "btnLoadChecklist";
-            btnLoadChecklist.Size = new Size(150, 36);
+            btnLoadChecklist.Size = new Size(131, 27);
             btnLoadChecklist.TabIndex = 4;
             btnLoadChecklist.Text = "📥  Load Checklist";
             btnLoadChecklist.UseVisualStyleBackColor = false;
@@ -248,10 +259,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlLeft.Controls.Add(dgvClearanceDepartments);
             pnlLeft.Controls.Add(lblChecklist);
             pnlLeft.Dock = DockStyle.Left;
-            pnlLeft.Location = new Point(0, 228);
+            pnlLeft.Location = new Point(0, 171);
+            pnlLeft.Margin = new Padding(3, 2, 3, 2);
             pnlLeft.Name = "pnlLeft";
-            pnlLeft.Padding = new Padding(11, 8, 6, 12);
-            pnlLeft.Size = new Size(664, 452);
+            pnlLeft.Padding = new Padding(10, 6, 5, 9);
+            pnlLeft.Size = new Size(581, 339);
             pnlLeft.TabIndex = 2;
             // 
             // dgvClearanceDepartments
@@ -261,12 +273,12 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceDepartments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClearanceDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClearanceDepartments.Dock = DockStyle.Fill;
-            dgvClearanceDepartments.Location = new Point(11, 36);
+            dgvClearanceDepartments.Location = new Point(10, 27);
+            dgvClearanceDepartments.Margin = new Padding(3, 2, 3, 2);
             dgvClearanceDepartments.MultiSelect = false;
             dgvClearanceDepartments.Name = "dgvClearanceDepartments";
-            dgvClearanceDepartments.RowHeadersWidth = 51;
             dgvClearanceDepartments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClearanceDepartments.Size = new Size(647, 404);
+            dgvClearanceDepartments.Size = new Size(566, 303);
             dgvClearanceDepartments.TabIndex = 8;
             dgvClearanceDepartments.CurrentCellDirtyStateChanged += dgvClearanceDepartments_CurrentCellDirtyStateChanged;
             // 
@@ -275,9 +287,9 @@ namespace Student_Clearance_Management_System.Forms
             lblChecklist.Dock = DockStyle.Top;
             lblChecklist.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             lblChecklist.ForeColor = Color.FromArgb(55, 65, 81);
-            lblChecklist.Location = new Point(11, 8);
+            lblChecklist.Location = new Point(10, 6);
             lblChecklist.Name = "lblChecklist";
-            lblChecklist.Size = new Size(647, 28);
+            lblChecklist.Size = new Size(566, 21);
             lblChecklist.TabIndex = 9;
             lblChecklist.Text = "Clearance Checklist  (tick to mark Cleared)";
             lblChecklist.TextAlign = ContentAlignment.MiddleLeft;
@@ -288,10 +300,11 @@ namespace Student_Clearance_Management_System.Forms
             pnlRight.Controls.Add(dgvClearanceRecords);
             pnlRight.Controls.Add(lblRecords);
             pnlRight.Dock = DockStyle.Fill;
-            pnlRight.Location = new Point(669, 228);
+            pnlRight.Location = new Point(585, 171);
+            pnlRight.Margin = new Padding(3, 2, 3, 2);
             pnlRight.Name = "pnlRight";
-            pnlRight.Padding = new Padding(6, 8, 11, 12);
-            pnlRight.Size = new Size(707, 452);
+            pnlRight.Padding = new Padding(5, 6, 10, 9);
+            pnlRight.Size = new Size(619, 339);
             pnlRight.TabIndex = 0;
             // 
             // dgvClearanceRecords
@@ -301,13 +314,13 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClearanceRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClearanceRecords.Dock = DockStyle.Fill;
-            dgvClearanceRecords.Location = new Point(6, 36);
+            dgvClearanceRecords.Location = new Point(5, 27);
+            dgvClearanceRecords.Margin = new Padding(3, 2, 3, 2);
             dgvClearanceRecords.MultiSelect = false;
             dgvClearanceRecords.Name = "dgvClearanceRecords";
             dgvClearanceRecords.ReadOnly = true;
-            dgvClearanceRecords.RowHeadersWidth = 51;
             dgvClearanceRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClearanceRecords.Size = new Size(690, 404);
+            dgvClearanceRecords.Size = new Size(604, 303);
             dgvClearanceRecords.TabIndex = 9;
             // 
             // lblRecords
@@ -315,9 +328,9 @@ namespace Student_Clearance_Management_System.Forms
             lblRecords.Dock = DockStyle.Top;
             lblRecords.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             lblRecords.ForeColor = Color.FromArgb(55, 65, 81);
-            lblRecords.Location = new Point(6, 8);
+            lblRecords.Location = new Point(5, 6);
             lblRecords.Name = "lblRecords";
-            lblRecords.Size = new Size(690, 28);
+            lblRecords.Size = new Size(604, 21);
             lblRecords.TabIndex = 10;
             lblRecords.Text = "Clearance Records / Summary Report";
             lblRecords.TextAlign = ContentAlignment.MiddleLeft;
@@ -325,23 +338,25 @@ namespace Student_Clearance_Management_System.Forms
             // splitter
             // 
             splitter.BackColor = Color.FromArgb(229, 231, 235);
-            splitter.Location = new Point(664, 228);
+            splitter.Location = new Point(581, 171);
+            splitter.Margin = new Padding(3, 2, 3, 2);
             splitter.Name = "splitter";
-            splitter.Size = new Size(5, 452);
+            splitter.Size = new Size(4, 339);
             splitter.TabIndex = 1;
             splitter.TabStop = false;
             // 
             // ClearanceForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1376, 680);
+            ClientSize = new Size(1204, 510);
             Controls.Add(pnlRight);
             Controls.Add(splitter);
             Controls.Add(pnlLeft);
             Controls.Add(pnlActionBar);
             Controls.Add(pnlFilterCard);
             Controls.Add(pnlHeader);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ClearanceForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clearance Processing — Clearance System";
