@@ -7,7 +7,7 @@ using Student_Clearance_Management_System.Models;
 namespace Student_Clearance_Management_System.Forms
 {
     public partial class LoginForm : Form
-    {
+    { 
         public LoginForm()
         {
             InitializeComponent();
