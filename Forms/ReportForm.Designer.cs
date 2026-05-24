@@ -61,7 +61,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvReports = new DataGridView();
             btnExport = new Button();
             btnReset = new Button();
-            button1 = new Button(); // kept for compatibility
+            button1 = new Button();
             pnlHeader.SuspendLayout();
             grpFilters.SuspendLayout();
             pnlStats.SuspendLayout();
@@ -74,40 +74,43 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // pnlHeader
             // 
-            pnlHeader.BackColor = System.Drawing.Color.FromArgb(79, 70, 229);
+            pnlHeader.BackColor = Color.FromArgb(79, 70, 229);
+            pnlHeader.Controls.Add(button1);
+            pnlHeader.Controls.Add(lblHeader);
+            pnlHeader.Controls.Add(btnBack);
             pnlHeader.Location = new Point(0, 0);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(1024, 60);
-            pnlHeader.Controls.Add(lblHeader);
-            pnlHeader.Controls.Add(btnBack);
+            pnlHeader.TabIndex = 6;
             // 
             // lblHeader
             // 
-            lblHeader.AutoSize = false;
             lblHeader.Dock = DockStyle.Fill;
             lblHeader.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            lblHeader.ForeColor = System.Drawing.Color.White;
+            lblHeader.ForeColor = Color.White;
+            lblHeader.Location = new Point(80, 0);
             lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(944, 60);
+            lblHeader.TabIndex = 0;
             lblHeader.Text = "📊  Clearance Reports & Analytics";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnBack
             // 
-            btnBack.BackColor = System.Drawing.Color.FromArgb(67, 56, 202);
+            btnBack.BackColor = Color.FromArgb(67, 56, 202);
+            btnBack.Cursor = Cursors.Hand;
             btnBack.Dock = DockStyle.Left;
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnBack.ForeColor = System.Drawing.Color.White;
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(0, 0);
             btnBack.Name = "btnBack";
-            btnBack.Size = new System.Drawing.Size(80, 60);
+            btnBack.Size = new Size(80, 60);
+            btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
-            btnBack.Cursor = Cursors.Hand;
+            btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
-            // hidden compat button
-            button1.Visible = false;
-            button1.Name = "button1";
-            button1.Click += btnBack_Click;
             // 
             // grpFilters
             // 
@@ -134,7 +137,7 @@ namespace Student_Clearance_Management_System.Forms
             lblSearch.AutoSize = true;
             lblSearch.Location = new Point(745, 25);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(124, 17);
+            lblSearch.Size = new Size(163, 23);
             lblSearch.TabIndex = 9;
             lblSearch.Text = "Search Student/Rec:";
             // 
@@ -143,7 +146,7 @@ namespace Student_Clearance_Management_System.Forms
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(745, 48);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(240, 27);
+            txtSearch.Size = new Size(240, 32);
             txtSearch.TabIndex = 8;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -152,7 +155,7 @@ namespace Student_Clearance_Management_System.Forms
             lblReportMode.AutoSize = true;
             lblReportMode.Location = new Point(550, 25);
             lblReportMode.Name = "lblReportMode";
-            lblReportMode.Size = new Size(82, 17);
+            lblReportMode.Size = new Size(105, 23);
             lblReportMode.TabIndex = 7;
             lblReportMode.Text = "Report Type:";
             // 
@@ -163,7 +166,7 @@ namespace Student_Clearance_Management_System.Forms
             cboReportMode.FormattingEnabled = true;
             cboReportMode.Location = new Point(550, 48);
             cboReportMode.Name = "cboReportMode";
-            cboReportMode.Size = new Size(180, 28);
+            cboReportMode.Size = new Size(180, 33);
             cboReportMode.TabIndex = 6;
             cboReportMode.SelectedIndexChanged += FilterControl_Changed;
             // 
@@ -172,7 +175,7 @@ namespace Student_Clearance_Management_System.Forms
             lblStatus.AutoSize = true;
             lblStatus.Location = new Point(385, 25);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(107, 17);
+            lblStatus.Size = new Size(140, 23);
             lblStatus.TabIndex = 5;
             lblStatus.Text = "Clearance Status:";
             // 
@@ -183,7 +186,7 @@ namespace Student_Clearance_Management_System.Forms
             cboStatus.FormattingEnabled = true;
             cboStatus.Location = new Point(385, 48);
             cboStatus.Name = "cboStatus";
-            cboStatus.Size = new Size(150, 28);
+            cboStatus.Size = new Size(150, 33);
             cboStatus.TabIndex = 4;
             cboStatus.SelectedIndexChanged += FilterControl_Changed;
             // 
@@ -192,7 +195,7 @@ namespace Student_Clearance_Management_System.Forms
             lblCourse.AutoSize = true;
             lblCourse.Location = new Point(200, 25);
             lblCourse.Name = "lblCourse";
-            lblCourse.Size = new Size(52, 17);
+            lblCourse.Size = new Size(67, 23);
             lblCourse.TabIndex = 3;
             lblCourse.Text = "Course:";
             // 
@@ -203,7 +206,7 @@ namespace Student_Clearance_Management_System.Forms
             cboCourse.FormattingEnabled = true;
             cboCourse.Location = new Point(200, 48);
             cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(170, 28);
+            cboCourse.Size = new Size(170, 33);
             cboCourse.TabIndex = 2;
             cboCourse.SelectedIndexChanged += FilterControl_Changed;
             // 
@@ -212,7 +215,7 @@ namespace Student_Clearance_Management_System.Forms
             lblAcademicTerm.AutoSize = true;
             lblAcademicTerm.Location = new Point(15, 25);
             lblAcademicTerm.Name = "lblAcademicTerm";
-            lblAcademicTerm.Size = new Size(100, 17);
+            lblAcademicTerm.Size = new Size(130, 23);
             lblAcademicTerm.TabIndex = 1;
             lblAcademicTerm.Text = "Academic Term:";
             // 
@@ -223,7 +226,7 @@ namespace Student_Clearance_Management_System.Forms
             cboAcademicTerm.FormattingEnabled = true;
             cboAcademicTerm.Location = new Point(15, 48);
             cboAcademicTerm.Name = "cboAcademicTerm";
-            cboAcademicTerm.Size = new Size(170, 28);
+            cboAcademicTerm.Size = new Size(170, 33);
             cboAcademicTerm.TabIndex = 0;
             cboAcademicTerm.SelectedIndexChanged += FilterControl_Changed;
             // 
@@ -386,49 +389,57 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // btnExport
             // 
+            btnExport.BackColor = Color.FromArgb(22, 163, 74);
+            btnExport.Cursor = Cursors.Hand;
             btnExport.FlatAppearance.BorderSize = 0;
             btnExport.FlatStyle = FlatStyle.Flat;
-            btnExport.BackColor = System.Drawing.Color.FromArgb(22, 163, 74);
-            btnExport.ForeColor = System.Drawing.Color.White;
             btnExport.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnExport.ForeColor = Color.White;
             btnExport.Location = new Point(12, 630);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(160, 38);
             btnExport.TabIndex = 4;
             btnExport.Text = "📤  Export to CSV";
-            btnExport.Cursor = Cursors.Hand;
+            btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 
             // btnReset
             // 
+            btnReset.BackColor = Color.FromArgb(107, 114, 128);
+            btnReset.Cursor = Cursors.Hand;
             btnReset.FlatAppearance.BorderSize = 0;
             btnReset.FlatStyle = FlatStyle.Flat;
-            btnReset.BackColor = System.Drawing.Color.FromArgb(107, 114, 128);
-            btnReset.ForeColor = System.Drawing.Color.White;
             btnReset.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnReset.ForeColor = Color.White;
             btnReset.Location = new Point(182, 630);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(140, 38);
             btnReset.TabIndex = 5;
             btnReset.Text = "↺  Reset Filters";
-            btnReset.Cursor = Cursors.Hand;
+            btnReset.UseVisualStyleBackColor = false;
             btnReset.Click += btnReset_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(3, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            button1.Visible = false;
+            button1.Click += btnBack_Click;
             // 
             // ReportForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1024, 678);
-            Controls.Add(button1);
             Controls.Add(btnReset);
             Controls.Add(btnExport);
             Controls.Add(dgvReports);
             Controls.Add(pnlStats);
             Controls.Add(grpFilters);
             Controls.Add(pnlHeader);
-            FormBorderStyle = FormBorderStyle.Sizable;
-            MaximizeBox = true;
-            MinimumSize = new System.Drawing.Size(900, 600);
+            MinimumSize = new Size(900, 600);
             Name = "ReportForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reports & Analytics — Clearance System";

@@ -73,9 +73,9 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(79, 70, 229);
-            lblTitle.Location = new Point(140, 20);
+            lblTitle.Location = new Point(111, 21);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(270, 30);
+            lblTitle.Size = new Size(337, 37);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Student Self Registration";
             // 
@@ -155,21 +155,21 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtStudentID.Location = new Point(40, 105);
             txtStudentID.Name = "txtStudentID";
-            txtStudentID.Size = new Size(230, 23);
+            txtStudentID.Size = new Size(230, 27);
             txtStudentID.TabIndex = 1;
             // 
             // txtFirstName
             // 
             txtFirstName.Location = new Point(40, 180);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(230, 23);
+            txtFirstName.Size = new Size(230, 27);
             txtFirstName.TabIndex = 3;
             // 
             // txtLastName
             // 
             txtLastName.Location = new Point(298, 105);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(230, 23);
+            txtLastName.Size = new Size(230, 27);
             txtLastName.TabIndex = 4;
             // 
             // cboYearLevel
@@ -177,21 +177,21 @@ namespace Student_Clearance_Management_System.Forms
             cboYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             cboYearLevel.Location = new Point(40, 255);
             cboYearLevel.Name = "cboYearLevel";
-            cboYearLevel.Size = new Size(230, 23);
+            cboYearLevel.Size = new Size(230, 28);
             cboYearLevel.TabIndex = 5;
             // 
             // txtSection
             // 
             txtSection.Location = new Point(298, 180);
             txtSection.Name = "txtSection";
-            txtSection.Size = new Size(230, 23);
+            txtSection.Size = new Size(230, 27);
             txtSection.TabIndex = 6;
             // 
             // txtContact
             // 
             txtContact.Location = new Point(31, 380);
             txtContact.Name = "txtContact";
-            txtContact.Size = new Size(500, 23);
+            txtContact.Size = new Size(500, 27);
             txtContact.TabIndex = 7;
             // 
             // cboCourse
@@ -199,14 +199,14 @@ namespace Student_Clearance_Management_System.Forms
             cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCourse.Location = new Point(40, 315);
             cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(491, 23);
+            cboCourse.Size = new Size(491, 28);
             cboCourse.TabIndex = 2;
             // 
             // txtPassword
             // 
             txtPassword.Location = new Point(31, 455);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(500, 23);
+            txtPassword.Size = new Size(500, 27);
             txtPassword.TabIndex = 8;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -214,7 +214,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtConfirmPassword.Location = new Point(31, 530);
             txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.Size = new Size(500, 23);
+            txtConfirmPassword.Size = new Size(500, 27);
             txtConfirmPassword.TabIndex = 9;
             txtConfirmPassword.UseSystemPasswordChar = true;
             // 

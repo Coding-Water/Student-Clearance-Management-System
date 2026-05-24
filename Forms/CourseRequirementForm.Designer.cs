@@ -38,9 +38,8 @@ namespace Student_Clearance_Management_System.Forms
             pnlHeader.Controls.Add(btnBack);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
-            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(898, 45);
+            pnlHeader.Size = new Size(1026, 60);
             pnlHeader.TabIndex = 7;
             // 
             // lblTitle
@@ -48,9 +47,9 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(70, 0);
+            lblTitle.Location = new Point(80, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(828, 45);
+            lblTitle.Size = new Size(946, 60);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "⚙️  Course Department Requirements";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -65,9 +64,8 @@ namespace Student_Clearance_Management_System.Forms
             btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 0);
-            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(70, 45);
+            btnBack.Size = new Size(80, 60);
             btnBack.TabIndex = 1;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -80,11 +78,10 @@ namespace Student_Clearance_Management_System.Forms
             pnlFilterCard.Controls.Add(cboCourse);
             pnlFilterCard.Controls.Add(lblInstruction);
             pnlFilterCard.Dock = DockStyle.Top;
-            pnlFilterCard.Location = new Point(0, 45);
-            pnlFilterCard.Margin = new Padding(3, 2, 3, 2);
+            pnlFilterCard.Location = new Point(0, 60);
             pnlFilterCard.Name = "pnlFilterCard";
-            pnlFilterCard.Padding = new Padding(18, 9, 18, 6);
-            pnlFilterCard.Size = new Size(898, 82);
+            pnlFilterCard.Padding = new Padding(21, 12, 21, 8);
+            pnlFilterCard.Size = new Size(1026, 109);
             pnlFilterCard.TabIndex = 6;
             // 
             // lblCourse
@@ -92,9 +89,9 @@ namespace Student_Clearance_Management_System.Forms
             lblCourse.AutoSize = true;
             lblCourse.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblCourse.ForeColor = Color.FromArgb(55, 65, 81);
-            lblCourse.Location = new Point(18, 9);
+            lblCourse.Location = new Point(21, 12);
             lblCourse.Name = "lblCourse";
-            lblCourse.Size = new Size(86, 15);
+            lblCourse.Size = new Size(106, 20);
             lblCourse.TabIndex = 0;
             lblCourse.Text = "Select Course:";
             // 
@@ -102,10 +99,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCourse.Font = new Font("Segoe UI", 10.5F);
-            cboCourse.Location = new Point(18, 22);
-            cboCourse.Margin = new Padding(3, 2, 3, 2);
+            cboCourse.Location = new Point(12, 35);
             cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(596, 27);
+            cboCourse.Size = new Size(681, 31);
             cboCourse.TabIndex = 1;
             cboCourse.SelectedIndexChanged += cboCourse_SelectedIndexChanged;
             // 
@@ -114,9 +110,9 @@ namespace Student_Clearance_Management_System.Forms
             lblInstruction.AutoSize = true;
             lblInstruction.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblInstruction.ForeColor = Color.FromArgb(107, 114, 128);
-            lblInstruction.Location = new Point(18, 54);
+            lblInstruction.Location = new Point(21, 72);
             lblInstruction.Name = "lblInstruction";
-            lblInstruction.Size = new Size(426, 15);
+            lblInstruction.Size = new Size(524, 20);
             lblInstruction.TabIndex = 2;
             lblInstruction.Text = "✏️  Check the departments that are required for clearance in the selected course.";
             // 
@@ -126,11 +122,10 @@ namespace Student_Clearance_Management_System.Forms
             pnlButtons.Controls.Add(btnRefresh);
             pnlButtons.Controls.Add(btnSaveRequirements);
             pnlButtons.Dock = DockStyle.Top;
-            pnlButtons.Location = new Point(0, 127);
-            pnlButtons.Margin = new Padding(3, 2, 3, 2);
+            pnlButtons.Location = new Point(0, 169);
             pnlButtons.Name = "pnlButtons";
-            pnlButtons.Padding = new Padding(18, 8, 18, 8);
-            pnlButtons.Size = new Size(898, 44);
+            pnlButtons.Padding = new Padding(21, 11, 21, 11);
+            pnlButtons.Size = new Size(1026, 59);
             pnlButtons.TabIndex = 5;
             // 
             // btnRefresh
@@ -141,10 +136,9 @@ namespace Student_Clearance_Management_System.Forms
             btnRefresh.FlatStyle = FlatStyle.Flat;
             btnRefresh.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(166, 8);
-            btnRefresh.Margin = new Padding(3, 2, 3, 2);
+            btnRefresh.Location = new Point(190, 11);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(105, 27);
+            btnRefresh.Size = new Size(120, 36);
             btnRefresh.TabIndex = 3;
             btnRefresh.Text = "🔄  Refresh";
             btnRefresh.UseVisualStyleBackColor = false;
@@ -158,10 +152,9 @@ namespace Student_Clearance_Management_System.Forms
             btnSaveRequirements.FlatStyle = FlatStyle.Flat;
             btnSaveRequirements.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             btnSaveRequirements.ForeColor = Color.White;
-            btnSaveRequirements.Location = new Point(18, 8);
-            btnSaveRequirements.Margin = new Padding(3, 2, 3, 2);
+            btnSaveRequirements.Location = new Point(21, 11);
             btnSaveRequirements.Name = "btnSaveRequirements";
-            btnSaveRequirements.Size = new Size(140, 27);
+            btnSaveRequirements.Size = new Size(160, 36);
             btnSaveRequirements.TabIndex = 2;
             btnSaveRequirements.Text = "💾  Save Requirements";
             btnSaveRequirements.UseVisualStyleBackColor = false;
@@ -174,27 +167,26 @@ namespace Student_Clearance_Management_System.Forms
             dgvRequirements.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRequirements.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRequirements.Dock = DockStyle.Fill;
-            dgvRequirements.Location = new Point(0, 171);
-            dgvRequirements.Margin = new Padding(3, 2, 3, 2);
+            dgvRequirements.Location = new Point(0, 228);
             dgvRequirements.MultiSelect = false;
             dgvRequirements.Name = "dgvRequirements";
             dgvRequirements.ReadOnly = true;
+            dgvRequirements.RowHeadersWidth = 51;
             dgvRequirements.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRequirements.Size = new Size(898, 294);
+            dgvRequirements.Size = new Size(1026, 392);
             dgvRequirements.TabIndex = 4;
             dgvRequirements.CurrentCellDirtyStateChanged += dgvRequirements_CurrentCellDirtyStateChanged;
             // 
             // CourseRequirementForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(898, 465);
+            ClientSize = new Size(1026, 620);
             Controls.Add(dgvRequirements);
             Controls.Add(pnlButtons);
             Controls.Add(pnlFilterCard);
             Controls.Add(pnlHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "CourseRequirementForm";
             StartPosition = FormStartPosition.CenterScreen;

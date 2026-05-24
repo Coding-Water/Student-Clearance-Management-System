@@ -280,5 +280,10 @@ namespace Student_Clearance_Management_System.Forms
         {
             this.Close();
         }
+
+        private void lblDepartmentID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

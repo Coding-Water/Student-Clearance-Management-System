@@ -28,107 +28,128 @@ namespace Student_Clearance_Management_System.Forms
 
         private void InitializeComponent()
         {
-            this.lblTitle = new Label();
-            this.lblSubtitle = new Label();
-            this.lblStudentID = new Label();
-            this.lblPassword = new Label();
-            this.txtStudentID = new TextBox();
-            this.txtPassword = new TextBox();
-            this.btnLogin = new Button();
-            this.lblRegisterLink = new Label();
-            this.lblStaffLink = new Label();
-
-            this.SuspendLayout();
-
-            // Form properties
-            this.ClientSize = new Size(480, 420);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "StudentLoginForm";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Student Clearance Access";
-
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            lblStudentID = new Label();
+            lblPassword = new Label();
+            txtStudentID = new TextBox();
+            txtPassword = new TextBox();
+            btnLogin = new Button();
+            lblRegisterLink = new Label();
+            lblStaffLink = new Label();
+            SuspendLayout();
+            // 
             // lblTitle
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            this.lblTitle.ForeColor = UIHelper.ColorPrimary;
-            this.lblTitle.Location = new Point(40, 30);
-            this.lblTitle.Size = new Size(400, 32);
-            this.lblTitle.Text = "STUDENT CLEARANCE SYSTEM";
-            this.lblTitle.TextAlign = ContentAlignment.MiddleCenter;
-
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(79, 70, 229);
+            lblTitle.Location = new Point(40, 30);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(457, 41);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "STUDENT CLEARANCE SYSTEM";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // lblSubtitle
-            this.lblSubtitle.AutoSize = true;
-            this.lblSubtitle.Font = new Font("Segoe UI", 12F, FontStyle.Italic);
-            this.lblSubtitle.ForeColor = UIHelper.ColorSecondary;
-            this.lblSubtitle.Location = new Point(160, 70);
-            this.lblSubtitle.Size = new Size(160, 21);
-            this.lblSubtitle.Text = "Student Access Portal";
-
+            // 
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.Font = new Font("Segoe UI", 12F, FontStyle.Italic);
+            lblSubtitle.ForeColor = Color.FromArgb(107, 114, 128);
+            lblSubtitle.Location = new Point(160, 70);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(198, 28);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "Student Access Portal";
+            // 
             // lblStudentID
-            this.lblStudentID.AutoSize = true;
-            this.lblStudentID.Location = new Point(60, 120);
-            this.lblStudentID.Size = new Size(100, 20);
-            this.lblStudentID.Text = "Student ID:";
-
-            // txtStudentID
-            this.txtStudentID.Location = new Point(60, 145);
-            this.txtStudentID.Size = new Size(360, 30);
-            this.txtStudentID.TabIndex = 1;
-
+            // 
+            lblStudentID.AutoSize = true;
+            lblStudentID.Location = new Point(60, 120);
+            lblStudentID.Name = "lblStudentID";
+            lblStudentID.Size = new Size(82, 20);
+            lblStudentID.TabIndex = 2;
+            lblStudentID.Text = "Student ID:";
+            // 
             // lblPassword
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new Point(60, 195);
-            this.lblPassword.Size = new Size(100, 20);
-            this.lblPassword.Text = "Password:";
-
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Location = new Point(60, 195);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(73, 20);
+            lblPassword.TabIndex = 3;
+            lblPassword.Text = "Password:";
+            // 
+            // txtStudentID
+            // 
+            txtStudentID.Location = new Point(60, 145);
+            txtStudentID.Name = "txtStudentID";
+            txtStudentID.Size = new Size(360, 27);
+            txtStudentID.TabIndex = 1;
+            // 
             // txtPassword
-            this.txtPassword.Location = new Point(60, 220);
-            this.txtPassword.Size = new Size(360, 30);
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.UseSystemPasswordChar = true;
-
+            // 
+            txtPassword.Location = new Point(60, 220);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(360, 27);
+            txtPassword.TabIndex = 2;
+            txtPassword.UseSystemPasswordChar = true;
+            // 
             // btnLogin
-            this.btnLogin.Location = new Point(60, 280);
-            this.btnLogin.Size = new Size(360, 45);
-            this.btnLogin.TabIndex = 3;
-            this.btnLogin.Text = "LOGIN AS STUDENT";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new EventHandler(this.btnLogin_Click);
-
+            // 
+            btnLogin.Location = new Point(60, 280);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(360, 45);
+            btnLogin.TabIndex = 3;
+            btnLogin.Text = "LOGIN AS STUDENT";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
+            // 
             // lblRegisterLink
-            this.lblRegisterLink.AutoSize = true;
-            this.lblRegisterLink.Cursor = Cursors.Hand;
-            this.lblRegisterLink.Font = new Font("Segoe UI", 10F, FontStyle.Underline);
-            this.lblRegisterLink.ForeColor = UIHelper.ColorPrimary;
-            this.lblRegisterLink.Location = new Point(125, 340);
-            this.lblRegisterLink.Size = new Size(230, 19);
-            this.lblRegisterLink.Text = "Not registered yet? Register here";
-            this.lblRegisterLink.Click += new EventHandler(this.lblRegisterLink_Click);
-
+            // 
+            lblRegisterLink.AutoSize = true;
+            lblRegisterLink.Cursor = Cursors.Hand;
+            lblRegisterLink.Font = new Font("Segoe UI", 10F, FontStyle.Underline);
+            lblRegisterLink.ForeColor = Color.FromArgb(79, 70, 229);
+            lblRegisterLink.Location = new Point(125, 340);
+            lblRegisterLink.Name = "lblRegisterLink";
+            lblRegisterLink.Size = new Size(261, 23);
+            lblRegisterLink.TabIndex = 4;
+            lblRegisterLink.Text = "Not registered yet? Register here";
+            lblRegisterLink.Click += lblRegisterLink_Click;
+            // 
             // lblStaffLink
-            this.lblStaffLink.AutoSize = true;
-            this.lblStaffLink.Cursor = Cursors.Hand;
-            this.lblStaffLink.Font = new Font("Segoe UI", 9.5F, FontStyle.Underline);
-            this.lblStaffLink.ForeColor = UIHelper.ColorSecondary;
-            this.lblStaffLink.Location = new Point(180, 375);
-            this.lblStaffLink.Size = new Size(120, 17);
-            this.lblStaffLink.Text = "Staff / Admin Login";
-            this.lblStaffLink.Click += new EventHandler(this.lblStaffLink_Click);
-
-            // Adding controls
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.lblSubtitle);
-            this.Controls.Add(this.lblStudentID);
-            this.Controls.Add(this.txtStudentID);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.lblRegisterLink);
-            this.Controls.Add(this.lblStaffLink);
-
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            lblStaffLink.AutoSize = true;
+            lblStaffLink.Cursor = Cursors.Hand;
+            lblStaffLink.Font = new Font("Segoe UI", 9.5F, FontStyle.Underline);
+            lblStaffLink.ForeColor = Color.FromArgb(107, 114, 128);
+            lblStaffLink.Location = new Point(180, 375);
+            lblStaffLink.Name = "lblStaffLink";
+            lblStaffLink.Size = new Size(144, 21);
+            lblStaffLink.TabIndex = 5;
+            lblStaffLink.Text = "Staff / Admin Login";
+            lblStaffLink.Click += lblStaffLink_Click;
+            // 
+            // StudentLoginForm
+            // 
+            ClientSize = new Size(515, 420);
+            Controls.Add(lblTitle);
+            Controls.Add(lblSubtitle);
+            Controls.Add(lblStudentID);
+            Controls.Add(txtStudentID);
+            Controls.Add(lblPassword);
+            Controls.Add(txtPassword);
+            Controls.Add(btnLogin);
+            Controls.Add(lblRegisterLink);
+            Controls.Add(lblStaffLink);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "StudentLoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Student Clearance Access";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private void CustomStyling()
