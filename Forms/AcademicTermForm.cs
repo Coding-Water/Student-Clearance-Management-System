@@ -26,6 +26,12 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvAcademicTerms.Columns["TermID"].Visible = false;
             }
+
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void LoadSemesters()
@@ -81,6 +87,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to add academic terms.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtSchoolYear.Text == "" || cboSemester.Text == "")
             {
                 MessageBox.Show(
@@ -177,6 +189,30 @@ namespace Student_Clearance_Management_System.Forms
                 return;
             }
 
+            string oldYear = "";
+            string oldSem = "";
+            bool oldActive = false;
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand getOldCmd = new SqlCommand("SELECT SchoolYear, Semester, IsActive FROM AcademicTerms WHERE TermID = @id AND IsDeleted = 0", conn);
+                    getOldCmd.Parameters.AddWithValue("@id", txtTermID.Text);
+                    using (SqlDataReader reader = getOldCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            oldYear = reader["SchoolYear"]?.ToString() ?? "";
+                            oldSem = reader["Semester"]?.ToString() ?? "";
+                            oldActive = Convert.ToBoolean(reader["IsActive"]);
+                        }
+                    }
+                }
+            }
+            catch {}
+
             try
             {
                 DBConnection db = new DBConnection();
@@ -214,6 +250,20 @@ namespace Student_Clearance_Management_System.Forms
 
                         cmd.ExecuteNonQuery();
 
+                        // Log update action if any term details changed
+                        if (oldYear != txtSchoolYear.Text.Trim() || oldSem != cboSemester.Text || oldActive != chkIsActive.Checked)
+                        {
+                            string details = $"Updated Academic Term: Year '{oldYear}' -> '{txtSchoolYear.Text.Trim()}', Semester '{oldSem}' -> '{cboSemester.Text}', Active '{oldActive}' -> '{chkIsActive.Checked}'";
+                            string logQuery = @"INSERT INTO UpdateLogs (RecordType, RecordID, UpdateDetails, PerformedBy, UserRole, ActionDate)
+                                                VALUES ('AcademicTerm', @recordId, @details, @user, @role, GETDATE())";
+                            SqlCommand logCmd = new SqlCommand(logQuery, conn, transaction);
+                            logCmd.Parameters.AddWithValue("@recordId", txtTermID.Text);
+                            logCmd.Parameters.AddWithValue("@details", details);
+                            logCmd.Parameters.AddWithValue("@user", AppSession.LoggedInUsername);
+                            logCmd.Parameters.AddWithValue("@role", AppSession.LoggedInRole);
+                            logCmd.ExecuteNonQuery();
+                        }
+
                         transaction.Commit();
 
                         MessageBox.Show(
@@ -246,6 +296,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to delete academic terms.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtTermID.Text == "")
             {
                 MessageBox.Show(

@@ -31,7 +31,6 @@ namespace Student_Clearance_Management_System.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            lblTitle = new Label();
             tabControl = new TabControl();
             tabUsers = new TabPage();
             lblUsername = new Label();
@@ -52,6 +51,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvDeletedRecords = new DataGridView();
             btnRestore = new Button();
             btnDeletePermanently = new Button();
+            tabAudit = new TabPage();
             lblHistoryTitle = new Label();
             dgvHistory = new DataGridView();
             btnRefreshHistory = new Button();
@@ -67,26 +67,17 @@ namespace Student_Clearance_Management_System.Forms
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
             tabRecycle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).BeginInit();
+            tabAudit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).BeginInit();
             tabMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMasterRecords).BeginInit();
             SuspendLayout();
             // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.FromArgb(79, 70, 229);
-            lblTitle.Location = new Point(340, 15);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(228, 30);
-            lblTitle.TabIndex = 2;
-            lblTitle.Text = "Administrative Panel";
-            // 
             // tabControl
             // 
             tabControl.Controls.Add(tabUsers);
             tabControl.Controls.Add(tabRecycle);
+            tabControl.Controls.Add(tabAudit);
             tabControl.Controls.Add(tabMaster);
             tabControl.Location = new Point(20, 75);
             tabControl.Name = "tabControl";
@@ -214,15 +205,12 @@ namespace Student_Clearance_Management_System.Forms
             tabRecycle.Controls.Add(dgvDeletedRecords);
             tabRecycle.Controls.Add(btnRestore);
             tabRecycle.Controls.Add(btnDeletePermanently);
-            tabRecycle.Controls.Add(lblHistoryTitle);
-            tabRecycle.Controls.Add(dgvHistory);
-            tabRecycle.Controls.Add(btnRefreshHistory);
             tabRecycle.Location = new Point(4, 24);
             tabRecycle.Name = "tabRecycle";
             tabRecycle.Padding = new Padding(15);
             tabRecycle.Size = new Size(912, 552);
             tabRecycle.TabIndex = 1;
-            tabRecycle.Text = "Audit & Recycle Bin";
+            tabRecycle.Text = "Recycle Bin";
             // 
             // lblRecordType
             // 
@@ -255,7 +243,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             dgvDeletedRecords.Location = new Point(20, 80);
             dgvDeletedRecords.Name = "dgvDeletedRecords";
-            dgvDeletedRecords.Size = new Size(420, 390);
+            dgvDeletedRecords.Size = new Size(872, 390);
             dgvDeletedRecords.TabIndex = 3;
             // 
             // btnRestore
@@ -276,11 +264,23 @@ namespace Student_Clearance_Management_System.Forms
             btnDeletePermanently.Text = "PURGE (DELETE PERM)";
             btnDeletePermanently.Click += btnDeletePermanently_Click;
             // 
+            // tabAudit
+            // 
+            tabAudit.Controls.Add(lblHistoryTitle);
+            tabAudit.Controls.Add(dgvHistory);
+            tabAudit.Controls.Add(btnRefreshHistory);
+            tabAudit.Location = new Point(4, 24);
+            tabAudit.Name = "tabAudit";
+            tabAudit.Padding = new Padding(15);
+            tabAudit.Size = new Size(912, 552);
+            tabAudit.TabIndex = 2;
+            tabAudit.Text = "Audit History";
+            // 
             // lblHistoryTitle
             // 
             lblHistoryTitle.AutoSize = true;
             lblHistoryTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblHistoryTitle.Location = new Point(470, 55);
+            lblHistoryTitle.Location = new Point(20, 20);
             lblHistoryTitle.Name = "lblHistoryTitle";
             lblHistoryTitle.Size = new Size(134, 19);
             lblHistoryTitle.TabIndex = 6;
@@ -288,14 +288,14 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // dgvHistory
             // 
-            dgvHistory.Location = new Point(470, 80);
+            dgvHistory.Location = new Point(20, 55);
             dgvHistory.Name = "dgvHistory";
-            dgvHistory.Size = new Size(430, 390);
+            dgvHistory.Size = new Size(872, 415);
             dgvHistory.TabIndex = 7;
             // 
             // btnRefreshHistory
             // 
-            btnRefreshHistory.Location = new Point(700, 485);
+            btnRefreshHistory.Location = new Point(692, 485);
             btnRefreshHistory.Name = "btnRefreshHistory";
             btnRefreshHistory.Size = new Size(200, 38);
             btnRefreshHistory.TabIndex = 8;
@@ -313,7 +313,7 @@ namespace Student_Clearance_Management_System.Forms
             tabMaster.Name = "tabMaster";
             tabMaster.Padding = new Padding(15);
             tabMaster.Size = new Size(912, 552);
-            tabMaster.TabIndex = 2;
+            tabMaster.TabIndex = 3;
             tabMaster.Text = "Direct Master Editor";
             // 
             // lblSelectTable
@@ -372,7 +372,6 @@ namespace Student_Clearance_Management_System.Forms
             ClientSize = new Size(968, 680);
             Controls.Add(btnBack);
             Controls.Add(tabControl);
-            Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "AdminForm";
@@ -385,16 +384,15 @@ namespace Student_Clearance_Management_System.Forms
             tabRecycle.ResumeLayout(false);
             tabRecycle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDeletedRecords).EndInit();
+            tabAudit.ResumeLayout(false);
+            tabAudit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
             tabMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvMasterRecords).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblTitle;
         private TabControl tabControl;
 
         // Tab 1: Users CRUD
@@ -418,12 +416,15 @@ namespace Student_Clearance_Management_System.Forms
         private DataGridView dgvDeletedRecords;
         private Button btnRestore;
         private Button btnDeletePermanently;
+        private Label lblDeletedTitle;
+
+        // Tab 3: Audit History
+        private TabPage tabAudit;
         private DataGridView dgvHistory;
         private Button btnRefreshHistory;
-        private Label lblDeletedTitle;
         private Label lblHistoryTitle;
 
-        // Tab 3: Master Data Editor
+        // Tab 4: Master Data Editor
         private TabPage tabMaster;
         private Label lblSelectTable;
         private ComboBox cboMasterTables;
@@ -432,5 +433,6 @@ namespace Student_Clearance_Management_System.Forms
         private Button btnMasterDelete;
 
         private Button btnBack;
+        private Label lblTitle;
     }
 }

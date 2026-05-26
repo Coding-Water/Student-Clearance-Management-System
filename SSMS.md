@@ -1,6 +1,6 @@
 USE [StudentClearanceDB]
 GO
-/****** Object:  Table [dbo].[AcademicTerms]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[AcademicTerms]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +17,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ClearanceRecords]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[ClearanceRecords]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -36,7 +36,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CourseDepartmentRequirements]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[CourseDepartmentRequirements]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -53,7 +53,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[Courses]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -69,7 +69,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Departments]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[Departments]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -84,7 +84,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RecycleBinLogs]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[RecycleBinLogs]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -103,7 +103,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Students]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[Students]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -123,7 +123,26 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 5/26/2026 11:45:06 PM ******/
+/****** Object:  Table [dbo].[UpdateLogs]    Script Date: 5/27/2026 1:06:39 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UpdateLogs](
+	[LogID] [int] IDENTITY(1,1) NOT NULL,
+	[RecordType] [varchar](50) NOT NULL,
+	[RecordID] [varchar](50) NOT NULL,
+	[UpdateDetails] [nvarchar](max) NOT NULL,
+	[PerformedBy] [varchar](50) NOT NULL,
+	[UserRole] [varchar](20) NOT NULL,
+	[ActionDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[LogID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 5/27/2026 1:06:39 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -157,6 +176,8 @@ GO
 ALTER TABLE [dbo].[RecycleBinLogs] ADD  DEFAULT (getdate()) FOR [ActionDate]
 GO
 ALTER TABLE [dbo].[Students] ADD  DEFAULT ((0)) FOR [IsDeleted]
+GO
+ALTER TABLE [dbo].[UpdateLogs] ADD  DEFAULT (getdate()) FOR [ActionDate]
 GO
 ALTER TABLE [dbo].[Users] ADD  DEFAULT ((0)) FOR [IsDeleted]
 GO

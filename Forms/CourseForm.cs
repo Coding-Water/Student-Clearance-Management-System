@@ -25,6 +25,12 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvCourses.Columns["CourseID"].Visible = false;
             }
+
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void LoadCourses()
@@ -63,6 +69,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to add courses.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtCourseCode.Text == "" || txtCourseName.Text == "")
             {
                 MessageBox.Show(
@@ -170,6 +182,28 @@ namespace Student_Clearance_Management_System.Forms
                 return;
             }
 
+            string oldCode = "";
+            string oldName = "";
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand getOldCmd = new SqlCommand("SELECT CourseCode, CourseName FROM Courses WHERE CourseID = @id AND IsDeleted = 0", conn);
+                    getOldCmd.Parameters.AddWithValue("@id", txtCourseID.Text);
+                    using (SqlDataReader reader = getOldCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            oldCode = reader["CourseCode"]?.ToString() ?? "";
+                            oldName = reader["CourseName"]?.ToString() ?? "";
+                        }
+                    }
+                }
+            }
+            catch {}
+
             try
             {
                 DBConnection db = new DBConnection();
@@ -190,6 +224,22 @@ namespace Student_Clearance_Management_System.Forms
                     cmd.Parameters.AddWithValue("@name", txtCourseName.Text.Trim());
 
                     cmd.ExecuteNonQuery();
+
+                    // Log update action if code or name changed
+                    string newCode = txtCourseCode.Text.Trim();
+                    string newName = txtCourseName.Text.Trim();
+                    if (oldCode != newCode || oldName != newName)
+                    {
+                        string details = $"Updated Course: Code '{oldCode}' -> '{newCode}', Name '{oldName}' -> '{newName}'";
+                        string logQuery = @"INSERT INTO UpdateLogs (RecordType, RecordID, UpdateDetails, PerformedBy, UserRole, ActionDate)
+                                            VALUES ('Course', @recordId, @details, @user, @role, GETDATE())";
+                        SqlCommand logCmd = new SqlCommand(logQuery, conn);
+                        logCmd.Parameters.AddWithValue("@recordId", txtCourseID.Text);
+                        logCmd.Parameters.AddWithValue("@details", details);
+                        logCmd.Parameters.AddWithValue("@user", AppSession.LoggedInUsername);
+                        logCmd.Parameters.AddWithValue("@role", AppSession.LoggedInRole);
+                        logCmd.ExecuteNonQuery();
+                    }
                 }
 
                 MessageBox.Show(
@@ -210,6 +260,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to delete courses.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtCourseID.Text == "")
             {
                 MessageBox.Show(

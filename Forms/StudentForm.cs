@@ -24,6 +24,12 @@ namespace Student_Clearance_Management_System.Forms
             LoadYearLevels();
             LoadCourses();
             LoadStudents();
+
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         // ENCAPSULATION: Helper methods are defined as 'private' to hide implementation details
@@ -134,6 +140,12 @@ namespace Student_Clearance_Management_System.Forms
         // METHOD IMPLEMENTATION: Providing the concrete logic for the 'Add' method defined in the ICrud interface.
         public void Add()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to add students.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtID.Text == "" ||
                 txtFirst.Text == "" ||
                 txtLast.Text == "" ||
@@ -201,6 +213,40 @@ namespace Student_Clearance_Management_System.Forms
                 return;
             }
 
+            string oldFirst = "";
+            string oldLast = "";
+            string oldYear = "";
+            string oldSection = "";
+            string oldContact = "";
+            string oldCourseDisplay = "";
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand getOldCmd = new SqlCommand(
+                        @"SELECT s.FirstName, s.LastName, s.YearLevel, s.Section, s.ContactNumber, c.CourseCode
+                          FROM Students s
+                          LEFT JOIN Courses c ON s.CourseID = c.CourseID
+                          WHERE s.StudentID = @id AND s.IsDeleted = 0", conn);
+                    getOldCmd.Parameters.AddWithValue("@id", txtID.Text);
+                    using (SqlDataReader reader = getOldCmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            oldFirst = reader["FirstName"]?.ToString() ?? "";
+                            oldLast = reader["LastName"]?.ToString() ?? "";
+                            oldYear = reader["YearLevel"]?.ToString() ?? "";
+                            oldSection = reader["Section"]?.ToString() ?? "";
+                            oldContact = reader["ContactNumber"]?.ToString() ?? "";
+                            oldCourseDisplay = reader["CourseCode"]?.ToString() ?? "";
+                        }
+                    }
+                }
+            }
+            catch {}
+
             try
             {
                 DBConnection db = new DBConnection();
@@ -230,6 +276,28 @@ namespace Student_Clearance_Management_System.Forms
                     cmd.Parameters.AddWithValue("@contact", txtContact.Text);
 
                     cmd.ExecuteNonQuery();
+
+                    // Log update action if any student details changed
+                    string newFirst = txtFirst.Text.Trim();
+                    string newLast = txtLast.Text.Trim();
+                    string newYear = cboYearLevel.Text;
+                    string newSection = txtSection.Text.Trim();
+                    string newContact = txtContact.Text.Trim();
+                    string newCourseDisplay = cboCourse.Text;
+
+                    if (oldFirst != newFirst || oldLast != newLast || oldYear != newYear || 
+                        oldSection != newSection || oldContact != newContact || oldCourseDisplay != newCourseDisplay)
+                    {
+                        string details = $"Updated Student: Name '{oldLast}, {oldFirst}' -> '{newLast}, {newFirst}', Course '{oldCourseDisplay}' -> '{newCourseDisplay}', Year '{oldYear}' -> '{newYear}', Section '{oldSection}' -> '{newSection}', Contact '{oldContact}' -> '{newContact}'";
+                        string logQuery = @"INSERT INTO UpdateLogs (RecordType, RecordID, UpdateDetails, PerformedBy, UserRole, ActionDate)
+                                            VALUES ('Student', @recordId, @details, @user, @role, GETDATE())";
+                        SqlCommand logCmd = new SqlCommand(logQuery, conn);
+                        logCmd.Parameters.AddWithValue("@recordId", txtID.Text);
+                        logCmd.Parameters.AddWithValue("@details", details);
+                        logCmd.Parameters.AddWithValue("@user", AppSession.LoggedInUsername);
+                        logCmd.Parameters.AddWithValue("@role", AppSession.LoggedInRole);
+                        logCmd.ExecuteNonQuery();
+                    }
                 }
 
                 MessageBox.Show("Student updated successfully.");
@@ -246,6 +314,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to delete students.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtID.Text == "")
             {
                 MessageBox.Show("Please select a student to delete.");

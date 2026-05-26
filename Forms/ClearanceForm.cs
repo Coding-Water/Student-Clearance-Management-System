@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using Student_Clearance_Management_System.Database;
+using Student_Clearance_Management_System.Models;
 
 namespace Student_Clearance_Management_System.Forms
 {
@@ -35,6 +36,11 @@ namespace Student_Clearance_Management_System.Forms
             LoadStudents();
             SetupChecklistGrid();
             LoadClearanceRecords();
+
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                btnDeleteSelected.Enabled = false;
+            }
         }
 
         private void LoadAcademicTerms()
@@ -374,9 +380,34 @@ namespace Student_Clearance_Management_System.Forms
                             }
 
                             int clearanceID = Convert.ToInt32(row.Cells["ClearanceID"].Value);
-                            string status = row.Cells["Status"].Value == null ? "Pending" : row.Cells["Status"].Value.ToString();
-                            string remarks = row.Cells["Remarks"].Value == null ? "" : row.Cells["Remarks"].Value.ToString();
+                            string newStatus  = row.Cells["Status"].Value  == null ? "Pending" : row.Cells["Status"].Value.ToString();
+                            string newRemarks = row.Cells["Remarks"].Value == null ? ""        : row.Cells["Remarks"].Value.ToString();
 
+                            // ── Fetch old values before updating ──────────────────────────────
+                            string oldStatus  = "Pending";
+                            string oldRemarks = "";
+                            string deptName   = clearanceID.ToString();
+
+                            string selectOld = @"SELECT cr.Status, cr.Remarks, d.DepartmentName
+                                                  FROM ClearanceRecords cr
+                                                  INNER JOIN Departments d ON cr.DepartmentID = d.DepartmentID
+                                                  WHERE cr.ClearanceID = @clearanceID AND cr.IsDeleted = 0";
+
+                            using (SqlCommand cmdOld = new SqlCommand(selectOld, conn, transaction))
+                            {
+                                cmdOld.Parameters.AddWithValue("@clearanceID", clearanceID);
+                                using (SqlDataReader rdr = cmdOld.ExecuteReader())
+                                {
+                                    if (rdr.Read())
+                                    {
+                                        oldStatus  = rdr["Status"].ToString();
+                                        oldRemarks = rdr["Remarks"] == DBNull.Value ? "" : rdr["Remarks"].ToString();
+                                        deptName   = rdr["DepartmentName"].ToString();
+                                    }
+                                }
+                            }
+
+                            // ── Perform the UPDATE ────────────────────────────────────────────
                             string query = @"UPDATE ClearanceRecords
                                              SET Status = @status,
                                                  Remarks = @remarks
@@ -384,10 +415,41 @@ namespace Student_Clearance_Management_System.Forms
                                              AND IsDeleted = 0";
 
                             SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                            cmd.Parameters.AddWithValue("@status", status);
-                            cmd.Parameters.AddWithValue("@remarks", remarks);
+                            cmd.Parameters.AddWithValue("@status",      newStatus);
+                            cmd.Parameters.AddWithValue("@remarks",     newRemarks);
                             cmd.Parameters.AddWithValue("@clearanceID", clearanceID);
                             cmd.ExecuteNonQuery();
+
+                            // ── Write audit log only when something actually changed ──────────
+                            bool statusChanged  = !oldStatus.Equals(newStatus,  StringComparison.OrdinalIgnoreCase);
+                            bool remarksChanged = !oldRemarks.Equals(newRemarks, StringComparison.OrdinalIgnoreCase);
+
+                            if (statusChanged || remarksChanged)
+                            {
+                                System.Text.StringBuilder details = new System.Text.StringBuilder();
+                                details.Append($"Department: {deptName}");
+
+                                if (statusChanged)
+                                    details.Append($" | Status: \"{oldStatus}\" → \"{newStatus}\"");
+
+                                if (remarksChanged)
+                                    details.Append($" | Remarks: \"{oldRemarks}\" → \"{newRemarks}\"");
+
+                                string logQuery = @"INSERT INTO UpdateLogs
+                                                    (RecordType, RecordID, UpdateDetails, PerformedBy, UserRole, ActionDate)
+                                                    VALUES
+                                                    (@recordType, @recordID, @details, @performedBy, @role, GETDATE())";
+
+                                using (SqlCommand cmdLog = new SqlCommand(logQuery, conn, transaction))
+                                {
+                                    cmdLog.Parameters.AddWithValue("@recordType",  "ClearanceRecord");
+                                    cmdLog.Parameters.AddWithValue("@recordID",    clearanceID.ToString());
+                                    cmdLog.Parameters.AddWithValue("@details",     details.ToString());
+                                    cmdLog.Parameters.AddWithValue("@performedBy", AppSession.LoggedInUsername);
+                                    cmdLog.Parameters.AddWithValue("@role",        AppSession.LoggedInRole);
+                                    cmdLog.ExecuteNonQuery();
+                                }
+                            }
                         }
 
                         transaction.Commit();
@@ -569,6 +631,12 @@ namespace Student_Clearance_Management_System.Forms
 
         private void DeleteSelectedRecord()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to delete clearance records.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (dgvClearanceRecords.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a clearance record from the report table.", "No Selected Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);

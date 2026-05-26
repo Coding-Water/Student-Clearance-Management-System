@@ -383,16 +383,26 @@ namespace Student_Clearance_Management_System.Forms
 
         private void CalculateStats(DataTable dt, string mode)
         {
+            // Restore default titles
+            lblTotalTitle.Text   = "TOTAL STUDENTS";
+            lblClearedTitle.Text = "FULLY CLEARED";
+            lblPendingTitle.Text = "PENDING STUDENTS";
+            lblRateTitle.Text    = "CLEARANCE RATE";
+            lblTotalVal.ForeColor   = Color.Black;
+            lblClearedVal.ForeColor = Color.DarkGreen;
+            lblPendingVal.ForeColor = Color.DarkOrange;
+            lblRateVal.ForeColor    = Color.DarkBlue;
+
             if (dt.Rows.Count == 0)
             {
-                lblTotalVal.Text = "0";
+                lblTotalVal.Text   = "0";
                 lblClearedVal.Text = "0";
                 lblPendingVal.Text = "0";
-                lblRateVal.Text = "0.0%";
+                lblRateVal.Text    = "0.0%";
                 return;
             }
 
-            int totalStudents = 0;
+            int totalStudents   = 0;
             int clearedStudents = 0;
             int pendingStudents = 0;
 
@@ -438,10 +448,10 @@ namespace Student_Clearance_Management_System.Forms
 
             double rate = totalStudents > 0 ? ((double)clearedStudents / totalStudents) * 100 : 0.0;
 
-            lblTotalVal.Text = totalStudents.ToString();
+            lblTotalVal.Text   = totalStudents.ToString();
             lblClearedVal.Text = clearedStudents.ToString();
             lblPendingVal.Text = pendingStudents.ToString();
-            lblRateVal.Text = rate.ToString("F1") + "%";
+            lblRateVal.Text    = rate.ToString("F1") + "%";
         }
 
         private void dgvReports_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -459,23 +469,25 @@ namespace Student_Clearance_Management_System.Forms
                     if (status == "Cleared")
                     {
                         e.CellStyle.ForeColor = Color.DarkGreen;
-                        e.CellStyle.BackColor = Color.FromArgb(230, 245, 230); // Soft Green
+                        e.CellStyle.BackColor = Color.FromArgb(230, 245, 230);
                         e.CellStyle.Font = new Font(dgvReports.Font, FontStyle.Bold);
                     }
                     else if (status == "Pending")
                     {
                         e.CellStyle.ForeColor = Color.DarkOrange;
-                        e.CellStyle.BackColor = Color.FromArgb(255, 243, 230); // Soft Orange
+                        e.CellStyle.BackColor = Color.FromArgb(255, 243, 230);
                         e.CellStyle.Font = new Font(dgvReports.Font, FontStyle.Bold);
                     }
                     else if (status == "Not Cleared")
                     {
                         e.CellStyle.ForeColor = Color.DarkRed;
-                        e.CellStyle.BackColor = Color.FromArgb(255, 230, 230); // Soft Red
+                        e.CellStyle.BackColor = Color.FromArgb(255, 230, 230);
                         e.CellStyle.Font = new Font(dgvReports.Font, FontStyle.Bold);
                     }
                 }
             }
+
+            
         }
 
         private void FilterControl_Changed(object sender, EventArgs e)

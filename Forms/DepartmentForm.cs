@@ -25,6 +25,12 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvDepartments.Columns["DepartmentID"].Visible = false;
             }
+
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void LoadDepartments()
@@ -62,6 +68,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to add departments.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtDepartmentName.Text == "")
             {
                 MessageBox.Show("Please enter department name.");
@@ -113,6 +125,20 @@ namespace Student_Clearance_Management_System.Forms
                 return;
             }
 
+            string oldName = "";
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand getOldCmd = new SqlCommand("SELECT DepartmentName FROM Departments WHERE DepartmentID = @id AND IsDeleted = 0", conn);
+                    getOldCmd.Parameters.AddWithValue("@id", txtDepartmentID.Text);
+                    oldName = getOldCmd.ExecuteScalar()?.ToString() ?? "";
+                }
+            }
+            catch {}
+
             try
             {
                 DBConnection db = new DBConnection();
@@ -131,6 +157,19 @@ namespace Student_Clearance_Management_System.Forms
                     cmd.Parameters.AddWithValue("@name", txtDepartmentName.Text);
 
                     cmd.ExecuteNonQuery();
+
+                    // Log update action if the name has changed
+                    if (oldName != txtDepartmentName.Text)
+                    {
+                        string logQuery = @"INSERT INTO UpdateLogs (RecordType, RecordID, UpdateDetails, PerformedBy, UserRole, ActionDate)
+                                            VALUES ('Department', @recordId, @details, @user, @role, GETDATE())";
+                        SqlCommand logCmd = new SqlCommand(logQuery, conn);
+                        logCmd.Parameters.AddWithValue("@recordId", txtDepartmentID.Text);
+                        logCmd.Parameters.AddWithValue("@details", $"Updated DepartmentName from '{oldName}' to '{txtDepartmentName.Text}'");
+                        logCmd.Parameters.AddWithValue("@user", AppSession.LoggedInUsername);
+                        logCmd.Parameters.AddWithValue("@role", AppSession.LoggedInRole);
+                        logCmd.ExecuteNonQuery();
+                    }
                 }
 
                 MessageBox.Show("Department updated successfully.");
@@ -147,6 +186,12 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
+            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Staff members are not authorized to delete departments.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (txtDepartmentID.Text == "")
             {
                 MessageBox.Show("Please select a department to delete.");

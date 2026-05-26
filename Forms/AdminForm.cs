@@ -14,8 +14,29 @@ namespace Student_Clearance_Management_System.Forms
 
         public AdminForm()
         {
+            // Only Admin can access this form
+            string role = AppSession.LoggedInRole?.Trim().ToLower() ?? "";
+            if (role != "admin")
+            {
+                MessageBox.Show(
+                    "Access Denied: Only administrators can access the Admin Panel.",
+                    "Unauthorized Access",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                // Form will close immediately on load
+                this.Load += (s, e) => this.Close();
+                return;
+            }
+
             InitializeComponent();
             UIHelper.ApplyModernStyle(this);
+
+            // Set all datagrids to columnfill mode
+            dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDeletedRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMasterRecords.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Tab 1 Load
             LoadUsers();
@@ -277,7 +298,7 @@ namespace Student_Clearance_Management_System.Forms
 
         private void LoadActivityLogs()
         {
-            string query = "SELECT LogID, RecordType AS [Record Type], RecordID AS [Record ID], RecordDetails AS [Details], ActionType AS [Action], ActionDate AS [Date], PerformedBy AS [Performed By] FROM RecycleBinLogs ORDER BY LogID DESC";
+            string query = "SELECT LogID, RecordType AS [Record Type], RecordID AS [Record ID], UpdateDetails AS [Details], UserRole AS [User Role], ActionDate AS [Date], PerformedBy AS [Performed By] FROM UpdateLogs ORDER BY LogID DESC";
             try
             {
                 DBConnection db = new DBConnection();
