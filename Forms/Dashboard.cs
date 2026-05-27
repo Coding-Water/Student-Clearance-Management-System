@@ -1,9 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Student_Clearance_Management_System.Database;
 using Student_Clearance_Management_System.Models;
-using System;
 using System.Data;
-using System.Windows.Forms;
 
 
 namespace Student_Clearance_Management_System.Forms
@@ -24,7 +22,7 @@ namespace Student_Clearance_Management_System.Forms
                                    AppSession.LoggedInUsername +
                                    " (" + AppSession.LoggedInRole + ")";
 
-            // Show Recycle Bin button only for Admin role (case-insensitive and trimmed)
+            // Show admin Panel only for Admin role (case-insensitive and trimmed)
             string role = AppSession.LoggedInRole?.Trim().ToLower() ?? "";
 
             // Ensure the button exists and set visibility
@@ -44,8 +42,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 isLoadingTerms = true;
 
-                    DBConnection db = new DBConnection();
-
+                DBConnection db = new DBConnection();
                 SqlConnection conn = db.GetConnection();
                 {
                     conn.Open();

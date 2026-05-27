@@ -11,4 +11,4 @@ namespace Student_Clearance_Management_System.Models
    }
 }
 
-//admin will inherit from user
+

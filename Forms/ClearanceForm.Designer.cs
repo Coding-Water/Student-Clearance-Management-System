@@ -21,7 +21,6 @@ namespace Student_Clearance_Management_System.Forms
             lblSearch = new Label();
             txtSearch = new TextBox();
             lblStudent = new Label();
-            cboStudent = new ComboBox();
             lblSelectedTerm = new Label();
             cboAcademicTerm = new ComboBox();
             pnlActionBar = new Panel();
@@ -36,6 +35,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceRecords = new DataGridView();
             lblRecords = new Label();
             splitter = new Splitter();
+            txtSearchBox = new TextBox();
             pnlHeader.SuspendLayout();
             pnlFilterCard.SuspendLayout();
             pnlActionBar.SuspendLayout();
@@ -54,7 +54,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlHeader.Location = new Point(0, 0);
             pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1204, 45);
+            pnlHeader.Size = new Size(1242, 45);
             pnlHeader.TabIndex = 5;
             // 
             // lblTitle
@@ -64,7 +64,7 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(70, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1134, 45);
+            lblTitle.Size = new Size(1172, 45);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "📋  Clearance Processing";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -90,10 +90,10 @@ namespace Student_Clearance_Management_System.Forms
             // pnlFilterCard
             // 
             pnlFilterCard.BackColor = Color.White;
+            pnlFilterCard.Controls.Add(txtSearchBox);
             pnlFilterCard.Controls.Add(lblSearch);
             pnlFilterCard.Controls.Add(txtSearch);
             pnlFilterCard.Controls.Add(lblStudent);
-            pnlFilterCard.Controls.Add(cboStudent);
             pnlFilterCard.Controls.Add(lblSelectedTerm);
             pnlFilterCard.Controls.Add(cboAcademicTerm);
             pnlFilterCard.Dock = DockStyle.Top;
@@ -101,7 +101,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlFilterCard.Margin = new Padding(3, 2, 3, 2);
             pnlFilterCard.Name = "pnlFilterCard";
             pnlFilterCard.Padding = new Padding(18, 8, 18, 6);
-            pnlFilterCard.Size = new Size(1204, 82);
+            pnlFilterCard.Size = new Size(1242, 82);
             pnlFilterCard.TabIndex = 4;
             // 
             // lblSearch
@@ -109,7 +109,7 @@ namespace Student_Clearance_Management_System.Forms
             lblSearch.AutoSize = true;
             lblSearch.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSearch.ForeColor = Color.FromArgb(55, 65, 81);
-            lblSearch.Location = new Point(18, 42);
+            lblSearch.Location = new Point(590, 49);
             lblSearch.Name = "lblSearch";
             lblSearch.Size = new Size(96, 15);
             lblSearch.TabIndex = 0;
@@ -119,7 +119,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 10F);
-            txtSearch.Location = new Point(122, 40);
+            txtSearch.Location = new Point(694, 47);
             txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Filter by name or ID...";
@@ -132,28 +132,18 @@ namespace Student_Clearance_Management_System.Forms
             lblStudent.AutoSize = true;
             lblStudent.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblStudent.ForeColor = Color.FromArgb(55, 65, 81);
-            lblStudent.Location = new Point(350, 8);
+            lblStudent.Location = new Point(21, 49);
             lblStudent.Name = "lblStudent";
             lblStudent.Size = new Size(55, 15);
             lblStudent.TabIndex = 4;
             lblStudent.Text = "Student:";
-            // 
-            // cboStudent
-            // 
-            cboStudent.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboStudent.Font = new Font("Segoe UI", 10F);
-            cboStudent.Location = new Point(402, 6);
-            cboStudent.Margin = new Padding(3, 2, 3, 2);
-            cboStudent.Name = "cboStudent";
-            cboStudent.Size = new Size(316, 25);
-            cboStudent.TabIndex = 2;
             // 
             // lblSelectedTerm
             // 
             lblSelectedTerm.AutoSize = true;
             lblSelectedTerm.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSelectedTerm.ForeColor = Color.FromArgb(55, 65, 81);
-            lblSelectedTerm.Location = new Point(18, 8);
+            lblSelectedTerm.Location = new Point(21, 17);
             lblSelectedTerm.Name = "lblSelectedTerm";
             lblSelectedTerm.Size = new Size(96, 15);
             lblSelectedTerm.TabIndex = 5;
@@ -163,7 +153,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             cboAcademicTerm.DropDownStyle = ComboBoxStyle.DropDownList;
             cboAcademicTerm.Font = new Font("Segoe UI", 10F);
-            cboAcademicTerm.Location = new Point(122, 6);
+            cboAcademicTerm.Location = new Point(125, 15);
             cboAcademicTerm.Margin = new Padding(3, 2, 3, 2);
             cboAcademicTerm.Name = "cboAcademicTerm";
             cboAcademicTerm.Size = new Size(210, 25);
@@ -182,7 +172,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlActionBar.Margin = new Padding(3, 2, 3, 2);
             pnlActionBar.Name = "pnlActionBar";
             pnlActionBar.Padding = new Padding(18, 8, 18, 8);
-            pnlActionBar.Size = new Size(1204, 44);
+            pnlActionBar.Size = new Size(1242, 44);
             pnlActionBar.TabIndex = 3;
             // 
             // btnClear
@@ -263,7 +253,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlLeft.Margin = new Padding(3, 2, 3, 2);
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Padding = new Padding(10, 6, 5, 9);
-            pnlLeft.Size = new Size(581, 339);
+            pnlLeft.Size = new Size(581, 384);
             pnlLeft.TabIndex = 2;
             // 
             // dgvClearanceDepartments
@@ -278,7 +268,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceDepartments.MultiSelect = false;
             dgvClearanceDepartments.Name = "dgvClearanceDepartments";
             dgvClearanceDepartments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClearanceDepartments.Size = new Size(566, 303);
+            dgvClearanceDepartments.Size = new Size(566, 348);
             dgvClearanceDepartments.TabIndex = 8;
             dgvClearanceDepartments.CurrentCellDirtyStateChanged += dgvClearanceDepartments_CurrentCellDirtyStateChanged;
             // 
@@ -304,7 +294,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlRight.Margin = new Padding(3, 2, 3, 2);
             pnlRight.Name = "pnlRight";
             pnlRight.Padding = new Padding(5, 6, 10, 9);
-            pnlRight.Size = new Size(619, 339);
+            pnlRight.Size = new Size(657, 384);
             pnlRight.TabIndex = 0;
             // 
             // dgvClearanceRecords
@@ -320,7 +310,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvClearanceRecords.Name = "dgvClearanceRecords";
             dgvClearanceRecords.ReadOnly = true;
             dgvClearanceRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClearanceRecords.Size = new Size(604, 303);
+            dgvClearanceRecords.Size = new Size(642, 348);
             dgvClearanceRecords.TabIndex = 9;
             // 
             // lblRecords
@@ -330,7 +320,7 @@ namespace Student_Clearance_Management_System.Forms
             lblRecords.ForeColor = Color.FromArgb(55, 65, 81);
             lblRecords.Location = new Point(5, 6);
             lblRecords.Name = "lblRecords";
-            lblRecords.Size = new Size(604, 21);
+            lblRecords.Size = new Size(642, 21);
             lblRecords.TabIndex = 10;
             lblRecords.Text = "Clearance Records / Summary Report";
             lblRecords.TextAlign = ContentAlignment.MiddleLeft;
@@ -341,15 +331,26 @@ namespace Student_Clearance_Management_System.Forms
             splitter.Location = new Point(581, 171);
             splitter.Margin = new Padding(3, 2, 3, 2);
             splitter.Name = "splitter";
-            splitter.Size = new Size(4, 339);
+            splitter.Size = new Size(4, 384);
             splitter.TabIndex = 1;
             splitter.TabStop = false;
+            // 
+            // txtSearchBox
+            // 
+            txtSearchBox.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchBox.Font = new Font("Segoe UI", 10F);
+            txtSearchBox.Location = new Point(125, 47);
+            txtSearchBox.Margin = new Padding(3, 2, 3, 2);
+            txtSearchBox.Name = "txtSearchBox";
+            txtSearchBox.PlaceholderText = "Search by name or ID...";
+            txtSearchBox.Size = new Size(298, 25);
+            txtSearchBox.TabIndex = 6;
             // 
             // ClearanceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1204, 510);
+            ClientSize = new Size(1242, 555);
             Controls.Add(pnlRight);
             Controls.Add(splitter);
             Controls.Add(pnlLeft);
@@ -387,7 +388,6 @@ namespace Student_Clearance_Management_System.Forms
         private Label lblChecklist;
         private Label lblRecords;
         private ComboBox cboAcademicTerm;
-        private ComboBox cboStudent;
         private TextBox txtSearch;
         private Button btnLoadChecklist;
         private Button btnAdd;
@@ -396,5 +396,6 @@ namespace Student_Clearance_Management_System.Forms
         private DataGridView dgvClearanceDepartments;
         private DataGridView dgvClearanceRecords;
         private Button btnBack;
+        private TextBox txtSearchBox;
     }
 }

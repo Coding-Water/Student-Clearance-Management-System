@@ -212,7 +212,7 @@ namespace Student_Clearance_Management_System.Forms
             dgvDepartments.TabIndex = 6;
             dgvDepartments.CellClick += dgvDepartments_CellClick;
             // 
-            // lblDepartmentID (hidden - stores selected DepartmentID)
+            // lblDepartmentID
             // 
             lblDepartmentID.Location = new Point(0, 0);
             lblDepartmentID.Name = "lblDepartmentID";
@@ -220,11 +220,11 @@ namespace Student_Clearance_Management_System.Forms
             lblDepartmentID.TabIndex = 100;
             lblDepartmentID.Visible = false;
             // 
-            // txtDepartmentID (hidden - stores selected DepartmentID value)
+            // txtDepartmentID
             // 
             txtDepartmentID.Location = new Point(0, 0);
             txtDepartmentID.Name = "txtDepartmentID";
-            txtDepartmentID.Size = new Size(0, 0);
+            txtDepartmentID.Size = new Size(0, 23);
             txtDepartmentID.TabIndex = 101;
             txtDepartmentID.Visible = false;
             // 
@@ -252,6 +252,7 @@ namespace Student_Clearance_Management_System.Forms
             pnlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDepartments).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace Student_Clearance_Management_System.Forms
         {
             InitializeComponent();
             UIHelper.ApplyModernStyle(this);
-            CustomStyling();
+            CustomStyling(); //
         }
 
         private void CustomStyling()
@@ -56,7 +56,7 @@ namespace Student_Clearance_Management_System.Forms
                                      INNER JOIN Students s ON CAST(s.StudentID AS VARCHAR) = u.Username
                                      WHERE u.Username = @username
                                      AND u.Password = @password
-                                     AND u.Role = 'student'
+                                     AND u.Role IN ('student', 'Student', 'students', 'Students')
                                      AND u.IsDeleted = 0
                                      AND s.IsDeleted = 0";
 

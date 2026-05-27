@@ -61,7 +61,7 @@ namespace Student_Clearance_Management_System.Forms
             lblTitle.ForeColor = Color.FromArgb(79, 70, 229);
             lblTitle.Location = new Point(111, 21);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(337, 37);
+            lblTitle.Size = new Size(270, 30);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Student Self Registration";
             // 
@@ -107,7 +107,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // lblContact
             // 
-            lblContact.Location = new Point(31, 355);
+            lblContact.Location = new Point(40, 355);
             lblContact.Name = "lblContact";
             lblContact.Size = new Size(150, 20);
             lblContact.TabIndex = 7;
@@ -123,7 +123,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // lblPassword
             // 
-            lblPassword.Location = new Point(31, 430);
+            lblPassword.Location = new Point(40, 419);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(150, 20);
             lblPassword.TabIndex = 8;
@@ -131,7 +131,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // lblConfirmPassword
             // 
-            lblConfirmPassword.Location = new Point(31, 505);
+            lblConfirmPassword.Location = new Point(40, 494);
             lblConfirmPassword.Name = "lblConfirmPassword";
             lblConfirmPassword.Size = new Size(200, 20);
             lblConfirmPassword.TabIndex = 9;
@@ -141,21 +141,21 @@ namespace Student_Clearance_Management_System.Forms
             // 
             txtStudentID.Location = new Point(40, 105);
             txtStudentID.Name = "txtStudentID";
-            txtStudentID.Size = new Size(230, 27);
+            txtStudentID.Size = new Size(230, 23);
             txtStudentID.TabIndex = 1;
             // 
             // txtFirstName
             // 
             txtFirstName.Location = new Point(40, 180);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(230, 27);
+            txtFirstName.Size = new Size(230, 23);
             txtFirstName.TabIndex = 3;
             // 
             // txtLastName
             // 
             txtLastName.Location = new Point(298, 105);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(230, 27);
+            txtLastName.Size = new Size(230, 23);
             txtLastName.TabIndex = 4;
             // 
             // cboYearLevel
@@ -163,21 +163,21 @@ namespace Student_Clearance_Management_System.Forms
             cboYearLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             cboYearLevel.Location = new Point(40, 255);
             cboYearLevel.Name = "cboYearLevel";
-            cboYearLevel.Size = new Size(230, 28);
+            cboYearLevel.Size = new Size(230, 23);
             cboYearLevel.TabIndex = 5;
             // 
             // txtSection
             // 
             txtSection.Location = new Point(298, 180);
             txtSection.Name = "txtSection";
-            txtSection.Size = new Size(230, 27);
+            txtSection.Size = new Size(230, 23);
             txtSection.TabIndex = 6;
             // 
             // txtContact
             // 
-            txtContact.Location = new Point(31, 380);
+            txtContact.Location = new Point(40, 378);
             txtContact.Name = "txtContact";
-            txtContact.Size = new Size(500, 27);
+            txtContact.Size = new Size(488, 23);
             txtContact.TabIndex = 7;
             // 
             // cboCourse
@@ -185,30 +185,30 @@ namespace Student_Clearance_Management_System.Forms
             cboCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCourse.Location = new Point(40, 315);
             cboCourse.Name = "cboCourse";
-            cboCourse.Size = new Size(491, 28);
+            cboCourse.Size = new Size(491, 23);
             cboCourse.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(31, 455);
+            txtPassword.Location = new Point(40, 442);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(500, 27);
+            txtPassword.Size = new Size(491, 23);
             txtPassword.TabIndex = 8;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new Point(31, 530);
+            txtConfirmPassword.Location = new Point(40, 517);
             txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.Size = new Size(500, 27);
+            txtConfirmPassword.Size = new Size(491, 23);
             txtConfirmPassword.TabIndex = 9;
             txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(31, 590);
+            btnRegister.Location = new Point(40, 563);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(500, 45);
+            btnRegister.Size = new Size(491, 45);
             btnRegister.TabIndex = 10;
             btnRegister.Text = "CREATE STUDENT ACCOUNT";
             btnRegister.UseVisualStyleBackColor = true;
@@ -216,9 +216,9 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // btnBackToLogin
             // 
-            btnBackToLogin.Location = new Point(31, 650);
+            btnBackToLogin.Location = new Point(40, 623);
             btnBackToLogin.Name = "btnBackToLogin";
-            btnBackToLogin.Size = new Size(500, 45);
+            btnBackToLogin.Size = new Size(491, 45);
             btnBackToLogin.TabIndex = 11;
             btnBackToLogin.Text = "CANCEL AND GO BACK";
             btnBackToLogin.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@ namespace Student_Clearance_Management_System.Forms
             // 
             // StudentRegistrationForm
             // 
-            ClientSize = new Size(580, 703);
+            ClientSize = new Size(580, 685);
             Controls.Add(lblTitle);
             Controls.Add(lblStudentID);
             Controls.Add(txtStudentID);

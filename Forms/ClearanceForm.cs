@@ -132,7 +132,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -149,14 +149,17 @@ namespace Student_Clearance_Management_System.Forms
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
+                            AutoCompleteStringCollection allowedStudents = new AutoCompleteStringCollection();
+                            while (reader.Read())
+                            {
+                                allowedStudents.Add(reader["StudentDisplay"].ToString());
+                            }
 
-                            cboStudent.DataSource = dt;
-                            cboStudent.DisplayMember = "StudentDisplay";
-                            cboStudent.ValueMember = "StudentID";
+                            txtSearchBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                            txtSearchBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                            txtSearchBox.AutoCompleteCustomSource = allowedStudents;
                         }
                     }
                 }
@@ -173,16 +176,97 @@ namespace Student_Clearance_Management_System.Forms
 
         private int GetSelectedStudentID()
         {
-            if (cboStudent.SelectedValue == null)
+            string searchText = txtSearchBox.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
             {
                 return 0;
             }
 
-            if (int.TryParse(cboStudent.SelectedValue.ToString(), out int studentID))
+            // 1. Try to parse ID from autocomplete format e.g., "20260001 - John Doe (BSCS)"
+            if (searchText.Contains("-"))
             {
-                return studentID;
+                string[] parts = searchText.Split('-');
+                if (int.TryParse(parts[0].Trim(), out int parsedId))
+                {
+                    if (StudentExists(parsedId))
+                    {
+                        return parsedId;
+                    }
+                }
             }
 
+            // 2. Try directly parsing the text as StudentID (int)
+            if (int.TryParse(searchText, out int id))
+            {
+                if (StudentExists(id))
+                {
+                    return id;
+                }
+            }
+
+            // 3. Fallback to searching by student name
+            int matchedID = FindStudentIDByName(searchText);
+            if (matchedID > 0)
+            {
+                return matchedID;
+            }
+
+            return 0;
+        }
+
+        private bool StudentExists(int studentID)
+        {
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(1) FROM Students WHERE StudentID = @id AND IsDeleted = 0";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", studentID);
+                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private int FindStudentIDByName(string name)
+        {
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"SELECT TOP 1 StudentID 
+                                     FROM Students 
+                                     WHERE IsDeleted = 0 
+                                     AND (
+                                        FirstName + ' ' + LastName = @name OR 
+                                        LastName + ' ' + FirstName = @name OR 
+                                        LastName + ', ' + FirstName = @name OR
+                                        FirstName + ' ' + LastName LIKE @likeName OR
+                                        LastName + ' ' + FirstName LIKE @likeName
+                                     )";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@likeName", "%" + name + "%");
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch {}
             return 0;
         }
 
@@ -694,13 +778,8 @@ namespace Student_Clearance_Management_System.Forms
         private void ClearFields()
         {
             txtSearch.Clear();
+            txtSearchBox.Clear();
             dgvClearanceDepartments.Rows.Clear();
-
-            if (cboStudent.Items.Count > 0)
-            {
-                cboStudent.SelectedIndex = 0;
-            }
-
             LoadClearanceRecords();
         }
 

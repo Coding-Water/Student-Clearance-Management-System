@@ -34,111 +34,140 @@ namespace Student_Clearance_Management_System.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblHeader = new Label();
-            this.lblWelcome = new Label();
-            this.lblTerm = new Label();
-            this.cboAcademicTerm = new ComboBox();
-            this.dgvChecklist = new DataGridView();
-            this.btnRefresh = new Button();
-            this.btnLogout = new Button();
-
-            this.lblStudentID = new Label();
-            this.lblCourse = new Label();
-            this.lblYearSection = new Label();
-
-            this.SuspendLayout();
-
-            // Form Properties
-            this.ClientSize = new Size(820, 560);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "StudentDashboard";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Student Dashboard - Clearance Checklist";
-
+            lblHeader = new Label();
+            lblWelcome = new Label();
+            lblTerm = new Label();
+            cboAcademicTerm = new ComboBox();
+            dgvChecklist = new DataGridView();
+            btnRefresh = new Button();
+            btnLogout = new Button();
+            lblStudentID = new Label();
+            lblCourse = new Label();
+            lblYearSection = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvChecklist).BeginInit();
+            SuspendLayout();
+            // 
             // lblHeader
-            this.lblHeader.AutoSize = true;
-            this.lblHeader.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            this.lblHeader.ForeColor = UIHelper.ColorPrimary;
-            this.lblHeader.Location = new Point(20, 20);
-            this.lblHeader.Size = new Size(350, 30);
-            this.lblHeader.Text = "My Clearance Checklist";
-
+            // 
+            lblHeader.AutoSize = true;
+            lblHeader.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblHeader.ForeColor = Color.FromArgb(79, 70, 229);
+            lblHeader.Location = new Point(20, 20);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(252, 30);
+            lblHeader.TabIndex = 0;
+            lblHeader.Text = "My Clearance Checklist";
+            // 
             // lblWelcome
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            this.lblWelcome.Location = new Point(22, 60);
-            this.lblWelcome.Size = new Size(400, 21);
-            this.lblWelcome.Text = "Welcome, Student";
-
-            // Profile info box (Labels)
-            this.lblStudentID.AutoSize = true;
-            this.lblStudentID.Location = new Point(22, 95);
-            this.lblStudentID.Text = "Student ID: ";
-
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Location = new Point(250, 95);
-            this.lblCourse.Text = "Course: ";
-
-            this.lblYearSection.AutoSize = true;
-            this.lblYearSection.Location = new Point(550, 95);
-            this.lblYearSection.Text = "Year / Section: ";
-
+            // 
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblWelcome.Location = new Point(22, 60);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(150, 21);
+            lblWelcome.TabIndex = 1;
+            lblWelcome.Text = "Welcome, Student";
+            // 
             // lblTerm
-            this.lblTerm.AutoSize = true;
-            this.lblTerm.Location = new Point(22, 140);
-            this.lblTerm.Text = "Academic Term:";
-
+            // 
+            lblTerm.AutoSize = true;
+            lblTerm.Location = new Point(22, 153);
+            lblTerm.Name = "lblTerm";
+            lblTerm.Size = new Size(93, 15);
+            lblTerm.TabIndex = 5;
+            lblTerm.Text = "Academic Term:";
+            // 
             // cboAcademicTerm
-            this.cboAcademicTerm.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cboAcademicTerm.Location = new Point(145, 137);
-            this.cboAcademicTerm.Size = new Size(300, 25);
-            this.cboAcademicTerm.TabIndex = 1;
-            this.cboAcademicTerm.SelectedIndexChanged += new EventHandler(this.cboAcademicTerm_SelectedIndexChanged);
-
+            // 
+            cboAcademicTerm.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboAcademicTerm.Location = new Point(145, 150);
+            cboAcademicTerm.Name = "cboAcademicTerm";
+            cboAcademicTerm.Size = new Size(300, 23);
+            cboAcademicTerm.TabIndex = 1;
+            cboAcademicTerm.SelectedIndexChanged += cboAcademicTerm_SelectedIndexChanged;
+            // 
             // dgvChecklist
-            this.dgvChecklist.AllowUserToAddRows = false;
-            this.dgvChecklist.AllowUserToDeleteRows = false;
-            this.dgvChecklist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvChecklist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChecklist.Location = new Point(22, 185);
-            this.dgvChecklist.MultiSelect = false;
-            this.dgvChecklist.Name = "dgvChecklist";
-            this.dgvChecklist.ReadOnly = true;
-            this.dgvChecklist.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChecklist.Size = new Size(776, 290);
-            this.dgvChecklist.TabIndex = 2;
-
+            // 
+            dgvChecklist.AllowUserToAddRows = false;
+            dgvChecklist.AllowUserToDeleteRows = false;
+            dgvChecklist.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvChecklist.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvChecklist.Location = new Point(22, 185);
+            dgvChecklist.MultiSelect = false;
+            dgvChecklist.Name = "dgvChecklist";
+            dgvChecklist.ReadOnly = true;
+            dgvChecklist.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvChecklist.Size = new Size(776, 290);
+            dgvChecklist.TabIndex = 2;
+            // 
             // btnRefresh
-            this.btnRefresh.Location = new Point(480, 495);
-            this.btnRefresh.Size = new Size(150, 40);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "REFRESH STATUS";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new EventHandler(this.btnRefresh_Click);
-
+            // 
+            btnRefresh.Location = new Point(480, 495);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(150, 40);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "REFRESH STATUS";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // btnLogout
-            this.btnLogout.Location = new Point(648, 495);
-            this.btnLogout.Size = new Size(150, 40);
-            this.btnLogout.TabIndex = 4;
-            this.btnLogout.Text = "LOGOUT";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new EventHandler(this.btnLogout_Click);
-
-            // Adding controls
-            this.Controls.Add(this.lblHeader);
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.lblStudentID);
-            this.Controls.Add(this.lblCourse);
-            this.Controls.Add(this.lblYearSection);
-            this.Controls.Add(this.lblTerm);
-            this.Controls.Add(this.cboAcademicTerm);
-            this.Controls.Add(this.dgvChecklist);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnLogout);
-
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            btnLogout.Location = new Point(648, 495);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(150, 40);
+            btnLogout.TabIndex = 4;
+            btnLogout.Text = "LOGOUT";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // lblStudentID
+            // 
+            lblStudentID.AutoSize = true;
+            lblStudentID.Location = new Point(22, 95);
+            lblStudentID.Name = "lblStudentID";
+            lblStudentID.Size = new Size(68, 15);
+            lblStudentID.TabIndex = 2;
+            lblStudentID.Text = "Student ID: ";
+            // 
+            // lblCourse
+            // 
+            lblCourse.AutoSize = true;
+            lblCourse.Location = new Point(250, 95);
+            lblCourse.Name = "lblCourse";
+            lblCourse.Size = new Size(50, 15);
+            lblCourse.TabIndex = 3;
+            lblCourse.Text = "Course: ";
+            // 
+            // lblYearSection
+            // 
+            lblYearSection.AutoSize = true;
+            lblYearSection.Location = new Point(250, 123);
+            lblYearSection.Name = "lblYearSection";
+            lblYearSection.Size = new Size(85, 15);
+            lblYearSection.TabIndex = 4;
+            lblYearSection.Text = "Year / Section: ";
+            // 
+            // StudentDashboard
+            // 
+            ClientSize = new Size(820, 560);
+            Controls.Add(lblHeader);
+            Controls.Add(lblWelcome);
+            Controls.Add(lblStudentID);
+            Controls.Add(lblCourse);
+            Controls.Add(lblYearSection);
+            Controls.Add(lblTerm);
+            Controls.Add(cboAcademicTerm);
+            Controls.Add(dgvChecklist);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnLogout);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "StudentDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Student Dashboard - Clearance Checklist";
+            ((System.ComponentModel.ISupportInitialize)dgvChecklist).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

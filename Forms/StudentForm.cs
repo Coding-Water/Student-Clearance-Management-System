@@ -435,7 +435,7 @@ namespace Student_Clearance_Management_System.Forms
                                         c.CourseCode LIKE @search OR
                                         c.CourseName LIKE @search OR
                                         s.YearLevel LIKE @search OR
-                                        s.Section LIKE @search ORc
+                                        s.Section LIKE @search OR
                                         s.ContactNumber LIKE @search
                                      )";
 

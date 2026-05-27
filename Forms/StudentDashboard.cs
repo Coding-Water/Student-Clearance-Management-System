@@ -12,7 +12,7 @@ namespace Student_Clearance_Management_System.Forms
     {
         private int studentID;
         private string studentName = "";
-        private bool isInitializing = true;
+        private bool isInitializing = true; //
 
         public StudentDashboard()
         {

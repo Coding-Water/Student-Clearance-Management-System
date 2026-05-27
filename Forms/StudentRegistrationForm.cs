@@ -112,7 +112,7 @@ namespace Student_Clearance_Management_System.Forms
                     {
                         MessageBox.Show("This Student ID is already registered as a login user.", "Conflict", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
-                    }
+                    } 
 
                     SqlTransaction transaction = conn.BeginTransaction();
                     try
