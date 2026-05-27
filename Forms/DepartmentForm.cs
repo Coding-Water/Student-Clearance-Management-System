@@ -25,12 +25,6 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvDepartments.Columns["DepartmentID"].Visible = false;
             }
-
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = false;
-            }
         }
 
         private void LoadDepartments()
@@ -68,11 +62,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to add departments.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtDepartmentName.Text == "")
             {
@@ -186,11 +175,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to delete departments.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtDepartmentID.Text == "")
             {

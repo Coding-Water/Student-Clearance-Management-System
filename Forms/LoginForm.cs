@@ -76,45 +76,54 @@ namespace Student_Clearance_Management_System.Forms
                 {
                     conn.Open();
 
-                    string query = @"SELECT UserID, Username, Password, Role
+                    string query = @"SELECT UserID, Username, Role
                                      FROM Users
                                      WHERE Username = @username
                                      AND Password = @password
                                      AND IsDeleted = 0
-                                     AND Role IN ('Admin', 'Staff', 'admin', 'staff')";
+                                     AND Role IN ('admin', 'staff')";
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
-                    cmd.Parameters.AddWithValue("@password", txtPassword.Text);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        AppSession.LoggedInUserID = Convert.ToInt32(reader["UserID"]);
-                        AppSession.LoggedInUsername = reader["Username"].ToString();
-                        AppSession.LoggedInRole = reader["Role"].ToString();
+                        cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
+                        cmd.Parameters.AddWithValue("@password", txtPassword.Text);
 
-                        reader.Close();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                AppSession.LoggedInUserID = Convert.ToInt32(reader["UserID"]);
+                                AppSession.LoggedInUsername = reader["Username"].ToString();
+                                AppSession.LoggedInRole = reader["Role"].ToString().Trim().ToLower();
 
-                        MessageBox.Show(
-                            $"Welcome back, {AppSession.LoggedInUsername}!",
-                            "Login Successful",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                                MessageBox.Show(
+                                    $"Welcome back, {AppSession.LoggedInUsername}!",
+                                    "Login Successful",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
 
-                        Dashboard dashboard = new Dashboard();
-                        dashboard.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        reader.Close();
-                        MessageBox.Show(
-                            "Invalid username or password. Please try again.",
-                            "Login Failed",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                                if (AppSession.LoggedInRole == "admin")
+                                {
+                                    Dashboard dashboard = new Dashboard();
+                                    dashboard.Show();
+                                    this.Hide();
+                                }
+                                else if (AppSession.LoggedInRole == "staff")
+                                {
+                                    StaffDashboard staffDashboard = new StaffDashboard();
+                                    staffDashboard.Show();
+                                    this.Hide();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(
+                                    "Invalid username or password.",
+                                    "Login Failed",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
             }

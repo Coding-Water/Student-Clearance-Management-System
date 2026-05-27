@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using Student_Clearance_Management_System.Database;
@@ -11,6 +13,7 @@ namespace Student_Clearance_Management_System.Forms
     public partial class AdminForm : Form
     {
         private int selectedUserID = 0;
+        private int selectedStudentID = 0;
 
         public AdminForm()
         {
@@ -61,6 +64,13 @@ namespace Student_Clearance_Management_System.Forms
             cboMasterTables.Items.Add("Course Requirements");
             cboMasterTables.SelectedIndex = 0;
             LoadMasterRecords();
+
+            // Tab 5 Setup
+            LoadStaffUsers();
+
+            // Tab 6 Setup
+            dgvStudentUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            LoadStudentUsers();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -77,7 +87,7 @@ namespace Student_Clearance_Management_System.Forms
                 using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT UserID, Username, Password, Role FROM Users WHERE IsDeleted = 0 ORDER BY UserID DESC";
+                    string query = "SELECT UserID, Username, Password, Role FROM Users WHERE IsDeleted = 0 AND Role IN ('admin', 'staff') ORDER BY UserID DESC";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
                         DataTable dt = new DataTable();
@@ -108,8 +118,8 @@ namespace Student_Clearance_Management_System.Forms
                 {
                     conn.Open();
 
-                    // Check duplicate
-                    SqlCommand check = new SqlCommand("SELECT COUNT(*) FROM Users WHERE Username = @username", conn);
+                    // Check duplicate — only block active (non-deleted) accounts
+                    SqlCommand check = new SqlCommand("SELECT COUNT(*) FROM Users WHERE Username = @username AND IsDeleted = 0", conn);
                     check.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
                     if (Convert.ToInt32(check.ExecuteScalar()) > 0)
                     {
@@ -155,8 +165,8 @@ namespace Student_Clearance_Management_System.Forms
                 {
                     conn.Open();
 
-                    // Check username availability
-                    SqlCommand check = new SqlCommand("SELECT COUNT(*) FROM Users WHERE Username = @username AND UserID != @userID", conn);
+                    // Check username availability — only block active (non-deleted) accounts
+                    SqlCommand check = new SqlCommand("SELECT COUNT(*) FROM Users WHERE Username = @username AND UserID != @userID AND IsDeleted = 0", conn);
                     check.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
                     check.Parameters.AddWithValue("@userID", selectedUserID);
                     if (Convert.ToInt32(check.ExecuteScalar()) > 0)
@@ -235,9 +245,9 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DataGridViewRow row = dgvUsers.Rows[e.RowIndex];
                 selectedUserID = Convert.ToInt32(row.Cells["UserID"].Value);
-                txtUsername.Text = row.Cells["Username"].Value.ToString();
-                txtPassword.Text = row.Cells["Password"].Value.ToString();
-                cboRole.SelectedItem = row.Cells["Role"].Value.ToString();
+                txtUsername.Text = row.Cells["Username"].Value?.ToString() ?? "";
+                txtPassword.Text = row.Cells["Password"].Value?.ToString() ?? "";
+                cboRole.SelectedItem = row.Cells["Role"].Value?.ToString() ?? "";
             }
         }
 
@@ -732,6 +742,439 @@ namespace Student_Clearance_Management_System.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("Soft delete failed: " + ex.Message);
+            }
+        }
+
+        // ================== TAB 5 LOGIC (Staff Department Assignments) ==================
+        private void LoadStaffUsers()
+        {
+            try
+            {
+                cboStaffUsers.SelectedIndexChanged -= cboStaffUsers_SelectedIndexChanged;
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT UserID, Username FROM Users WHERE Role = 'staff' AND IsDeleted = 0 ORDER BY Username ASC";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            cboStaffUsers.DataSource = dt;
+                            cboStaffUsers.DisplayMember = "Username";
+                            cboStaffUsers.ValueMember = "UserID";
+                        }
+                    }
+                }
+                cboStaffUsers.SelectedIndexChanged += cboStaffUsers_SelectedIndexChanged;
+                
+                if (cboStaffUsers.Items.Count > 0)
+                {
+                    cboStaffUsers.SelectedIndex = 0;
+                    LoadDepartmentAssignments();
+                }
+                else
+                {
+                    lstAvailableDepts.DataSource = null;
+                    lstAssignedDepts.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading staff users: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadDepartmentAssignments()
+        {
+            if (cboStaffUsers.SelectedValue == null) return;
+            if (!int.TryParse(cboStaffUsers.SelectedValue.ToString(), out int userID)) return;
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    // Load assigned departments
+                    string assignedQuery = @"
+                        SELECT d.DepartmentID, d.DepartmentName 
+                        FROM StaffDepartmentAssignments sda
+                        INNER JOIN Departments d ON sda.DepartmentID = d.DepartmentID
+                        WHERE sda.UserID = @userID AND sda.IsDeleted = 0 AND d.IsDeleted = 0
+                        ORDER BY d.DepartmentName ASC";
+                    
+                    DataTable dtAssigned = new DataTable();
+                    using (SqlCommand cmd = new SqlCommand(assignedQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dtAssigned);
+                        }
+                    }
+
+                    // Load available departments
+                    string availableQuery = @"
+                        SELECT DepartmentID, DepartmentName 
+                        FROM Departments
+                        WHERE IsDeleted = 0 
+                        AND DepartmentID NOT IN (
+                            SELECT DepartmentID 
+                            FROM StaffDepartmentAssignments 
+                            WHERE UserID = @userID AND IsDeleted = 0
+                        )
+                        ORDER BY DepartmentName ASC";
+
+                    DataTable dtAvailable = new DataTable();
+                    using (SqlCommand cmd = new SqlCommand(availableQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dtAvailable);
+                        }
+                    }
+
+                    // Bind lstAssignedDepts
+                    lstAssignedDepts.DataSource = dtAssigned;
+                    lstAssignedDepts.DisplayMember = "DepartmentName";
+                    lstAssignedDepts.ValueMember = "DepartmentID";
+
+                    // Bind lstAvailableDepts
+                    lstAvailableDepts.DataSource = dtAvailable;
+                    lstAvailableDepts.DisplayMember = "DepartmentName";
+                    lstAvailableDepts.ValueMember = "DepartmentID";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading department assignments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAssignDept_Click(object sender, EventArgs e)
+        {
+            if (cboStaffUsers.SelectedValue == null) return;
+            if (!int.TryParse(cboStaffUsers.SelectedValue.ToString(), out int userID)) return;
+
+            if (lstAvailableDepts.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select one or more departments to assign.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    var selectedItems = lstAvailableDepts.SelectedItems.Cast<object>().ToList();
+                    foreach (var item in selectedItems)
+                    {
+                        DataRowView row = (DataRowView)item;
+                        int deptID = Convert.ToInt32(row["DepartmentID"]);
+
+                        // Check if a soft-deleted assignment already exists, if so reactivate it. Else insert new
+                        SqlCommand checkCmd = new SqlCommand(
+                            "SELECT AssignmentID, IsDeleted FROM StaffDepartmentAssignments WHERE UserID = @userID AND DepartmentID = @deptID", conn);
+                        checkCmd.Parameters.AddWithValue("@userID", userID);
+                        checkCmd.Parameters.AddWithValue("@deptID", deptID);
+                        
+                        using (SqlDataReader reader = checkCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int assignmentID = Convert.ToInt32(reader["AssignmentID"]);
+                                bool isDeleted = Convert.ToBoolean(reader["IsDeleted"]);
+                                reader.Close();
+
+                                if (isDeleted)
+                                {
+                                    SqlCommand updateCmd = new SqlCommand(
+                                        "UPDATE StaffDepartmentAssignments SET IsDeleted = 0 WHERE AssignmentID = @id", conn);
+                                    updateCmd.Parameters.AddWithValue("@id", assignmentID);
+                                    updateCmd.ExecuteNonQuery();
+                                }
+                            }
+                            else
+                            {
+                                reader.Close();
+                                SqlCommand insertCmd = new SqlCommand(
+                                    "INSERT INTO StaffDepartmentAssignments (UserID, DepartmentID, IsDeleted) VALUES (@userID, @deptID, 0)", conn);
+                                insertCmd.Parameters.AddWithValue("@userID", userID);
+                                insertCmd.Parameters.AddWithValue("@deptID", deptID);
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                LoadDepartmentAssignments();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error assigning department: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnUnassignDept_Click(object sender, EventArgs e)
+        {
+            if (cboStaffUsers.SelectedValue == null) return;
+            if (!int.TryParse(cboStaffUsers.SelectedValue.ToString(), out int userID)) return;
+
+            if (lstAssignedDepts.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select one or more departments to remove.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    var selectedItems = lstAssignedDepts.SelectedItems.Cast<object>().ToList();
+                    foreach (var item in selectedItems)
+                    {
+                        DataRowView row = (DataRowView)item;
+                        int deptID = Convert.ToInt32(row["DepartmentID"]);
+
+                        SqlCommand cmd = new SqlCommand(
+                            "UPDATE StaffDepartmentAssignments SET IsDeleted = 1 WHERE UserID = @userID AND DepartmentID = @deptID", conn);
+                        cmd.Parameters.AddWithValue("@userID", userID);
+                        cmd.Parameters.AddWithValue("@deptID", deptID);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                LoadDepartmentAssignments();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error removing department assignment: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cboStaffUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDepartmentAssignments();
+        }
+
+        // ================== TAB 6 LOGIC (STUDENT ACCOUNT CRUD) ==================
+        private void LoadStudentUsers()
+        {
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT UserID, Username, Password, Role FROM Users WHERE IsDeleted = 0 AND Role = 'student' ORDER BY UserID DESC";
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvStudentUsers.DataSource = dt;
+                    }
+                }
+                if (dgvStudentUsers.Columns["UserID"] != null) dgvStudentUsers.Columns["UserID"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading student users: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStudentAdd_Click(object sender, EventArgs e)
+        {
+            string username = txtStudentUsername.Text.Trim();
+            string password = txtStudentPassword.Text.Trim();
+
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("Please fill all student account fields.", "Validation Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    // 1. Verify that the student ID exists in the Students table
+                    SqlCommand verifyStudent = new SqlCommand(
+                        "SELECT COUNT(*) FROM Students WHERE CAST(StudentID AS VARCHAR) = @username AND IsDeleted = 0", conn);
+                    verifyStudent.Parameters.AddWithValue("@username", username);
+                    int studentExists = Convert.ToInt32(verifyStudent.ExecuteScalar());
+
+                    if (studentExists == 0)
+                    {
+                        MessageBox.Show($"No active student record found with Student ID '{username}'. Please create the student record in the Master Data Editor first.", "Student Record Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 2. Check if login profile already exists in Users
+                    SqlCommand checkUser = new SqlCommand(
+                        "SELECT COUNT(*) FROM Users WHERE Username = @username AND IsDeleted = 0", conn);
+                    checkUser.Parameters.AddWithValue("@username", username);
+                    int userExists = Convert.ToInt32(checkUser.ExecuteScalar());
+
+                    if (userExists > 0)
+                    {
+                        MessageBox.Show("A login profile for this Student ID already exists.", "Duplicate Profile", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 3. Perform Insert with 'student' role
+                    SqlCommand insertCmd = new SqlCommand(
+                        "INSERT INTO Users (Username, Password, Role, IsDeleted) VALUES (@username, @password, 'student', 0)", conn);
+                    insertCmd.Parameters.AddWithValue("@username", username);
+                    insertCmd.Parameters.AddWithValue("@password", password);
+                    insertCmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Student account created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadStudentUsers();
+                ClearStudentUserFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding student user: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStudentUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedStudentID == 0)
+            {
+                MessageBox.Show("Please select a student user to update.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string username = txtStudentUsername.Text.Trim();
+            string password = txtStudentPassword.Text.Trim();
+
+            if (username == "" || password == "")
+            {
+                MessageBox.Show("Please fill all student account fields.", "Validation Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+
+                    // 1. Verify that the student ID exists in the Students table
+                    SqlCommand verifyStudent = new SqlCommand(
+                        "SELECT COUNT(*) FROM Students WHERE CAST(StudentID AS VARCHAR) = @username AND IsDeleted = 0", conn);
+                    verifyStudent.Parameters.AddWithValue("@username", username);
+                    int studentExists = Convert.ToInt32(verifyStudent.ExecuteScalar());
+
+                    if (studentExists == 0)
+                    {
+                        MessageBox.Show($"No active student record found with Student ID '{username}'. Please create the student record in the Master Data Editor first.", "Student Record Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 2. Check duplicate username in Users for other IDs
+                    SqlCommand checkUser = new SqlCommand(
+                        "SELECT COUNT(*) FROM Users WHERE Username = @username AND UserID != @userID AND IsDeleted = 0", conn);
+                    checkUser.Parameters.AddWithValue("@username", username);
+                    checkUser.Parameters.AddWithValue("@userID", selectedStudentID);
+                    int userExists = Convert.ToInt32(checkUser.ExecuteScalar());
+
+                    if (userExists > 0)
+                    {
+                        MessageBox.Show("Username is already taken by another account.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 3. Update fields
+                    SqlCommand updateCmd = new SqlCommand(
+                        "UPDATE Users SET Username = @username, Password = @password WHERE UserID = @userID", conn);
+                    updateCmd.Parameters.AddWithValue("@username", username);
+                    updateCmd.Parameters.AddWithValue("@password", password);
+                    updateCmd.Parameters.AddWithValue("@userID", selectedStudentID);
+                    updateCmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Student account updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadStudentUsers();
+                ClearStudentUserFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating student user: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStudentDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedStudentID == 0)
+            {
+                MessageBox.Show("Please select a student user to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to delete this student login profile?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.No) return;
+
+            try
+            {
+                DBConnection db = new DBConnection();
+                using (SqlConnection conn = db.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Users SET IsDeleted = 1 WHERE UserID = @userID", conn);
+                    cmd.Parameters.AddWithValue("@userID", selectedStudentID);
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Student account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadStudentUsers();
+                ClearStudentUserFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting student user: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStudentClear_Click(object sender, EventArgs e)
+        {
+            ClearStudentUserFields();
+        }
+
+        private void ClearStudentUserFields()
+        {
+            selectedStudentID = 0;
+            txtStudentUsername.Clear();
+            txtStudentPassword.Clear();
+            txtStudentUsername.Focus();
+        }
+
+        private void dgvStudentUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvStudentUsers.Rows[e.RowIndex];
+                selectedStudentID = Convert.ToInt32(row.Cells["UserID"].Value);
+                txtStudentUsername.Text = row.Cells["Username"].Value?.ToString() ?? "";
+                txtStudentPassword.Text = row.Cells["Password"].Value?.ToString() ?? "";
             }
         }
     }

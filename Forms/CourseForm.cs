@@ -25,12 +25,6 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvCourses.Columns["CourseID"].Visible = false;
             }
-
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = false;
-            }
         }
 
         private void LoadCourses()
@@ -69,11 +63,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to add courses.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtCourseCode.Text == "" || txtCourseName.Text == "")
             {
@@ -260,11 +249,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to delete courses.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtCourseID.Text == "")
             {

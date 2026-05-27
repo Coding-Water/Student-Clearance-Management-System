@@ -36,11 +36,6 @@ namespace Student_Clearance_Management_System.Forms
             LoadStudents();
             SetupChecklistGrid();
             LoadClearanceRecords();
-
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                btnDeleteSelected.Enabled = false;
-            }
         }
 
         private void LoadAcademicTerms()
@@ -51,7 +46,7 @@ namespace Student_Clearance_Management_System.Forms
 
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -317,7 +312,7 @@ namespace Student_Clearance_Management_System.Forms
         {
             DBConnection db = new DBConnection();
 
-            SqlConnection conn = db.GetConnection();
+            using (SqlConnection conn = db.GetConnection())
             {
                 conn.Open();
 
@@ -349,11 +344,12 @@ namespace Student_Clearance_Management_System.Forms
                                     AND cr.IsDeleted = 0
                                  )";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@studentID", studentID);
-                cmd.Parameters.AddWithValue("@termID", termID);
-
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@studentID", studentID);
+                    cmd.Parameters.AddWithValue("@termID", termID);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -381,7 +377,7 @@ namespace Student_Clearance_Management_System.Forms
 
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -449,7 +445,7 @@ namespace Student_Clearance_Management_System.Forms
 
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
                     SqlTransaction transaction = conn.BeginTransaction();
@@ -498,11 +494,13 @@ namespace Student_Clearance_Management_System.Forms
                                              WHERE ClearanceID = @clearanceID
                                              AND IsDeleted = 0";
 
-                            SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                            cmd.Parameters.AddWithValue("@status",      newStatus);
-                            cmd.Parameters.AddWithValue("@remarks",     newRemarks);
-                            cmd.Parameters.AddWithValue("@clearanceID", clearanceID);
-                            cmd.ExecuteNonQuery();
+                            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@status",      newStatus);
+                                cmd.Parameters.AddWithValue("@remarks",     newRemarks);
+                                cmd.Parameters.AddWithValue("@clearanceID", clearanceID);
+                                cmd.ExecuteNonQuery();
+                            }
 
                             // ── Write audit log only when something actually changed ──────────
                             bool statusChanged  = !oldStatus.Equals(newStatus,  StringComparison.OrdinalIgnoreCase);
@@ -562,7 +560,7 @@ namespace Student_Clearance_Management_System.Forms
 
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -643,7 +641,7 @@ namespace Student_Clearance_Management_System.Forms
 
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -715,11 +713,6 @@ namespace Student_Clearance_Management_System.Forms
 
         private void DeleteSelectedRecord()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to delete clearance records.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (dgvClearanceRecords.SelectedRows.Count == 0)
             {

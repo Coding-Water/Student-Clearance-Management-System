@@ -62,6 +62,25 @@ namespace Student_Clearance_Management_System.Forms
             btnMasterRefresh = new Button();
             btnMasterDelete = new Button();
             btnBack = new Button();
+            tabStaffAssignments = new TabPage();
+            lblAssignmentStaff = new Label();
+            cboStaffUsers = new ComboBox();
+            lblAvailableDepts = new Label();
+            lstAvailableDepts = new ListBox();
+            lblAssignedDepts = new Label();
+            lstAssignedDepts = new ListBox();
+            btnAssignDept = new Button();
+            btnUnassignDept = new Button();
+            tabStudentAccounts = new TabPage();
+            dgvStudentUsers = new DataGridView();
+            lblStudentUsername = new Label();
+            txtStudentUsername = new TextBox();
+            lblStudentPassword = new Label();
+            txtStudentPassword = new TextBox();
+            btnStudentAdd = new Button();
+            btnStudentUpdate = new Button();
+            btnStudentDelete = new Button();
+            btnStudentClear = new Button();
             tabControl.SuspendLayout();
             tabUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsers).BeginInit();
@@ -71,6 +90,9 @@ namespace Student_Clearance_Management_System.Forms
             ((System.ComponentModel.ISupportInitialize)dgvHistory).BeginInit();
             tabMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMasterRecords).BeginInit();
+            tabStaffAssignments.SuspendLayout();
+            tabStudentAccounts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvStudentUsers).BeginInit();
             SuspendLayout();
             // 
             // tabControl
@@ -79,6 +101,8 @@ namespace Student_Clearance_Management_System.Forms
             tabControl.Controls.Add(tabRecycle);
             tabControl.Controls.Add(tabAudit);
             tabControl.Controls.Add(tabMaster);
+            tabControl.Controls.Add(tabStaffAssignments);
+            tabControl.Controls.Add(tabStudentAccounts);
             tabControl.Location = new Point(20, 75);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
@@ -146,7 +170,7 @@ namespace Student_Clearance_Management_System.Forms
             // cboRole
             // 
             cboRole.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboRole.Items.AddRange(new object[] { "student", "staff", "admin" });
+            cboRole.Items.AddRange(new object[] { "staff", "admin" });
             cboRole.Location = new Point(460, 45);
             cboRole.Name = "cboRole";
             cboRole.Size = new Size(150, 23);
@@ -192,7 +216,11 @@ namespace Student_Clearance_Management_System.Forms
             // 
             dgvUsers.Location = new Point(20, 130);
             dgvUsers.Name = "dgvUsers";
-            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsers.ReadOnly = true;
+            dgvUsers.AllowUserToAddRows = false;
+            dgvUsers.AllowUserToDeleteRows = false;
+            dgvUsers.MultiSelect = false;
             dgvUsers.Size = new Size(880, 410);
             dgvUsers.TabIndex = 4;
             dgvUsers.CellClick += dgvUsers_CellClick;
@@ -358,6 +386,170 @@ namespace Student_Clearance_Management_System.Forms
             btnMasterDelete.Text = "SOFT DELETE RECORD";
             btnMasterDelete.Click += btnMasterDelete_Click;
             // 
+            // tabStaffAssignments
+            // 
+            tabStaffAssignments.Controls.Add(lblAssignmentStaff);
+            tabStaffAssignments.Controls.Add(cboStaffUsers);
+            tabStaffAssignments.Controls.Add(lblAvailableDepts);
+            tabStaffAssignments.Controls.Add(lstAvailableDepts);
+            tabStaffAssignments.Controls.Add(lblAssignedDepts);
+            tabStaffAssignments.Controls.Add(lstAssignedDepts);
+            tabStaffAssignments.Controls.Add(btnAssignDept);
+            tabStaffAssignments.Controls.Add(btnUnassignDept);
+            tabStaffAssignments.Location = new Point(4, 24);
+            tabStaffAssignments.Name = "tabStaffAssignments";
+            tabStaffAssignments.Padding = new Padding(15);
+            tabStaffAssignments.Size = new Size(912, 552);
+            tabStaffAssignments.TabIndex = 4;
+            tabStaffAssignments.Text = "Staff Department Assignments";
+            // 
+            // lblAssignmentStaff
+            // 
+            lblAssignmentStaff.Location = new Point(20, 20);
+            lblAssignmentStaff.Name = "lblAssignmentStaff";
+            lblAssignmentStaff.Size = new Size(150, 20);
+            lblAssignmentStaff.Text = "Select Staff User:";
+            // 
+            // cboStaffUsers
+            // 
+            cboStaffUsers.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboStaffUsers.Location = new Point(170, 17);
+            cboStaffUsers.Name = "cboStaffUsers";
+            cboStaffUsers.Size = new Size(250, 23);
+            cboStaffUsers.SelectedIndexChanged += cboStaffUsers_SelectedIndexChanged;
+            // 
+            // lblAvailableDepts
+            // 
+            lblAvailableDepts.Location = new Point(20, 65);
+            lblAvailableDepts.Name = "lblAvailableDepts";
+            lblAvailableDepts.Size = new Size(300, 20);
+            lblAvailableDepts.Text = "Available Departments:";
+            // 
+            // lstAvailableDepts
+            // 
+            lstAvailableDepts.Location = new Point(20, 95);
+            lstAvailableDepts.Name = "lstAvailableDepts";
+            lstAvailableDepts.SelectionMode = SelectionMode.MultiExtended;
+            lstAvailableDepts.Size = new Size(350, 360);
+            // 
+            // btnAssignDept
+            // 
+            btnAssignDept.Location = new Point(400, 200);
+            btnAssignDept.Name = "btnAssignDept";
+            btnAssignDept.Size = new Size(110, 40);
+            btnAssignDept.Text = "Assign ➔";
+            btnAssignDept.Click += btnAssignDept_Click;
+            // 
+            // btnUnassignDept
+            // 
+            btnUnassignDept.Location = new Point(400, 260);
+            btnUnassignDept.Name = "btnUnassignDept";
+            btnUnassignDept.Size = new Size(110, 40);
+            btnUnassignDept.Text = "← Remove";
+            btnUnassignDept.Click += btnUnassignDept_Click;
+            // 
+            // lblAssignedDepts
+            // 
+            lblAssignedDepts.Location = new Point(540, 65);
+            lblAssignedDepts.Name = "lblAssignedDepts";
+            lblAssignedDepts.Size = new Size(300, 20);
+            lblAssignedDepts.Text = "Assigned Departments:";
+            // 
+            // lstAssignedDepts
+            // 
+            lstAssignedDepts.Location = new Point(540, 95);
+            lstAssignedDepts.Name = "lstAssignedDepts";
+            lstAssignedDepts.SelectionMode = SelectionMode.MultiExtended;
+            lstAssignedDepts.Size = new Size(350, 360);
+            // 
+            // tabStudentAccounts
+            // 
+            tabStudentAccounts.Controls.Add(lblStudentUsername);
+            tabStudentAccounts.Controls.Add(txtStudentUsername);
+            tabStudentAccounts.Controls.Add(lblStudentPassword);
+            tabStudentAccounts.Controls.Add(txtStudentPassword);
+            tabStudentAccounts.Controls.Add(btnStudentAdd);
+            tabStudentAccounts.Controls.Add(btnStudentUpdate);
+            tabStudentAccounts.Controls.Add(btnStudentDelete);
+            tabStudentAccounts.Controls.Add(btnStudentClear);
+            tabStudentAccounts.Controls.Add(dgvStudentUsers);
+            tabStudentAccounts.Location = new Point(4, 24);
+            tabStudentAccounts.Name = "tabStudentAccounts";
+            tabStudentAccounts.Padding = new Padding(15);
+            tabStudentAccounts.Size = new Size(912, 552);
+            tabStudentAccounts.TabIndex = 5;
+            tabStudentAccounts.Text = "Student Account Management";
+            // 
+            // lblStudentUsername
+            // 
+            lblStudentUsername.Location = new Point(20, 20);
+            lblStudentUsername.Name = "lblStudentUsername";
+            lblStudentUsername.Size = new Size(100, 20);
+            lblStudentUsername.Text = "Student ID:";
+            // 
+            // txtStudentUsername
+            // 
+            txtStudentUsername.Location = new Point(20, 45);
+            txtStudentUsername.Name = "txtStudentUsername";
+            txtStudentUsername.Size = new Size(200, 23);
+            // 
+            // lblStudentPassword
+            // 
+            lblStudentPassword.Location = new Point(240, 20);
+            lblStudentPassword.Name = "lblStudentPassword";
+            lblStudentPassword.Size = new Size(100, 20);
+            lblStudentPassword.Text = "Password:";
+            // 
+            // txtStudentPassword
+            // 
+            txtStudentPassword.Location = new Point(240, 45);
+            txtStudentPassword.Name = "txtStudentPassword";
+            txtStudentPassword.Size = new Size(200, 23);
+            // 
+            // btnStudentAdd
+            // 
+            btnStudentAdd.Location = new Point(460, 38);
+            btnStudentAdd.Name = "btnStudentAdd";
+            btnStudentAdd.Size = new Size(80, 32);
+            btnStudentAdd.Text = "ADD";
+            btnStudentAdd.Click += btnStudentAdd_Click;
+            // 
+            // btnStudentUpdate
+            // 
+            btnStudentUpdate.Location = new Point(550, 38);
+            btnStudentUpdate.Name = "btnStudentUpdate";
+            btnStudentUpdate.Size = new Size(80, 32);
+            btnStudentUpdate.Text = "UPDATE";
+            btnStudentUpdate.Click += btnStudentUpdate_Click;
+            // 
+            // btnStudentDelete
+            // 
+            btnStudentDelete.Location = new Point(640, 38);
+            btnStudentDelete.Name = "btnStudentDelete";
+            btnStudentDelete.Size = new Size(80, 32);
+            btnStudentDelete.Text = "DELETE";
+            btnStudentDelete.Click += btnStudentDelete_Click;
+            // 
+            // btnStudentClear
+            // 
+            btnStudentClear.Location = new Point(640, 80);
+            btnStudentClear.Name = "btnStudentClear";
+            btnStudentClear.Size = new Size(80, 32);
+            btnStudentClear.Text = "CLEAR";
+            btnStudentClear.Click += btnStudentClear_Click;
+            // 
+            // dgvStudentUsers
+            // 
+            dgvStudentUsers.Location = new Point(20, 130);
+            dgvStudentUsers.Name = "dgvStudentUsers";
+            dgvStudentUsers.Size = new Size(880, 410);
+            dgvStudentUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStudentUsers.ReadOnly = true;
+            dgvStudentUsers.AllowUserToAddRows = false;
+            dgvStudentUsers.AllowUserToDeleteRows = false;
+            dgvStudentUsers.MultiSelect = false;
+            dgvStudentUsers.CellClick += dgvStudentUsers_CellClick;
+            // 
             // btnBack
             // 
             btnBack.Location = new Point(20, 15);
@@ -389,6 +581,10 @@ namespace Student_Clearance_Management_System.Forms
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
             tabMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvMasterRecords).EndInit();
+            tabStaffAssignments.ResumeLayout(false);
+            tabStudentAccounts.ResumeLayout(false);
+            tabStudentAccounts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvStudentUsers).EndInit();
             ResumeLayout(false);
         }
 
@@ -433,6 +629,28 @@ namespace Student_Clearance_Management_System.Forms
         private Button btnMasterDelete;
 
         private Button btnBack;
-        private Label lblTitle;
+
+        // Tab 5: Staff Department Assignments
+        private TabPage tabStaffAssignments;
+        private Label lblAssignmentStaff;
+        private ComboBox cboStaffUsers;
+        private Label lblAvailableDepts;
+        private ListBox lstAvailableDepts;
+        private Label lblAssignedDepts;
+        private ListBox lstAssignedDepts;
+        private Button btnAssignDept;
+        private Button btnUnassignDept;
+
+        // Tab 6: Student Account Management
+        private TabPage tabStudentAccounts;
+        private DataGridView dgvStudentUsers;
+        private Label lblStudentUsername;
+        private Label lblStudentPassword;
+        private TextBox txtStudentUsername;
+        private TextBox txtStudentPassword;
+        private Button btnStudentAdd;
+        private Button btnStudentUpdate;
+        private Button btnStudentDelete;
+        private Button btnStudentClear;
     }
 }

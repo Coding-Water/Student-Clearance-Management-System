@@ -24,12 +24,6 @@ namespace Student_Clearance_Management_System.Forms
             LoadYearLevels();
             LoadCourses();
             LoadStudents();
-
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = false;
-            }
         }
 
         // ENCAPSULATION: Helper methods are defined as 'private' to hide implementation details
@@ -140,11 +134,6 @@ namespace Student_Clearance_Management_System.Forms
         // METHOD IMPLEMENTATION: Providing the concrete logic for the 'Add' method defined in the ICrud interface.
         public void Add()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to add students.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtID.Text == "" ||
                 txtFirst.Text == "" ||
@@ -314,11 +303,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to delete students.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtID.Text == "")
             {

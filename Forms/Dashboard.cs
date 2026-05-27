@@ -13,6 +13,12 @@ namespace Student_Clearance_Management_System.Forms
         public Dashboard()
         {
             InitializeComponent();
+            if (AppSession.LoggedInRole?.Trim().ToLower() != "admin")
+            {
+                MessageBox.Show("Access Denied: Only Admin users can access the main Dashboard.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Load += (s, e) => this.Close();
+                return;
+            }
             UIHelper.ApplyModernStyle(this);
         }
 
@@ -29,7 +35,7 @@ namespace Student_Clearance_Management_System.Forms
             if (btnRecycleBin != null)
             {
                 btnRecycleBin.Text = "Admin Panel";
-                btnRecycleBin.Visible = (role == "admin");
+                btnRecycleBin.Visible = true;
             }
 
             LoadAcademicTerms();
@@ -43,7 +49,7 @@ namespace Student_Clearance_Management_System.Forms
                 isLoadingTerms = true;
 
                 DBConnection db = new DBConnection();
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 
@@ -119,7 +125,7 @@ namespace Student_Clearance_Management_System.Forms
             {
                 DBConnection db = new DBConnection();
 
-                SqlConnection conn = db.GetConnection();
+                using (SqlConnection conn = db.GetConnection())
                 {
                     conn.Open();
 

@@ -26,12 +26,6 @@ namespace Student_Clearance_Management_System.Forms
             {
                 dgvAcademicTerms.Columns["TermID"].Visible = false;
             }
-
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = false;
-            }
         }
 
         private void LoadSemesters()
@@ -87,11 +81,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Add()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to add academic terms.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtSchoolYear.Text == "" || cboSemester.Text == "")
             {
@@ -296,11 +285,6 @@ namespace Student_Clearance_Management_System.Forms
 
         public void Delete()
         {
-            if (AppSession.LoggedInRole.Equals("staff", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Staff members are not authorized to delete academic terms.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (txtTermID.Text == "")
             {
